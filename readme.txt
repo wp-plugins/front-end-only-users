@@ -39,15 +39,16 @@ Demo videos will be posted as soon as they are available.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Place "[register]" on the page where you want your registration form to display
 4. Place "[login]", "[logout]" and "[edit-profile]" shortcodes on pages as applicable
+5. All four of the shortcodes accept an attribute, 'redirect_page', that lets you send users to a different page after submitting the form
 
 --------------------------------------------------------------
 
-The user registration form can be customized from the admin panel, under the "Front-End Users" tab.
-Content can be restricted to users who are logged in using the [restricted][/restricted] tag. 
-You can further restrict content to a subset of users by adding "field_name" and "field_value" attributes to the restricted shortcode.
-For example, "[restricted field_name='Country' field_value='Canada']This is Canadian content.[/restricted]" would only display the line "This is Canadian content." to those who have put their "Country" as "Canada" on their user profile.
-You can also personalize your site using the [user-data] tag.
-By default the tag will return the user's Username, but can also display any other field (ex. [user-data field_name='First Name'])
+- The user registration form can be customized from the admin panel, under the "Front-End Users" tab.
+- Content can be restricted to users who are logged in using the [restricted][/restricted] tag. 
+- You can further restrict content to a subset of users by adding "field_name" and "field_value" attributes to the restricted shortcode.
+- For example, "[restricted field_name='Country' field_value='Canada']This is Canadian content.[/restricted]" would only display the line "This is Canadian content." to those who have put their "Country" as "Canada" on their user profile.
+- You can also personalize your site using the [user-data] tag.
+- By default the tag will return the user's Username, but can also display any other field (ex. [user-data field_name='First Name'])
 
 
 == Frequently Asked Questions ==
