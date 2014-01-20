@@ -1,0 +1,42 @@
+<?php 
+/* The function that creates the HTML on the front-end, based on the parameters
+* supplied in the product-catalog shortcode */
+function Insert_Login_Form($atts) {
+		global $user_message;
+		// Include the required global variables, and create a few new ones
+		$Salt = get_option("EWD_FEUP_Hash_Salt");
+		$Time = time();
+		
+		$ReturnString = "";
+		
+		// Get the attributes passed by the shortcode, and store them in new variables for processing
+		extract( shortcode_atts( array(
+						 								 		'redirect_page' => '#',
+																'submit_text' => __('Login', 'EWD_FEUP')),
+																$atts
+														)
+												);
+		
+		$ReturnString .= "<div id='ewd-feup-login-form-div'>";
+		$ReturnString .= $user_message;
+		$ReturnString .= "<form action='" . $redirect_page . "' method='post' id='ewd-feup-login-form' class='pure-form pure-form-aligned'>";
+		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
+		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
+		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='login'>";
+		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<label for='Username' id='ewd-feup-login-username-div' class='ewd-feup-field-label'>" . __('Username', 'EWD_FEUP') . ": </label>";
+		$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' placeholder='" . __('Username', 'EWD_FEUP') . "...'>";
+		$ReturnString .= "</div>";
+		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<label for='Password' id='ewd-feup-login-password-div' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </label>";
+		$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password'>";
+		$ReturnString .= "</div>";
+		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<label for='Submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Login_Submit' value='" . $submit_text . "'>";
+		$ReturnString .= "</div>";
+		$ReturnString .= "</form>";
+		$ReturnString .= "</div>";
+		
+		return $ReturnString;
+}
+add_shortcode("login", "Insert_Login_Form");

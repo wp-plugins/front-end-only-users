@@ -1,0 +1,10 @@
+.ewd-admin-small-input {
+ width: auto !important;
+}
+.ewd-admin-regular-text {
+  width:25em !important;
+}
+.ewd-admin-large-text {
+  width:40em !important;
+	height:10em;
+}

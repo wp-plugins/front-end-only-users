@@ -1,0 +1,82 @@
+=== Plugin Name ===
+Contributors: Rustaurius 
+Tags: membership, user management, market segmentation, personalization, front-end users, PureCSS
+Requires at least: 3.5.0
+Tested up to: 3.8
+License: GPLv3
+License URI:http://www.gnu.org/licenses/gpl-3.0.html
+
+Allow visitors to sign up as users on the front-end of your website only. Completely customizable, allows personalization of a website.
+
+== Description ==
+
+Allow visitors to sign up as users on the front-end of your website only. Completely customizable, allows personalization of a website.
+
+This plugin is at the beta development stage, and as such not all features may be working correctly despite internal testing of the plugin.
+
+Use shortcodes to insert registration, login or profile editing forms on any page of your website.
+Users are created in tables separate from the main WordPress user tables so that they have no access to the back-end of your site.
+You create different fields for members to fill out, and can customize content based on their profiles (location, gender, language preference, etc.)
+
+Key Features:
+
+* Customizable membership fields 
+* Supports all input types for user fields
+* UTF8 support
+* Different membership levels, content can be restricted to certain levels
+* PureCSS-styled forms for elegant design
+* Allows personalization of your site with the [user-data] shortcode
+* Options page lets you control how long a user remains logged in
+
+This plugin creates a cookie to store login information. 
+
+Please head to the "Support" tab to report errors or make suggestions.
+Demo videos will be posted as soon as they are available.
+
+== Installation ==
+
+1. Upload the `front-end-only-users` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Place "[register]" on the page where you want your registration form to display
+4. Place "[login]", "[logout]" and "[edit-profile]" shortcodes on pages as applicable
+
+--------------------------------------------------------------
+
+The user registration form can be customized from the admin panel, under the "Front-End Users" tab.
+Content can be restricted to users who are logged in using the [restricted][/restricted] tag. 
+You can further restrict content to a subset of users by adding "field_name" and "field_value" attributes to the restricted shortcode.
+For example, "[restricted field_name='Country' field_value='Canada']This is Canadian content.[/restricted]" would only display the line "This is Canadian content." to those who have put their "Country" as "Canada" on their user profile.
+You can also personalize your site using the [user-data] tag.
+By default the tag will return the user's Username, but can also display any other field (ex. [user-data field_name='First Name'])
+
+
+== Frequently Asked Questions ==
+
+= How do I add fields for my users to fill out? =
+
+On the admin page, go to the "Fields" tab. 
+
+= How do I display a user's first name on a page? =
+
+You can use the [user-data field_name='First Name'] shortcode, assuming that you called your field "First Name" for a user's first name.
+
+= How do I restrict content to vistors who have logged in? =
+
+Content can be restricted using the [restricted][/restricted] tag. Any content between the opening and closing tags will only be visible to those who are logged in. 
+
+
+
+== Screenshots ==
+
+1. The admin area
+2. Sample registration page
+3. Sample edit profile page
+4. Sample login page
+
+== Changelog ==
+
+= 0.1 =
+- Initial beta version. Please make comments/suggestions in the "Support" forum.
+
+== Upgrade Notice ==
+

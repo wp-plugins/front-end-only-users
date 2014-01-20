@@ -1,0 +1,94 @@
+<?php 
+/* The function that creates the HTML on the front-end, based on the parameters
+* supplied in the product-catalog shortcode */
+function Insert_Edit_Profile($atts) {
+		// Include the required global variables, and create a few new ones
+		global $wpdb;
+		global $ewd_feup_fields_table_name, $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name;
+		
+		$CheckCookie = CheckLoginCookie();
+		
+		$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
+		$Fields = $wpdb->get_results($Sql);
+		$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username='%s'", $CheckCookie['Username']));
+		$UserData = $wpdb->get_results($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE User_ID='%d'", $User->User_ID));
+		
+		$ReturnString = "";
+		
+		// Get the attributes passed by the shortcode, and store them in new variables for processing
+		extract( shortcode_atts( array(
+						 								 		'redirect_page' => '#',
+																'login_page' => '',
+																'submit_text' => __('Edit Profile', 'EWD_FEUP')),
+																$atts
+														)
+												);
+												
+		if ($CheckCookie['Username'] == "") {
+			  $ReturnString = __('You must be logged in to access this page.', 'EWD_FEUP');
+				if ($login_page != "") {$ReturnString .= "<br />" . __('Please', 'EWD_FEUP') . " <a href='" . $login_page . "'>" . __('login', 'EWD_FEUP') . "</a> " . __('to continue.', 'EWD_FEUP');}
+				return $ReturnString;
+		}
+		
+		$ReturnString .= "<div id='ewd-feup-edit-profile-form-div'>";
+		$ReturnString .= "<form action='" . $redirect_page . "' method='post' id='ewd-feup-edit-profile-form' class='pure-form pure-form-aligned'>";
+		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
+		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
+		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='edit-profile'>";
+		
+		foreach ($Fields as $Field) {
+				$Value = "";
+				foreach ($UserData as $UserField) {
+						if ($Field->Field_Name == $UserField->Field_Name) {$Value = $UserField->Field_Value;}
+				}
+				$ReturnString .= "<div class='pure-control-group'>";
+				$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-edit-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . $Field->Field_Name . ": </label>";
+				if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
+					  $ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $Value . "' />";
+				}
+				elseif ($Field->Field_Type == "textarea") {
+						$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2'>" . $Value . "</textarea>";
+				} 
+				elseif ($Field->Field_Type == "select") { 
+						$Options = explode(",", $Field->Field_Options);
+						$ReturnString .= "<select name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-select pure-input-1-3'>";
+			 			foreach ($Options as $Option) {
+								$ReturnString .= "<option value='" . $Option . "' ";
+								if (trim($Option) == trim($Value)) {$ReturnString .= "selected='selected'";}
+								$ReturnString .= ">" . $Option . "</option>";
+						}
+						$ReturnString .= "</select>";
+				} 
+				elseif ($Field->Field_Type == "radio") {
+						$Counter = 0;
+						$Options = explode(",", $Field->Field_Options);
+						foreach ($Options as $Option) {
+								if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
+								$ReturnString .= "<input type='radio' name='" . $Field->Field_Name . "' value='" . $Option . "' class='ewd-feup-radio' ";
+								if (trim($Option) == trim($Value)) {$ReturnString .= "checked";}
+								$ReturnString .= ">" . $Option;
+								$Counter++;
+						} 
+				} 
+				elseif ($Field->Field_Type == "checkbox") {
+  					$Counter = 0;
+						$Options = explode(",", $Field->Field_Options);
+						$Values = explode(",", $Value);
+						foreach ($Options as $Option) {
+								if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
+								$ReturnString .= "<input type='checkbox' name='" . $Field->Field_Name . "[]' value='" . $Option . "' class='ewd-feup-checkbox' ";
+								if (in_array($Option, $Values)) {$ReturnString .= "checked";}
+								$ReturnString .= ">" . $Option . "</br>";
+								$Counter++;
+						}
+				}
+				$ReturnString .= "</div>";
+		}
+		
+		$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Edit_Profile_Submit' value='" . $submit_text . "'></div>";
+		$ReturnString .= "</form>";
+		$ReturnString .= "</div>";
+		
+		return $ReturnString;
+}
+add_shortcode("edit-profile", "Insert_Edit_Profile");
