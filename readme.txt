@@ -68,10 +68,11 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 
 == Screenshots ==
 
-1. The admin area
-2. Sample registration page
-3. Sample edit profile page
-4. Sample login page
+1. Sample registration page
+2. Example of the edit profile page
+3. Page showing user data
+4. Example of a restricted page
+5. The admin area
 
 == Changelog ==
 
