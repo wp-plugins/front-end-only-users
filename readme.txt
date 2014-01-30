@@ -77,8 +77,13 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 
 == Changelog ==
 
+= 0.2 =
+- Fixed a number of bugs that made plugin unusable
+
 = 0.1 =
 - Initial beta version. Please make comments/suggestions in the "Support" forum.
 
 == Upgrade Notice ==
+
+- The bugs that make plugin impossible to use for most users have been fixed
 

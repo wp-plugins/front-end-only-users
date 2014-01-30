@@ -6,7 +6,7 @@ Description: A plugin that creates a separate set of users that are front-end on
 Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Text Domain: EWD_FEUP
-Version: 0.1
+Version: 0.2
 */
 
 global $EWD_FEUP_db_version;
@@ -74,7 +74,7 @@ add_filter("plugin_action_links_$plugin", 'EWD_FEUP_plugin_settings_link' );
 add_filter( 'query_vars', 'add_query_vars_filter' );
 
 function Add_EWD_FEUP_Scripts() {
-		if (isset($_GET['page']) && $_GET['page'] == 'UPCP-options') {
+		if (isset($_GET['page']) && $_GET['page'] == 'EWD-FEUP-options') {
 			  $url_one = plugins_url("front-end-only-users/js/Admin.js");
 				$url_two = plugins_url("front-end-only-users/js/sorttable.js");
 				wp_enqueue_script('PageSwitch', $url_one, array('jquery'));
@@ -112,9 +112,9 @@ function save_feup_error(){
 		file_put_contents("Error.txt", ob_get_contents());
 }
 
-/*$Full_Version = get_option("EWD_FEUP_Full_Version");
+$Full_Version = get_option("EWD_FEUP_Full_Version");
 
-if (isset($_POST['Upgrade_To_Full'])) {
+/*if (isset($_POST['Upgrade_To_Full'])) {
 	  add_action('admin_init', 'Upgrade_To_Full');
 }*/
 
