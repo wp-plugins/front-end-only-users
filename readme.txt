@@ -76,6 +76,8 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 0.3 =
+- Fixed a couple of small bugs
 
 = 0.2 =
 - Fixed a number of bugs that made plugin unusable

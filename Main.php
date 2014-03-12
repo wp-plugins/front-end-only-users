@@ -6,7 +6,7 @@ Description: A plugin that creates a separate set of users that are front-end on
 Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Text Domain: EWD_FEUP
-Version: 0.2
+Version: 0.3
 */
 
 global $EWD_FEUP_db_version;
@@ -71,7 +71,7 @@ $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'EWD_FEUP_plugin_settings_link' );
 
 /* Put in the pretty permalinks filter */
-add_filter( 'query_vars', 'add_query_vars_filter' );
+//add_filter( 'query_vars', 'add_query_vars_filter' );
 
 function Add_EWD_FEUP_Scripts() {
 		if (isset($_GET['page']) && $_GET['page'] == 'EWD-FEUP-options') {
