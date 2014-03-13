@@ -47,7 +47,9 @@ function Remove_EWD_FEUP() {
 }
 
 // Process the forms posted by users from the front-end of the plugin
-add_action('init', 'Process_EWD_FEUP_Front_End_Forms');
+if (isset($_POST['ewd-feup-action'])) {
+	  add_action('init', 'Process_EWD_FEUP_Front_End_Forms');
+}
 
 /* Admin Page setup */
 function EWD_FEUP_Plugin_Menu() {
