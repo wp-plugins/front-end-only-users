@@ -8,3 +8,18 @@
   width:40em !important;
 	height:10em;
 }
+
+.OptionTab {
+	padding:15px;
+}
+.HiddenTab {
+  display:none;
+}
+
+.Row {
+  margin-bottom:25px;
+	min-height:100px;
+}
+a {
+  cursor:pointer;
+}

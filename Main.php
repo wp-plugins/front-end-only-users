@@ -6,7 +6,7 @@ Description: A plugin that creates a separate set of users that are front-end on
 Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Text Domain: EWD_FEUP
-Version: 0.3
+Version: 0.4
 */
 
 global $EWD_FEUP_db_version;
