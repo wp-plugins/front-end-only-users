@@ -18,6 +18,8 @@ Use shortcodes to insert registration, login or profile editing forms on any pag
 Users are created in tables separate from the main WordPress user tables so that they have no access to the back-end of your site.
 You create different fields for members to fill out, and can customize content based on their profiles (location, gender, language preference, etc.)
 
+[youtube http://www.youtube.com/watch?v=3HI8-t8a1wA]
+
 Key Features:
 
 * Customizable membership fields 
