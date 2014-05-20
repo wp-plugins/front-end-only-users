@@ -3,7 +3,7 @@
 * supplied in the product-catalog shortcode */
 function Insert_Edit_Profile($atts) {
 		// Include the required global variables, and create a few new ones
-		global $wpdb;
+		global $wpdb, $user_message, $feup_success;
 		global $ewd_feup_fields_table_name, $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name;
 		
 		$CheckCookie = CheckLoginCookie();
@@ -25,13 +25,16 @@ function Insert_Edit_Profile($atts) {
 												);
 												
 		if ($CheckCookie['Username'] == "") {
-			  $ReturnString = __('You must be logged in to access this page.', 'EWD_FEUP');
+				$ReturnString = __('You must be logged in to access this page.', 'EWD_FEUP');
 				if ($login_page != "") {$ReturnString .= "<br />" . __('Please', 'EWD_FEUP') . " <a href='" . $login_page . "'>" . __('login', 'EWD_FEUP') . "</a> " . __('to continue.', 'EWD_FEUP');}
 				return $ReturnString;
 		}
 		
+		if ($feup_success and $redirect_page != '#') {FEUPRedirect($redirect_page);}
+		
 		$ReturnString .= "<div id='ewd-feup-edit-profile-form-div'>";
-		$ReturnString .= "<form action='" . $redirect_page . "' method='post' id='ewd-feup-edit-profile-form' class='pure-form pure-form-aligned'>";
+		$ReturnString .= $user_message['Message'];
+		$ReturnString .= "<form action='#' method='post' id='ewd-feup-edit-profile-form' class='pure-form pure-form-aligned'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='edit-profile'>";
@@ -45,6 +48,12 @@ function Insert_Edit_Profile($atts) {
 				$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-edit-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . $Field->Field_Name . ": </label>";
 				if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
 					  $ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $Value . "' />";
+				}
+				elseif ($Field->Field_Type == "date") {
+						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='date' value='" . $Value . "' />";
+				}
+				elseif ($Field->Field_Type == "datetime") {
+						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' />";
 				}
 				elseif ($Field->Field_Type == "textarea") {
 						$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2'>" . $Value . "</textarea>";

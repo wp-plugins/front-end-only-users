@@ -3,7 +3,7 @@
 * supplied in the product-catalog shortcode */
 function Insert_Register_Form($atts) {
 		// Include the required global variables, and create a few new ones
-		global $wpdb, $user_message;
+		global $wpdb, $user_message, $feup_success;
 		global $ewd_feup_fields_table_name;
 		
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
@@ -22,9 +22,11 @@ function Insert_Register_Form($atts) {
 														)
 												);
 		
+		if ($feup_success and $redirect_page != '#') {FEUPRedirect($redirect_page);}
+		
 		$ReturnString .= "<div id='ewd-feup-register-form-div'>";
-		$ReturnString .= $user_message;
-		$ReturnString .= "<form action='" . $redirect_page . "' method='post' id='ewd-feup-register-form' class='pure-form pure-form-aligned'>";
+		$ReturnString .= $user_message['Message'];
+		$ReturnString .= "<form action='#' method='post' id='ewd-feup-register-form' class='pure-form pure-form-aligned'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='register'>";
@@ -50,6 +52,12 @@ function Insert_Register_Form($atts) {
 				if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
 					  if (isset($_POST[str_replace(" ", "_", $Field->Field_Name)])) {$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $_POST[str_replace(" ", "_", $Field->Field_Name)] . "' />";}
 						else {$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' placeholder='" . $Field->Field_Name . "' />";}
+				}
+				elseif ($Field->Field_Type == "date") {
+						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='date' value='" . $Value . "' />";
+				}
+				elseif ($Field->Field_Type == "datetime") {
+						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' />";
 				}
 				elseif ($Field->Field_Type == "textarea") {
 						$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2'>" . $_POST[str_replace(" ", "_", $Field->Field_Name)] . "</textarea>";

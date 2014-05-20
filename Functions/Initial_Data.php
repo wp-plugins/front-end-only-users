@@ -46,5 +46,7 @@ function Initial_EWD_FEUP_Data() {
 						'Level_Date_Created' => date("Y-m-d H:i:s")
 				));
 		}
+		
+		update_option('EWD_FEUP_Login_Time', 1440);
 }
 ?>

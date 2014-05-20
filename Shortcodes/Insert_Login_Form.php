@@ -2,7 +2,7 @@
 /* The function that creates the HTML on the front-end, based on the parameters
 * supplied in the product-catalog shortcode */
 function Insert_Login_Form($atts) {
-		global $user_message;
+		global $user_message, $feup_success;
 		// Include the required global variables, and create a few new ones
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
 		$Time = time();
@@ -17,9 +17,11 @@ function Insert_Login_Form($atts) {
 														)
 												);
 		
+		if ($feup_success and $redirect_page != '#') {FEUPRedirect($redirect_page);}
+		
 		$ReturnString .= "<div id='ewd-feup-login-form-div'>";
-		$ReturnString .= $user_message;
-		$ReturnString .= "<form action='" . $redirect_page . "' method='post' id='ewd-feup-login-form' class='pure-form pure-form-aligned'>";
+		$ReturnString .= $user_message['Message'];
+		$ReturnString .= "<form action='#' method='post' id='ewd-feup-login-form' class='pure-form pure-form-aligned'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='login'>";

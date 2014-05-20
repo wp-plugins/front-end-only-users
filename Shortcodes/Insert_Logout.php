@@ -15,6 +15,12 @@ function Insert_Logout($atts) {
 												);
 		
 		setcookie($CookieName, "", time()-3600, "/");
-	
+		if ($redirect_page != "#") {FEUPRedirect($redirect_page);}
+		
+		$ReturnString .= "<div class='feup-information-div'>";
+		$ReturnString .= __("You have been successfully logged out." , "EWD_FEUP");
+		$ReturnString .= "</div>";
+		
+		return $ReturnString;
 }
 add_shortcode("logout", "Insert_Logout");

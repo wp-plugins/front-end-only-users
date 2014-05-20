@@ -1,7 +1,7 @@
 <?php
 /* Prepare the data to add or edit a single product */
 function Add_Edit_User() {
-		global $wpdb, $ewd_feup_fields_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_user_table_name;
+		global $wpdb, $feup_success, $ewd_feup_fields_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_user_table_name;
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
 		
 		$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
@@ -16,7 +16,11 @@ function Add_Edit_User() {
 								 	 				'User_Password' => sha1(md5($_POST['User_Password'].$Salt)),
 													'User_Date_Created' => $date);
 		
-		if ($_POST['User_Password'] != $_POST['Confirm_User_Password']) {$user_update = __("The passwords you entered did not match.", "EWD_FEUP"); return $user_update;}
+		if ($_POST['User_Password'] != $_POST['Confirm_User_Password']) {$user_update['Message'] = __("The passwords you entered did not match.", "EWD_FEUP"); return $user_update;}
+		if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
+			  $wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $_POST['Username']));
+				if ($wpdb->num_rows > 0) {$user_update['Message'] = __("There is already a user with that Username, please select a different one.", "EWD_FEUP"); return $user_update;}
+		}
 				
 		foreach ($Fields as $Field) {
 				$Additional_Fields_Array[$Field->Field_Name]['Field_ID'] = $Field->Field_ID;
@@ -38,6 +42,7 @@ function Add_Edit_User() {
 						if ($_POST['ewd-feup-action'] == "register") {
 							  CreateLoginCookie($_POST['Username'], $_POST['User_Password']);
 								$user_update = __("Your account has been succesfully created.", "EWD_FEUP");
+								$feup_success = true;
 						}
 				}
 				/* Pass the data to the appropriate function in Update_Admin_Databases.php to edit the user */
@@ -50,6 +55,7 @@ function Add_Edit_User() {
 						}
 				}
 				$user_update = array("Message_Type" => "Update", "Message" => $user_update);
+				$feup_success = true;
 				return $user_update;
 		}
 		/* Return any error that might have occurred */
@@ -167,16 +173,4 @@ function Mass_Delete_EWD_FEUP_Levels() {
 		return $user_update;
 }
 
-function Confirm_Login() {
-		global $wpdb;
-		global $ewd_feup_user_table_name;
-		$Salt = get_option("EWD_FEUP_Hash_Salt");
-		
-		$User = $wpdb->get_row($wpdb->prepare("SELECT User_Password FROM $ewd_feup_user_table_name WHERE Username ='%s'", $_POST['Username']));
-		if (sha1(md5($_POST['User_Password'].$Salt)) == $User->User_Password) {
-			  CreateLoginCookie($_POST['Username'], $_POST['User_Password']);
-				return "Login succesful";
-		}
-		return "Login failed";
-}
 ?>

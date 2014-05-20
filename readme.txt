@@ -43,6 +43,12 @@ Demo videos will be posted as soon as they are available.
 4. Place "[login]", "[logout]" and "[edit-profile]" shortcodes on pages as applicable
 5. All four of the shortcodes accept an attribute, 'redirect_page', that lets you send users to a different page after submitting the form
 
+Tutorial Part 1
+[youtube http://www.youtube.com/watch?v=9WE1ftZBlPw]
+
+Tutorial Part 2
+[youtube http://www.youtube.com/watch?v=viF7-yPY4H4]
+
 --------------------------------------------------------------
 
 - The user registration form can be customized from the admin panel, under the "Front-End Users" tab.
@@ -78,6 +84,13 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 0.5 = 
+- YouTube tutorial videos added
+- Fixed redirection bugs
+- Fixed date and datetime input fields
+- Fixed bug where users could register with the same username
+- Fixed two small shortcode bugs
+
 = 0.4 =
 - Fixed an admin display bug
 

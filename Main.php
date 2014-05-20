@@ -6,7 +6,7 @@ Description: A plugin that creates a separate set of users that are front-end on
 Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Text Domain: EWD_FEUP
-Version: 0.4
+Version: 0.5
 */
 
 global $EWD_FEUP_db_version;
@@ -14,6 +14,7 @@ global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_le
 global $wpdb;
 global $message;
 global $user_message;
+global $feup_success;
 global $Full_Version;
 $ewd_feup_user_table_name = $wpdb->prefix . "EWD_FEUP_Users";
 $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";

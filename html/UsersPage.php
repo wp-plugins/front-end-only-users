@@ -170,6 +170,10 @@
 <div class="form-field form-required">
 	<label for="<?php echo $Field->Field_Name; ?>"><?php echo $Field->Field_Name; ?></label>
 	<?php if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {?><input name="<?php echo $Field->Field_Name; ?>" id="<?php echo $Field->Field_Name; ?>" type="text" value="" size="60" />
+	<?php } elseif ($Field->Field_Type == "date") {?>
+			<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-date-input pure-input-1-3' type='date' value='' />
+	<?php } elseif ($Field->Field_Type == "datetime") { ?>
+			<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='' />
 	<?php } elseif ($Field->Field_Type == "textarea") { ?>
 			<textarea name="<?php echo $Field->Field_Name; ?>" id="<?php echo $Field->Field_Name; ?>"></textarea>
 	<?php } elseif ($Field->Field_Type == "select") { ?>
