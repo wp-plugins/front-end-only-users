@@ -198,6 +198,7 @@
 			<option value='radio'>Radio Button</option>
 			<option value='checkbox'>Checkbox</option>
 			<option value='textarea'>Text Area</option>
+			<option value='file'>File</option>
 			<option value='date'>Date</option>
 			<option value='datetime'>Date/Time</option>
 			<option value='countries'>Country Select</option>

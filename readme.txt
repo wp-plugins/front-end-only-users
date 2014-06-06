@@ -84,6 +84,17 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.0 = 
+- Added an "Admin Approval" of users option
+- Added "Sign-up Emails" tab, options and message customization
+- Added "login_page" attribute to the "restricted" shortcode
+- Added an "EWD_FEUP" class, that let's template designers check whether a user is logged in or not
+- Added a "file" field type, so admins can have users upload files as one of the fields
+- Created a "Custom CSS" option box, so forms can be styled from the admin panel
+- Added a "no_message" attribute to the "restricted" shortcode that won't display a message if a user is not logged in
+- Created a "[user-list]" shortcode
+- Created a "[user-search]" shortcode
+
 = 0.5 = 
 - YouTube tutorial videos added
 - Fixed redirection bugs

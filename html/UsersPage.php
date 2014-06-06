@@ -1,3 +1,6 @@
+<?php 
+		$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+?>
 <div id="col-right">
 <div class="col-wrap">
 
@@ -51,15 +54,20 @@
 						<th scope='col' id='cb' class='manage-column column-cb check-column'  style="">
 								<input type="checkbox" />
 						</th>
+						<?php if ($Admin_Approval == "Yes") { ?>
+								<th scope='col' class='manage-column column-cb check-column'  style="">
+										<span>Admin Approved</span>
+								</th>
+						<?php } ?>
 						<?php foreach ($Fields as $Field) { ?>
 						<?php if ($_GET['OrderBy'] == "Item_Name" and $_GET['Order'] == "ASC") {$Order = "DESC";}
 									else {$Order = "ASC";} ?>
-						<th scope='col' class='manage-column column-cb check-column'  style="">
+									 <th scope='col' class='manage-column column-cb check-column'  style="">
 										<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=<?php echo $Field->Field_Name; ?>&Order=<?php echo $Order; ?>">
 											  <span><?php echo $Field->Field_Name; ?></span>
 												<span class="sorting-indicator"></span>
 										</a>
-						</th>
+									 </th>
 						<?php } ?>
 				</tr>
 		</thead>
@@ -69,6 +77,11 @@
 						<th scope='col' id='cb' class='manage-column column-cb check-column'  style="">
 								<input type="checkbox" />
 						</th>
+						<?php if ($Admin_Approval == "Yes") { ?>
+								<th scope='col' class='manage-column column-cb check-column'  style="">
+										<span>Admin Approved</span>
+								</th>
+						<?php } ?>
 						<?php foreach ($Fields as $Field) { ?>
 						<?php if ($_GET['OrderBy'] == "Item_Name" and $_GET['Order'] == "ASC") {$Order = "DESC";}
 									else {$Order = "ASC";} ?>
@@ -166,6 +179,11 @@
 <input type='password' class='ewd-feup-text-input' name='User_Password'>
 <label for='Repeat Password' id='ewd-feup-register-password-confirm-div' class='ewd-feup-field-label'><?php _e('Repeat Password', 'EWD_FEUP');?>: </label>
 <input type='password' class='ewd-feup-text-input' name='Confirm_User_Password'>
+<?php if ($Admin_Approval == "Yes") { ?>
+		<label for='Admin Approved' id='ewd-feup-register-admin-approved-div' class='ewd-feup-field-label'><?php _e('Admin Approved', 'EWD_FEUP');?>: </label>
+		<input type='radio' class='ewd-feup-text-input' name='Admin_Approved' value='Yes'>Yes<br />
+		<input type='radio' class='ewd-feup-text-input' name='Admin_Approved' value='No'>No<br />
+<?php } ?>
 <?php foreach ($Fields as $Field) { ?>
 <div class="form-field form-required">
 	<label for="<?php echo $Field->Field_Name; ?>"><?php echo $Field->Field_Name; ?></label>
@@ -176,6 +194,8 @@
 			<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='' />
 	<?php } elseif ($Field->Field_Type == "textarea") { ?>
 			<textarea name="<?php echo $Field->Field_Name; ?>" id="<?php echo $Field->Field_Name; ?>"></textarea>
+	<?php } elseif ($Field->Field_Type == "file") {?>
+			<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-date-input pure-input-1-3' type='file' value='' />
 	<?php } elseif ($Field->Field_Type == "select") { ?>
 			<?php $Options = explode(",", $Field->Field_Options); ?>
 			<select name="<?php echo $Field->Field_Name; ?>" id="<?php echo $Field->Field_Name; ?>">

@@ -1,3 +1,7 @@
+<?php 
+		$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+?>
+
 <!-- Upgrade to pro link box -->
 <?php if ($Full_Version != "Yes") { ?>
 <!--<div id="side-sortables" class="metabox-holder ">
@@ -210,15 +214,25 @@
 <div id="col-left">
 <div class="col-wrap">
 	<div id="dashboard-total-users">
-			Current Users:
-			<?php $TotalUsers = $wpdb->get_results("SELECT User_ID FROM $ewd_feup_user_table_name");
-						echo $wpdb->num_rows;  ?>
+			<?php if ($Admin_Approval == "Yes") { ?>
+					Unapproved Users:
+					<?php $TotalUsers = $wpdb->get_results("SELECT User_ID FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");
+							 echo $wpdb->num_rows;  ?>
+			<?php } else { ?>
+					Current Users:
+					<?php $TotalUsers = $wpdb->get_results("SELECT User_ID FROM $ewd_feup_user_table_name");
+							 echo $wpdb->num_rows;  ?>
+			<?php } ?>
 	</div>
 	<div id="dashboard-products-column" class="metabox-holder">	
 			<div id="side-sortables" class="meta-box-sortables">
 
 <div id="add-page" class="postbox " >
+<?php if ($Admin_Approval == "Yes") { ?>
+<div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span><?php _e("Unapproved Users", 'EWD_FEUP') ?></span></h3>
+<?php } else { ?>
 <div class="handlediv" title="Click to toggle"><br /></div><h3 class='hndle'><span><?php _e("Recent Users", 'EWD_FEUP') ?></span></h3>
+<?php } ?>
 <div class="inside">
 	<div id="posttype-page" class="posttypediv">
 		<ul id="posttype-page-tabs" class="posttype-tabs add-menu-item-tabs">
@@ -230,7 +244,8 @@
 		<div id="tabs-panel-posttype-page-most-recent" class="tabs-panel tabs-panel-active">
 			<ul id="pagechecklist-most-recent" class="categorychecklist form-no-clear">
 				<?php //$Products = $wpdb->get_results("SELECT Item_ID, Item_Name FROM $items_table_name ORDER BY Item_Views DESC"); 
-							$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name"); 
+							if ($Admin_Approval == "Yes") {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");}
+							else {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name");}
 							foreach ($Users as $User) {
 									echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
 							}

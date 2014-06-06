@@ -1,6 +1,9 @@
-
+<?php 
+		$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+?>
 <!-- The details of a specific product for editing, based on the product ID -->
 		<?php $UserDetails = $wpdb->get_results($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE User_ID ='%d'", $_GET['User_ID'])); ?>
+		<?php $UserAdmin = $wpdb->get_row($wpdb->prepare("SELECT User_Admin_Approved FROM $ewd_feup_user_table_name WHERE User_ID ='%d'", $_GET['User_ID'])); ?>
 		
 		<div class="OptionTab ActiveTab" id="EditProduct">
 				<div class="form-wrap UserDetail">
@@ -12,6 +15,11 @@
 						<input type="hidden" name="action" value="Edit_User" />
 						<?php wp_nonce_field(); ?>
 						<?php wp_referer_field(); ?>
+						<?php if ($Admin_Approval == "Yes") { ?>
+									<label for='Admin Approved' id='ewd-feup-register-admin-approved-div' class='ewd-feup-field-label'><?php _e('Admin Approved', 'EWD_FEUP');?>: </label>
+									<input type='radio' class='ewd-feup-text-input' name='Admin_Approved' value='Yes' <?php if ($UserAdmin->User_Admin_Approved == "Yes"){echo "checked";} ?>>Yes<br />
+									<input type='radio' class='ewd-feup-text-input' name='Admin_Approved' value='No' <?php if ($UserAdmin->User_Admin_Approved == "No"){echo "checked";} ?>>No<br />
+						<?php } ?>
 						<?php foreach ($Fields as $Field) {
 								$Value = "";
 								foreach ($UserDetails as $UserField) { 
@@ -22,11 +30,14 @@
 										<label for="<?php echo $Field->Field_Name; ?>"><?php echo $Field->Field_Name; ?></label>
 										<?php if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {?><input name="<?php echo $Field->Field_Name; ?>" class='ewd-admin-regular-text' id="<?php echo $Field->Field_Name; ?>" type="text" value="<?php echo $Value;?>" size="60" />
 										<?php } elseif ($Field->Field_Type == "date") {?>
-													<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-date-input pure-input-1-3' type='date' value='' />
+													<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-date-input pure-input-1-3' type='date' value='<?php echo $Value;?>' />
 										<?php } elseif ($Field->Field_Type == "datetime") { ?>
-													<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='' />
+													<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='<?php echo $Value;?>' />
 										<?php } elseif ($Field->Field_Type == "textarea") { ?>
 												<textarea name="<?php echo $Field->Field_Name; ?>" class='ewd-admin-large-text' id="<?php echo $Field->Field_Name; ?>"><?php echo $Value ?></textarea>
+										<?php } elseif ($Field->Field_Type == "file") {?>
+												<?php echo __("Current file:", 'EWD_FEUP') . " " . substr($Value, 10);?>
+												<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-date-input pure-input-1-3' type='file' value='' />
 										<?php } elseif ($Field->Field_Type == "select") { ?>
 												<?php $Options = explode(",", $Field->Field_Options); ?>
 												<select name="<?php echo $Field->Field_Name; ?>" id="<?php echo $Field->Field_Name; ?>">
@@ -38,7 +49,7 @@
 										<?php } elseif ($Field->Field_Type == "checkbox") { ?>
 												<?php $Options = explode(",", $Field->Field_Options); ?>
 												<?php $User_Checkbox = explode(",", $Value); ?>
-												<?php foreach ($Options as $Option) { ?><input type="checkbox" class='ewd-admin-small-input' name="<?php echo $Field->Field_Name; ?>[]" value="<?php echo $Option; ?>" <?php if (in_array($Option, $User_Checkbox)) {echo "Selected";} ?>><?php echo $Option; ?></br><?php } ?>
+												<?php foreach ($Options as $Option) { ?><input type="checkbox" class='ewd-admin-small-input' name="<?php echo $Field->Field_Name; ?>[]" value="<?php echo $Option; ?>" <?php if (in_array($Option, $User_Checkbox)) {echo "checked";} ?>><?php echo $Option; ?></br><?php } ?>
 										<?php } ?>
 										<p><?php echo $Field->Field_Description; ?></p>
 								</div>

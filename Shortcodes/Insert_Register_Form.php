@@ -6,6 +6,7 @@ function Insert_Register_Form($atts) {
 		global $wpdb, $user_message, $feup_success;
 		global $ewd_feup_fields_table_name;
 		
+		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
 		$Time = time();
 		
@@ -24,9 +25,13 @@ function Insert_Register_Form($atts) {
 		
 		if ($feup_success and $redirect_page != '#') {FEUPRedirect($redirect_page);}
 		
+		$ReturnString .= "<style type='text/css'>";
+		$ReturnString .= $Custom_CSS;
+		$ReturnString .= "</style>";
+		
 		$ReturnString .= "<div id='ewd-feup-register-form-div'>";
 		$ReturnString .= $user_message['Message'];
-		$ReturnString .= "<form action='#' method='post' id='ewd-feup-register-form' class='pure-form pure-form-aligned'>";
+		$ReturnString .= "<form action='#' method='post' id='ewd-feup-register-form' class='pure-form pure-form-aligned' enctype='multipart/form-data'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='register'>";
@@ -58,6 +63,9 @@ function Insert_Register_Form($atts) {
 				}
 				elseif ($Field->Field_Type == "datetime") {
 						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' />";
+				}
+				elseif ($Field->Field_Type == "file") {
+						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='file' value='' />";
 				}
 				elseif ($Field->Field_Type == "textarea") {
 						$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2'>" . $_POST[str_replace(" ", "_", $Field->Field_Name)] . "</textarea>";

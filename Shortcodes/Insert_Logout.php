@@ -4,6 +4,7 @@
 function Insert_Logout($atts) {
 		// Include the required global variables, and create a few new ones
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
+		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 		$CookieName = urlencode("EWD_FEUP_Login" . "%" . sha1(md5(get_site_url().$Salt))); 
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
@@ -16,6 +17,10 @@ function Insert_Logout($atts) {
 		
 		setcookie($CookieName, "", time()-3600, "/");
 		if ($redirect_page != "#") {FEUPRedirect($redirect_page);}
+		
+		$ReturnString .= "<style type='text/css'>";
+		$ReturnString .= $Custom_CSS;
+		$ReturnString .= "</style>";
 		
 		$ReturnString .= "<div class='feup-information-div'>";
 		$ReturnString .= __("You have been successfully logged out." , "EWD_FEUP");

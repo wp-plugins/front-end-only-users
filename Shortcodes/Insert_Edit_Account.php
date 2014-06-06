@@ -3,6 +3,8 @@ function Insert_Edit_Account_Form($atts) {
 		global $wpdb, $user_message, $feup_success;
 		global $ewd_feup_user_table_name;
 		
+		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
+		
 		$CheckCookie = CheckLoginCookie();
 		
 		$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
@@ -19,8 +21,13 @@ function Insert_Edit_Account_Form($atts) {
 																$atts
 														)
 												);
+												
+		$ReturnString .= "<style type='text/css'>";
+		$ReturnString .= $Custom_CSS;
+		$ReturnString .= "</style>";
+		
 		if ($CheckCookie['Username'] == "") {
-				$ReturnString = __('You must be logged in to access this page.', 'EWD_FEUP');
+				$ReturnString .= __('You must be logged in to access this page.', 'EWD_FEUP');
 				if ($login_page != "") {$ReturnString .= "<br />" . __('Please', 'EWD_FEUP') . " <a href='" . $login_page . "'>" . __('login', 'EWD_FEUP') . "</a> " . __('to continue.', 'EWD_FEUP');}
 				return $ReturnString;
 		}

@@ -5,6 +5,7 @@ function Insert_Login_Form($atts) {
 		global $user_message, $feup_success;
 		// Include the required global variables, and create a few new ones
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
+		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 		$Time = time();
 		
 		$ReturnString = "";
@@ -16,6 +17,10 @@ function Insert_Login_Form($atts) {
 																$atts
 														)
 												);
+		
+		$ReturnString .= "<style type='text/css'>";
+		$ReturnString .= $Custom_CSS;
+		$ReturnString .= "</style>";
 		
 		if ($feup_success and $redirect_page != '#') {FEUPRedirect($redirect_page);}
 		

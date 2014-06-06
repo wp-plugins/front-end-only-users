@@ -6,7 +6,7 @@ Description: A plugin that creates a separate set of users that are front-end on
 Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Text Domain: EWD_FEUP
-Version: 0.5
+Version: 1.0
 */
 
 global $EWD_FEUP_db_version;
@@ -20,7 +20,7 @@ $ewd_feup_user_table_name = $wpdb->prefix . "EWD_FEUP_Users";
 $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";
 $ewd_feup_fields_table_name = $wpdb->prefix . "EWD_FEUP_Fields";
 $ewd_feup_levels_table_name = $wpdb->prefix . "EWD_FEUP_Levels";
-$EWD_FEUP_db_version = "0.1.2";
+$EWD_FEUP_db_version = "1.0";
 
 define('WP_DEBUG', true);
 $wpdb->show_errors();
@@ -131,6 +131,7 @@ include "Functions/Output_Buffering.php";
 include "Functions/Prepare_Data_For_Insertion.php";
 include "Functions/Process_Ajax.php";
 include "Functions/Process_Front_End_Forms.php";
+include "Functions/Public_Functions.php";
 include "Functions/Update_Admin_Databases.php";
 include "Functions/Update_EWD_FEUP_Content.php";
 include "Functions/Update_EWD_FEUP_Tables.php";
@@ -140,6 +141,8 @@ include "Shortcodes/Insert_Login_Form.php";
 include "Shortcodes/Insert_Logout.php";
 include "Shortcodes/Insert_Register_Form.php";
 include "Shortcodes/Insert_User_Data.php";
+include "Shortcodes/Insert_User_List.php";
+include "Shortcodes/Insert_User_Search.php";
 include "Shortcodes/Privilege_Level.php";
 
 // Updates the UPCP database when required

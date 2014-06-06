@@ -5,7 +5,7 @@
 				 		 <a id="Fields_Menu" class="MenuTab nav-tab <?php if ($Display_Page == 'Field') {echo 'nav-tab-active';}?>" onclick="ShowTab('Fields');"><?php _e("Fields", "EWD_FEUP"); ?></a>
 						 <a id="Levels_Menu" class="MenuTab nav-tab <?php if ($Display_Page == 'Levels') {echo 'nav-tab-active';}?>" onclick="ShowTab('Levels');"><?php _e("Levels", "EWD_FEUP"); ?></a>
 						 <a id="Options_Menu" class="MenuTab nav-tab <?php if ($Display_Page == 'Options') {echo 'nav-tab-active';}?>" onclick="ShowTab('Options');"><?php _e("Options", "EWD_FEUP"); ?></a>
-						 <a id="Advanced_Menu" class="MenuTab nav-tab <?php if ($Display_Page == 'Advanced') {echo 'nav-tab-active';}?>" onclick="ShowTab('Advanced');"><?php _e("Advanced", "EWD_FEUP"); ?></a>
+						 <a id="Emails_Menu" class="MenuTab nav-tab <?php if ($Display_Page == 'Emails') {echo 'nav-tab-active';}?>" onclick="ShowTab('Emails');"><?php _e("Emails", "EWD_FEUP"); ?></a>
 				 </h2>
 		</div>
 		
@@ -33,6 +33,6 @@
 				<?php include( plugin_dir_path( __FILE__ ) . 'OptionsPage.php'); ?>
 		</div>	
 		
-		<div class="OptionTab <?php if ($Display_Page == 'Advanced') {echo 'ActiveTab';} else {echo 'HiddenTab';} ?>" id="Advanced">
-				<?php include( plugin_dir_path( __FILE__ ) . 'AdvancedPage.php'); ?>
+		<div class="OptionTab <?php if ($Display_Page == 'Emails' or $Display_Page == 'Email') {echo 'ActiveTab';} else {echo 'HiddenTab';} ?>" id="Emails">
+				<?php include( plugin_dir_path( __FILE__ ) . 'EmailsPage.php'); ?>
 		</div>		

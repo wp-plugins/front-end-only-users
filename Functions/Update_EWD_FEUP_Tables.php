@@ -8,9 +8,11 @@ function Update_EWD_FEUP_Tables() {
 		/* Create the users table */  
    	$sql = "CREATE TABLE $ewd_feup_user_table_name (
   	User_ID mediumint(9) NOT NULL AUTO_INCREMENT,
-  	Username text  NULL,
-		User_Password text   NULL,
+  	Username text NULL,
+		User_Password text NULL,
 		Level_ID mediumint(9) DEFAULT 0 NOT NULL,
+		User_Email_Confirmed text NULL,
+		User_Admin_Approved text NULL,
 		User_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
   	UNIQUE KEY id (User_ID)
     )
@@ -61,6 +63,9 @@ function Update_EWD_FEUP_Tables() {
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
  
-   	update_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
+   	update_option("EWD_FEUP_Admin_Approval", "No");
+		update_option("EWD_FEUP_Email_Confirmation", "No");
+		update_option("EWD_FEUP_Custom_CSS", "");
+		update_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
 }
 ?>

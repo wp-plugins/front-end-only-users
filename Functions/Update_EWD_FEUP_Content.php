@@ -40,6 +40,9 @@ if (isset($_GET['Action'])) {
 						case "UpdateOptions":
 								$message = Update_EWD_FEUP_Options();
 								break;
+						case "UpdateEmailSettings":
+        				$message = Update_EWD_FEUP_Email_Settings();
+								break;
 						default:
 								$message = __("The form has not worked correctly. Please contact the plugin developer.", 'UPCP');
 								break;

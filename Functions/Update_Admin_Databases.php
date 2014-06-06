@@ -206,8 +206,34 @@ function Delete_EWD_FEUP_Level($Level_ID) {
 
 function Update_EWD_FEUP_Options() {
 		update_option('EWD_FEUP_Login_Time', $_POST['login_time']);
+		update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);
+		update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);
+		update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);
 		
 		$update = __("Options have been succesfully updated.", 'EWD_FEUP');
 		return $update;
+}
+
+function Update_EWD_FEUP_Email_Settings() {
+		$Admin_Email = $_POST['admin_email'];
+		$Message_Body = $_POST['message_body'];
+		$SMTP_Mail_Server = $_POST['smtp_mail_server'];
+		$Admin_Password = $_POST['admin_password'];
+		$Email_Field = $_POST('email_field');
+		
+		$Admin_Email = stripslashes_deep($Admin_Email);
+		$Message_Body = stripslashes_deep($Message_Body);
+		$SMTP_Mail_Server = stripslashes_deep($SMTP_Mail_Server);
+		$Admin_Password = stripslashes_deep($Admin_Password);
+		$Email_Field = stripslashes_deep($Email_Field);
+		
+		$key = 'EWD_FEUP';
+		$Encrypted_Admin_Password = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $Admin_Password, MCRYPT_MODE_CBC, md5(md5($key))));
+		
+		update_option('EWD_OTP_Admin_Email', $Admin_Email);
+		update_option('EWD_OTP_Message_Body', $Message_Body);
+		update_option('EWD_OTP_SMTP_Mail_Server', $SMTP_Mail_Server);
+		update_option('EWD_OTP_Admin_Password', $Encrypted_Admin_Password);
+		update_option('EWD_FEUP_Email_Field', $Email_Field);
 }
 ?>

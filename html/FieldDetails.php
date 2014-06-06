@@ -26,6 +26,7 @@
 												<option value='radio' <?php if ($Field->Field_Type == 'radio') {echo "selected='selected'";} ?>>Radio Button</option>
 												<option value='checkbox' <?php if ($Field->Field_Type == 'checkbox') {echo "selected='selected'";} ?>>Checkbox</option>
 												<option value='textarea' <?php if ($Field->Field_Type == 'textarea') {echo "selected='selected'";} ?>>Text Area</option>
+												<option value='file' <?php if ($Field->Field_Type == 'file') {echo "selected='selected'";} ?>>File</option>
 												<option value='date' <?php if ($Field->Field_Type == 'date') {echo "selected='selected'";} ?>>Date</option>
 												<option value='datetime' <?php if ($Field->Field_Type == 'datetime') {echo "selected='selected'";} ?>>Date/Time</option>
 												<option value='countries' <?php if ($Field->Field_Type == 'countries') {echo "selected='selected'";} ?>>Country Select</option>

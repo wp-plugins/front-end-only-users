@@ -6,17 +6,19 @@ function Privilege_Level($atts, $content = null) {
 		global $wpdb;
 		global $ewd_feup_user_table_name, $ewd_feup_levels_table_name, $ewd_feup_user_fields_table_name;
 		
+		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
+		
 		$UserCookie = CheckLoginCookie();
 		
 		$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username='%s'", $UserCookie['Username']));
 		$PrivilegeLevel = $wpdb->get_row($wpdb->prepare("SELECT Level_Privilege FROM $ewd_feup_levels_table_name WHERE Level_ID='%d'", $User->Level_ID));
 		$User_Data = $wpdb->get_results($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE User_ID='%d'", $User->User_ID));
 		
-		if (!$UserCookie) {$ReturnString .= __("Please log in to access this content.", 'EWD_FEUP'); return $ReturnString;}
-		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
-						 								 		'minimum_level' => '',
+						 								 		'login_page' => '',
+																'no_message' => '',
+																'minimum_level' => '',
 																'maximum_level' => '',
 																'level' => '',
 																'field_name' => '',
@@ -24,6 +26,13 @@ function Privilege_Level($atts, $content = null) {
 																$atts
 														)
 												);
+												
+		if (!$UserCookie) {
+			  $ReturnString .= __("Please log in to access this content.", 'EWD_FEUP'); 
+				if ($login_page != "") {$ReturnString .= "<br />" . __('Please', 'EWD_FEUP') . " <a href='" . $login_page . "'>" . __('login', 'EWD_FEUP') . "</a> " . __('to continue.', 'EWD_FEUP');}
+				if ($no_message != "Yes") {return $ReturnString;}
+				else {return;}
+		}
 		
 		$ReturnString = $content;
 		
@@ -37,7 +46,7 @@ function Privilege_Level($atts, $content = null) {
 				if ($Validate != "Yes") {$ReturnString = "<div class='ewd-feup-error'>" . __("Sorry, this content is only for those whose " . $field_name . " is " . $field_value . ".", 'EWD_FEUP') . "</div>";}
 		}
 		
-		return $ReturnString;
+		if (substr($ReturnString, 0, 28) != "<div class='ewd-feup-error'>" or $no_message != "Yes") {return $ReturnString;}
 }
 add_shortcode("restricted", "Privilege_Level");
 

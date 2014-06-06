@@ -11,6 +11,8 @@ function Install_EWD_FEUP() {
   	Username text  NULL,
 		User_Password text   NULL,
 		Level_ID mediumint(9) DEFAULT 0 NOT NULL,
+		User_Email_Confirmed DEFAULT 'No' NOT NULL,
+		User_Admin_Approved DEFAULT 'No' NOT NULL,
 		User_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
   	UNIQUE KEY id (User_ID)
     )
@@ -62,6 +64,10 @@ function Install_EWD_FEUP() {
    	dbDelta($sql);
  
    	add_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
+		add_option("EWD_FEUP_Admin_Approval", "No");
+		add_option("EWD_FEUP_Login_Time", "1440");
+		add_option("EWD_FEUP_Email_Confirmation", "No");
 		add_option("EWD_FEUP_Full_Version", "Yes");
+		add_option("EWD_FEUP_Custom_CSS", "");
 }
 ?>
