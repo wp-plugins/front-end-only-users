@@ -34,7 +34,7 @@ function Add_Edit_User() {
 				if ($Field->Field_Type == "file") {
 					  $File_Upload_Return = Handle_File_Upload($Field_Name);
 						if ($File_Upload_Return['Success'] == "No") {return $File_Upload_Return['Data'];}
-						elseif ($File_Upload_Return['Success'] == "N/A") {echo "erasing<br>";unset($Additional_Fields_Array[$Field->Field_Name]);}
+						elseif ($File_Upload_Return['Success'] == "N/A") {unset($Additional_Fields_Array[$Field->Field_Name]);}
 						else {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $File_Upload_Return['Data'];}
 				}
 				elseif (is_array($_POST[$Field_Name])) {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = implode(",", $_POST[$Field_Name]);}
