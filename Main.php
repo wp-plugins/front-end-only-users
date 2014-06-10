@@ -20,7 +20,10 @@ $ewd_feup_user_table_name = $wpdb->prefix . "EWD_FEUP_Users";
 $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";
 $ewd_feup_fields_table_name = $wpdb->prefix . "EWD_FEUP_Fields";
 $ewd_feup_levels_table_name = $wpdb->prefix . "EWD_FEUP_Levels";
-$EWD_FEUP_db_version = "1.0";
+$EWD_FEUP_db_version = "1.1";
+
+define( 'EWD_FEUP_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'EWD_FEUP_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 define('WP_DEBUG', true);
 $wpdb->show_errors();

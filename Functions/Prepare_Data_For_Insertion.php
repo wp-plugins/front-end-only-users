@@ -14,7 +14,7 @@ function Add_Edit_User() {
 		
 		$User = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $UserCookie['Username']));
 		$User_ID = $User->User_ID;
-		if ($User_ID == "" and is_admin()) {$User_ID = $_GET['User_ID'];}
+		if ($User_ID == "" and is_admin()) {$User_ID = $_POST['User_ID'];}
 		
 		if (isset($_POST['Username'])) {$User_Fields['Username'] = $_POST['Username'];}
 		if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = sha1(md5($_POST['User_Password'].$Salt));}
@@ -33,8 +33,9 @@ function Add_Edit_User() {
 				$Field_Name = str_replace(" ", "_", $Field->Field_Name);
 				if ($Field->Field_Type == "file") {
 					  $File_Upload_Return = Handle_File_Upload($Field_Name);
-						if ($File_Upload_Return['Success'] != "Yes") {return $File_Upload_Return['Data'];}
-						$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $File_Upload_Return['Data'];
+						if ($File_Upload_Return['Success'] == "No") {return $File_Upload_Return['Data'];}
+						elseif ($File_Upload_Return['Success'] == "N/A") {echo "erasing<br>";unset($Additional_Fields_Array[$Field->Field_Name]);}
+						else {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $File_Upload_Return['Data'];}
 				}
 				elseif (is_array($_POST[$Field_Name])) {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = implode(",", $_POST[$Field_Name]);}
 				else {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $_POST[$Field_Name];}
@@ -43,7 +44,7 @@ function Add_Edit_User() {
 		if (!isset($error)) {
 				/* Pass the data to the appropriate function in Update_Admin_Databases.php to create the user */
 				if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
-					  if ($User->User_ID != "") {$user_update = __("There is already an account with that Username. Please select a different one.", "EWD_FEUP"); return $user_update;}
+						if ($User->User_ID != "") {$user_update = __("There is already an account with that Username. Please select a different one.", "EWD_FEUP"); return $user_update;}
 						if (!isset($User_Fields['User_Admin_Approved'])) {$User_Fields['User_Admin_Approved'] = "No";}
 						$User_Fields['User_Date_Created'] = $date;
 						$user_update = Add_EWD_FEUP_User($User_Fields);
@@ -200,16 +201,19 @@ function Handle_File_Upload($Field_Name) {
 		}
 		
 		/* Return the file name, or the error that was generated. */
-		if (!isset($error)) {
+		if (isset($error) and $error == __('No file was uploaded.', 'EWD_FEUP')) {
+			  $Return['Success'] = "N/A";
+				$Return['Data'] = __('No file was uploaded.', 'EWD_FEUP');
+		}
+		elseif (!isset($error)) {
 				$Return['Success'] = "Yes";
 				$Return['Data'] = $User_Upload_File_Name;
-				return $Return;
 		}
 		else {
 				$Return['Success'] = "No";
 				$Return['Data'] = $error;
-				return $Return;
 		}
+		return $Return;
 }
 
 function RandomString($CharLength = 10)

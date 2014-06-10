@@ -21,7 +21,7 @@ function Edit_EWD_FEUP_User($User_ID, $User_Data_Array) {
 						$User_Data_Array,
 						array( 'User_ID' => $User_ID)
 		);
-		$update = __("Category has been successfully edited.", 'EWD_FEUP');
+		$update = __("User has been successfully edited.", 'EWD_FEUP');
 		return $update;
 }
 
@@ -230,10 +230,10 @@ function Update_EWD_FEUP_Email_Settings() {
 		$key = 'EWD_FEUP';
 		$Encrypted_Admin_Password = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $Admin_Password, MCRYPT_MODE_CBC, md5(md5($key))));
 		
-		update_option('EWD_OTP_Admin_Email', $Admin_Email);
-		update_option('EWD_OTP_Message_Body', $Message_Body);
-		update_option('EWD_OTP_SMTP_Mail_Server', $SMTP_Mail_Server);
-		update_option('EWD_OTP_Admin_Password', $Encrypted_Admin_Password);
+		update_option('EWD_FEUP_Admin_Email', $Admin_Email);
+		update_option('EWD_FEUP_Message_Body', $Message_Body);
+		update_option('EWD_FEUP_SMTP_Mail_Server', $SMTP_Mail_Server);
+		update_option('EWD_FEUP_Admin_Password', $Encrypted_Admin_Password);
 		update_option('EWD_FEUP_Email_Field', $Email_Field);
 }
 ?>

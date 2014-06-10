@@ -105,6 +105,11 @@
 								echo "<th scope='row' class='check-column'>";
 								echo "<input type='checkbox' name='Users_Bulk[]' value='" . $User->User_ID ."' />";
 								echo "</th>";
+								if ($Admin_Approval == "Yes") {
+									  echo "<td class='name column-name'>";
+										echo $User->User_Admin_Approved;
+										echo "</td>";
+								}
 										foreach ($Fields as $Field) { 
 												$User_Info = $wpdb->get_row($wpdb->prepare("SELECT Field_Value FROM $ewd_feup_user_fields_table_name WHERE User_ID='%d' and Field_Name='%s'", $User->User_ID, $Field->Field_Name));
 												echo "<td class='name column-name'>";

@@ -63,9 +63,6 @@ function Update_EWD_FEUP_Tables() {
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
  
-   	update_option("EWD_FEUP_Admin_Approval", "No");
-		update_option("EWD_FEUP_Email_Confirmation", "No");
-		update_option("EWD_FEUP_Custom_CSS", "");
 		update_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
 }
 ?>

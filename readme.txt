@@ -85,6 +85,10 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 
 == Changelog ==
 = 1.0 = 
+- Fixed an error with sign-up e-mails
+- Fixed an error with "Admin Approval"
+
+= 1.0 = 
 - Added an "Admin Approval" of users option
 - Added "Sign-up Emails" tab, options and message customization
 - Added "login_page" attribute to the "restricted" shortcode

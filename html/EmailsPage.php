@@ -1,9 +1,9 @@
 <?php 
-		$Admin_Email = get_option("EWD_OTP_Admin_Email");
+		$Admin_Email = get_option("EWD_FEUP_Admin_Email");
 		$Email_Subject = get_option("EWD_FEUP_Email_Subject");
-		$Encrypted_Admin_Password = get_option("EWD_OTP_Admin_Password");
-		$SMTP_Mail_Server = get_option("EWD_OTP_SMTP_Mail_Server");
-		$Message_Body = get_option("EWD_OTP_Message_Body");
+		$Encrypted_Admin_Password = get_option("EWD_FEUP_Admin_Password");
+		$SMTP_Mail_Server = get_option("EWD_FEUP_SMTP_Mail_Server");
+		$Message_Body = get_option("EWD_FEUP_Message_Body");
 		$Email_Field = get_option("EWD_FEUP_Email_Field");
 		
 		$key = 'EWD_FEUP';
