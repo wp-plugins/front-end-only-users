@@ -84,7 +84,10 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
-= 1.0 = 
+= 1.2 =
+- Fixed a database error for new installs
+
+= 1.1 = 
 - Fixed an error with sign-up e-mails
 - Fixed an error with "Admin Approval"
 
