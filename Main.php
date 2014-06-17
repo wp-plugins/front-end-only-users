@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Front-End Users Plugin
-Plugin URI: http://www.EtoileWebDesign.com/front-end-only-users/
+Plugin URI: http://www.etoilewebdesign.com/front-end-users-plugin/
 Description: A plugin that creates a separate set of users that are front-end only users, who do not appear in the default WordPress users area, and allows content to be tailored based on user profiles
 Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
