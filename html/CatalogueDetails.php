@@ -8,7 +8,7 @@
 				<div class="form-wrap CatalogueDetail">
 						<a href="admin.php?page=UPCP-options&DisplayPage=Catalogues" class="NoUnderline">&#171; <?php _e("Back", 'UPCP') ?> </a>
 						<h3>Edit <?php echo $Catalogue->Catalogue_Name;?> (ID: <?php echo $Catalogue->Catalogue_ID; ?>)</h3>
-						<form id="addtag" method="post" action="admin.php?page=UPCP-options&Action=EditCatalogue&DisplayPage=Catalogue" class="validate" enctype="multipart/form-data">
+						<form id="addtag" method="post" action="admin.php?page=UPCP-options&Action=EWD_FEUP_EditCatalogue&DisplayPage=Catalogue" class="validate" enctype="multipart/form-data">
 						<input type="hidden" name="action" value="Edit_Catalogue" />
 						<input type="hidden" name="Catalogue_ID" value="<?php echo $Catalogue->Catalogue_ID; ?>" />
 						<?php wp_nonce_field(); ?>
@@ -40,7 +40,7 @@
 						<div id="nav-menus-frame">
 	<div id="menu-settings-column" class="metabox-holder">
 
-		<form id="nav-menu-meta" action="admin.php?page=UPCP-options&Action=Catalogue_Details&Selected=Catalogue&Catalogue_ID=<?php echo $_GET['Catalogue_ID']; ?>#Catalogues" class="nav-menu-meta" method="post" enctype="multipart/form-data">		
+		<form id="nav-menu-meta" action="admin.php?page=UPCP-options&Action=EWD_FEUP_Catalogue_Details&Selected=Catalogue&Catalogue_ID=<?php echo $_GET['Catalogue_ID']; ?>#Catalogues" class="nav-menu-meta" method="post" enctype="multipart/form-data">		
 			<div id="side-sortables" class="meta-box-sortables">
 
 <!-- Create a box with a form that users can add products to the catalogue with -->
@@ -176,7 +176,7 @@
 												elseif (isset($CatalogueItem->Category_ID)) {$CatalogueItemType = "Category"; $CatalogueItemName = $wpdb->get_var("SELECT Category_Name from $categories_table_name WHERE Category_ID=" . $CatalogueItem->Category_ID);}
 										?>
 												<tr id="list-item-<?php echo $CatalogueItem->Catalogue_Item_ID; ?>" class="list-item">
-																		<td class="item-delete"><a href="admin.php?page=UPCP-options&Action=DeleteCatalogueItem&DisplayPage=Catalogue&Catalogue_Item_ID=<?php echo $CatalogueItem->Catalogue_Item_ID; ?>"><?php _e("Delete", 'UPCP') ?></a></td>
+																		<td class="item-delete"><a href="admin.php?page=UPCP-options&Action=EWD_FEUP_DeleteCatalogueItem&DisplayPage=Catalogue&Catalogue_Item_ID=<?php echo $CatalogueItem->Catalogue_Item_ID; ?>"><?php _e("Delete", 'UPCP') ?></a></td>
 																		<td class="item-title"><?php echo $CatalogueItemName; ?></td>
 																		<td class="item-type"><?php echo $CatalogueItemType; ?></td>
 												</tr>

@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: Rustaurius 
-Tags: membership, user management, market segmentation, personalization, front-end users, PureCSS
+Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, PureCSS
 Requires at least: 3.5.0
 Tested up to: 3.8
 License: GPLv3
@@ -11,8 +11,6 @@ Allow visitors to sign up as users on the front-end of your website only. Comple
 == Description ==
 
 Allow visitors to sign up as users on the front-end of your website only. Completely customizable, allows personalization of a website.
-
-This plugin is at the beta development stage, and as such not all features may be working correctly despite internal testing of the plugin.
 
 Use shortcodes to insert registration, login or profile editing forms on any page of your website.
 Users are created in tables separate from the main WordPress user tables so that they have no access to the back-end of your site.
@@ -84,6 +82,12 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.3 =
+- Shortcodes inside of [restricted][/restricted] tags should now work
+- Added 3 new methods to the "EWD_FEUP" class to access User_ID, Username and any custom field
+- Fixed a bug that prevented e-mail settings from being saved
+- Fixed a bug that was causing a conflict with the options of a handful of other plugins
+
 = 1.2 =
 - Fixed a database error for new installs
 

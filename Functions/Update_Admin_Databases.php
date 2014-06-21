@@ -219,7 +219,7 @@ function Update_EWD_FEUP_Email_Settings() {
 		$Message_Body = $_POST['message_body'];
 		$SMTP_Mail_Server = $_POST['smtp_mail_server'];
 		$Admin_Password = $_POST['admin_password'];
-		$Email_Field = $_POST('email_field');
+		$Email_Field = $_POST['email_field'];
 		
 		$Admin_Email = stripslashes_deep($Admin_Email);
 		$Message_Body = stripslashes_deep($Message_Body);

@@ -7,44 +7,44 @@ function Update_EWD_FEUP_Content() {
 global $message;
 if (isset($_GET['Action'])) {
 				switch ($_GET['Action']) {
-    				case "AddUser":
-						case "EditUser":
+    				case "EWD_FEUP_AddUser":
+						case "EWD_FEUP_EditUser":
         				$message = Add_Edit_User();
 								break;
-						case "DeleteUser":
+						case "EWD_FEUP_DeleteUser":
 								$message = Delete_EWD_FEUP_User($_GET['User_ID']);
 								break;
-						case "MassDeleteUsers":
+						case "EWD_FEUP_MassDeleteUsers":
 								$message = Mass_Delete_EWD_FEUP_Users();
 								break;
-						case "AddField":
-						case "EditField":
+						case "EWD_FEUP_AddField":
+						case "EWD_FEUP_EditField":
 								$message = Add_Edit_Field();
 								break;
-						case "DeleteField":
+						case "EWD_FEUP_DeleteField":
 								$message = Delete_EWD_FEUP_Field($_GET['Field_ID']);
 								break;
-						case "MassDeleteFields":
+						case "EWD_FEUP_MassDeleteFields":
 								$message = Mass_Delete_EWD_FEUP_Fields();
 								break;
-						case "AddLevel":
-						case "EditLevel":
+						case "EWD_FEUP_AddLevel":
+						case "EWD_FEUP_EditLevel":
 								$message = Add_Edit_Level();
 								break;
-						case "DeleteLevel":
+						case "EWD_FEUP_DeleteLevel":
 								$message = Delete_EWD_FEUP_Level($_GET['Level_ID']);
 								break;
-						case "MassDeleteLevels":
+						case "EWD_FEUP_MassDeleteLevels":
 								$message = Mass_Delete_EWD_FEUP_Levels();
 								break;
-						case "UpdateOptions":
+						case "EWD_FEUP_UpdateOptions":
 								$message = Update_EWD_FEUP_Options();
 								break;
-						case "UpdateEmailSettings":
+						case "EWD_FEUP_UpdateEmailSettings":
         				$message = Update_EWD_FEUP_Email_Settings();
 								break;
 						default:
-								$message = __("The form has not worked correctly. Please contact the plugin developer.", 'UPCP');
+								$message = __("The form has not worked correctly. Please contact the plugin developer.", 'EWD_FEUP');
 								break;
 				}
 		}

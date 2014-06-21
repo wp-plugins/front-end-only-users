@@ -7,7 +7,7 @@
 				<div class="form-wrap EditField">
 						<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Field" class="NoUnderline">&#171; <?php _e("Back", 'EWD_FEUP') ?></a>
 						<h3>Edit <?php echo $Field->Field_Name;?></h3>
-						<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=EditField&DisplayPage=Field" class="validate" enctype="multipart/form-data">
+						<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_EditField&DisplayPage=Field" class="validate" enctype="multipart/form-data">
 								<input type="hidden" name="action" value="Edit_Field" />
 								<?php wp_nonce_field(); ?>
 								<?php wp_referer_field(); ?>

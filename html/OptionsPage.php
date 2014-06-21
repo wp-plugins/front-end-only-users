@@ -7,7 +7,7 @@
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Settings</h2>
 
-<form method="post" action="admin.php?page=EWD-FEUP-options&DisplayPage=Options&Action=UpdateOptions">
+<form method="post" action="admin.php?page=EWD-FEUP-options&DisplayPage=Options&Action=EWD_FEUP_UpdateOptions">
 <table class="form-table">
 <tr>
 <th scope="row">Login Time</th>

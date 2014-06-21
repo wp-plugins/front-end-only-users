@@ -13,7 +13,7 @@
 				$Levels = $wpdb->get_results($Sql);
 				$num_rows = $wpdb->num_rows; ?>
 
-<form action="admin.php?page=EWD-FEUP-options&Action=MassDeleteLevels&DisplayPage=Levels" method="post">    
+<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassDeleteLevels&DisplayPage=Levels" method="post">    
 <div class="tablenav top">
 		<div class="alignleft actions">
 				<select name='action'>
@@ -59,7 +59,7 @@
 																		<td class="level-name">
 																				<?php echo $Level->Level_Name; ?><br />
 																				<div class='row-actions'><span class='delete'>
-																				<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=DeleteLevel&DisplayPage=Levels&Level_ID=<?php echo $Level->Level_ID; ?>'><?php _e("Delete", 'EWD_FEUP'); ?></a>
+																				<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteLevel&DisplayPage=Levels&Level_ID=<?php echo $Level->Level_ID; ?>'><?php _e("Delete", 'EWD_FEUP'); ?></a>
 		 																		</span></div>
 																		</td>
 																		<td class="level-user-count"><?php echo print_r($user_count, true); ?></td>
@@ -93,7 +93,7 @@
 <div class="form-wrap">
 <h2><?php _e("Add New Level", 'EWD_FEUP') ?></h2>
 <!-- Form to create a new product -->
-<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=AddLevel&DisplayPage=Levels" class="validate" enctype="multipart/form-data">
+<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_AddLevel&DisplayPage=Levels" class="validate" enctype="multipart/form-data">
 <input type="hidden" name="action" value="Add_Level" />
 <?php wp_nonce_field(); ?>
 <?php wp_referer_field(); ?>

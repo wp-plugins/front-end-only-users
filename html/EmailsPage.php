@@ -12,7 +12,7 @@
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Email Settings</h2>
 
-<form method="post" action="admin.php?page=EWD-FEUP-options&DisplayPage=Emails&Action=UpdateEmailSettings">
+<form method="post" action="admin.php?page=EWD-FEUP-options&DisplayPage=Emails&Action=EWD_FEUP_UpdateEmailSettings">
 <table class="form-table">
 <th scope="row">Email Field Name</th>
 <td>

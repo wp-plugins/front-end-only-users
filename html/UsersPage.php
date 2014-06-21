@@ -27,7 +27,7 @@
 				$UserCount = $wpdb->num_rows;
 				?>
 
-<form action="admin.php?page=EWD-FEUP-options&Action=MassDeleteUsers&DisplayPage=Users" method="post">    
+<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassDeleteUsers&DisplayPage=Users" method="post">    
 <div class="tablenav top">
 		<div class="alignleft actions">
 				<select name='action'>
@@ -115,7 +115,7 @@
 												echo "<td class='name column-name'>";
 												if ($FieldCount == 0) {
 													  echo "<strong>";
-													  echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=User_Details&Selected=User&User_ID=" . $User->User_ID ."' title='Edit User'>";
+													  echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."' title='Edit User'>";
 												}
 												echo substr($User_Info->Field_Value, 0, 60);
 												if (strlen($User_Info->Field_Value) > 60) {echo "...";}
@@ -124,7 +124,7 @@
 														echo "<br />";
 														echo "<div class='row-actions'>";
 														echo "<span class='delete'>";
-														echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=DeleteUser&DisplayPage=Users&User_ID=" . $User->User_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
+														echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteUser&DisplayPage=Users&User_ID=" . $User->User_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
 		 												echo "</span>";
 														echo "</div>";
 														echo "<div class='hidden' id='inline_" . $Item->Item_ID ."'>";
@@ -174,7 +174,7 @@
 <h2><?php _e("Add New User", 'EWD_FEUP') ?></h2>
 <?php $Fields = $wpdb->get_results("SELECT * FROM $ewd_feup_fields_table_name"); ?>
 <!-- Form to create a new product -->
-<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=AddUser&DisplayPage=Users" class="validate" enctype="multipart/form-data">
+<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_AddUser&DisplayPage=Users" class="validate" enctype="multipart/form-data">
 <input type="hidden" name="action" value="Add_User" />
 <?php wp_nonce_field(); ?>
 <?php wp_referer_field(); ?>

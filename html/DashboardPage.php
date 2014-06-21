@@ -59,7 +59,7 @@
 				$Current_Page_With_Order_By = "admin.php?page=EWD-FEUP-options&DisplayPage=Dashboard";
 				if (isset($_GET['OrderBy'])) {$Current_Page_With_Order_By .= "&OrderBy=" .$_GET['OrderBy'] . "&Order=" . $_GET['Order'];}?>
 
-<form action="admin.php?page=EWD-FEUP-options&Action=MassDeleteUserFields" method="post">    
+<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassDeleteUserFields" method="post">    
 <div class="tablenav top">
 		<div class="alignleft actions">
 				<select name='action'>
@@ -160,11 +160,11 @@
 								echo "</th>";
 								echo "<td class='name column-name'>";
 								echo "<strong>";
-								echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=Field_Details&Selected=Product&Field_ID=" . $Field->Field_ID ."' title='Edit " . $Field->Field_Name . "'>" . $Field->Field_Name . "</a></strong>";
+								echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_Field_Details&Selected=Product&Field_ID=" . $Field->Field_ID ."' title='Edit " . $Field->Field_Name . "'>" . $Field->Field_Name . "</a></strong>";
 								echo "<br />";
 								echo "<div class='row-actions'>";
 								echo "<span class='delete'>";
-								echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=DeleteField&DisplayPage=User_Fields&Field_ID=" . $Field->Field_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
+								echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteField&DisplayPage=User_Fields&Field_ID=" . $Field->Field_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
 		 						echo "</span>";
 								echo "</div>";
 								echo "<div class='hidden' id='inline_" . $Field->Field_ID ."'>";
@@ -247,7 +247,7 @@
 							if ($Admin_Approval == "Yes") {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");}
 							else {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name");}
 							foreach ($Users as $User) {
-									echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
+									echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=UEWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
 							}
 				?>
 			</ul>

@@ -21,7 +21,7 @@
 				$Current_Page_With_Order_By = "admin.php?page=EWD-FEUP-options&DisplayPage=Fields";
 				if (isset($_GET['OrderBy'])) {$Current_Page_With_Order_By .= "&OrderBy=" .$_GET['OrderBy'] . "&Order=" . $_GET['Order'];}?>
 
-<form action="admin.php?page=EWD-FEUP-options&Action=MassDeleteFields&DisplayPage=Fields" method="post">    
+<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassDeleteFields&DisplayPage=Fields" method="post">    
 <div class="tablenav top">
 		<div class="alignleft actions">
 				<select name='action'>
@@ -122,11 +122,11 @@
 								echo "</th>";
 								echo "<td class='name column-name'>";
 								echo "<strong>";
-								echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=Field_Details&Selected=Product&Field_ID=" . $Field->Field_ID ."' title='Edit " . $Field->Field_Name . "'>" . $Field->Field_Name . "</a></strong>";
+								echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_Field_Details&Selected=Product&Field_ID=" . $Field->Field_ID ."' title='Edit " . $Field->Field_Name . "'>" . $Field->Field_Name . "</a></strong>";
 								echo "<br />";
 								echo "<div class='row-actions'>";
 								echo "<span class='delete'>";
-								echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=DeleteField&DisplayPage=Fields&Field_ID=" . $Field->Field_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
+								echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteField&DisplayPage=Fields&Field_ID=" . $Field->Field_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
 		 						echo "</span>";
 								echo "</div>";
 								echo "<div class='hidden' id='inline_" . $Field->Field_ID ."'>";
@@ -180,7 +180,7 @@
 <div class="form-wrap">
 <h2><?php _e("Add New Field", 'EWD_FEUP') ?></h2>
 <!-- Form to create a new field -->
-<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=AddField&DisplayPage=Field" class="validate" enctype="multipart/form-data">
+<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_AddField&DisplayPage=Field" class="validate" enctype="multipart/form-data">
 <input type="hidden" name="action" value="Add_Field" />
 <?php wp_nonce_field(); ?>
 <?php wp_referer_field(); ?>

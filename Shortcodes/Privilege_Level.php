@@ -34,7 +34,7 @@ function Privilege_Level($atts, $content = null) {
 				else {return;}
 		}
 		
-		$ReturnString = $content;
+		$ReturnString = do_shortcode($content);
 		
 		if ($minimum_level != '' and $PrivilegeLevel->Level_Privilege < $minimum_level) {$ReturnString = "<div class='ewd-feup-error'>" . __("Sorry, your account isn't a high enough level to access this content.", 'EWD_FEUP') . "</div>";}
 		if ($maximum_level != '' and $PrivilegeLevel->Level_Privilege > $maximum_level) {$ReturnString = "<div class='ewd-feup-error'>" . __("Sorry, your account level is too high to access this content.", 'EWD_FEUP') . "</div>";}
