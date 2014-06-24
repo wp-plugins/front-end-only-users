@@ -66,15 +66,15 @@ Tutorial Part 2
 On the admin page, go to the "Fields" tab. 
 
 = What's the complete list of plugin shortcodes? =
-Register Form: [register]<br />
-Login Form: [login]<br />
-Logout Form: [logout]<br />
-Edit Profile Form: [edit-profile]<br />
-Edit Account Information: [account-details]<br />
-Restriced Content: [restricted][/restricted]<br />
-Inserting User Information (see below): [user-data]<br />
-User Search Form: [user-search]<br />
-User List: [user-list]<br />
+* Register Form: [register]<br />
+* Login Form: [login]<br />
+* Logout Form: [logout]<br />
+* Edit Profile Form: [edit-profile]<br />
+* Edit Account Information: [account-details]<br />
+* Restriced Content: [restricted][/restricted]<br />
+* Inserting User Information (see below): [user-data]<br />
+* User Search Form: [user-search]<br />
+* User List: [user-list]<br />
 
 = How do I display a user's first name on a page? =
 
