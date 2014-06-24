@@ -28,7 +28,7 @@ Key Features:
 * Allows personalization of your site with the [user-data] shortcode
 * Options page lets you control how long a user remains logged in
 
-For all of the plugin shortcodes, please see the FAQ page
+**For all of the plugin shortcodes, please see the FAQ page**
 
 This plugin creates a cookie to store login information. 
 
