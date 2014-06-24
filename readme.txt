@@ -28,6 +28,8 @@ Key Features:
 * Allows personalization of your site with the [user-data] shortcode
 * Options page lets you control how long a user remains logged in
 
+For all of the plugin shortcodes, please see the FAQ page
+
 This plugin creates a cookie to store login information. 
 
 Please head to the "Support" tab to report errors or make suggestions.
@@ -63,6 +65,19 @@ Tutorial Part 2
 
 On the admin page, go to the "Fields" tab. 
 
+= What's the complete list of plugin shortcodes? =
+Register Form: [register]
+Login Form: [login]
+Logout Form: [logout]
+Edit Profile Form: [edit-profile]
+Edit Account Information: [account-details]
+Restriced Content: [restricted][/restricted]
+Inserting User Information (see below): [user-data]
+User Search Form: [user-search]
+User List: [user-list]
+
+On the admin page, go to the "Fields" tab. 
+
 = How do I display a user's first name on a page? =
 
 You can use the [user-data field_name='First Name'] shortcode, assuming that you called your field "First Name" for a user's first name.
@@ -71,6 +86,11 @@ You can use the [user-data field_name='First Name'] shortcode, assuming that you
 
 Content can be restricted using the [restricted][/restricted] tag. Any content between the opening and closing tags will only be visible to those who are logged in. 
 
+= Tutorial Part 1 =
+[youtube http://www.youtube.com/watch?v=9WE1ftZBlPw]
+
+= Tutorial Part 2 =
+[youtube http://www.youtube.com/watch?v=viF7-yPY4H4]
 
 
 == Screenshots ==
