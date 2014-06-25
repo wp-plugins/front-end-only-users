@@ -5,6 +5,7 @@ Plugin URI: http://www.etoilewebdesign.com/front-end-users-plugin/
 Description: A plugin that creates a separate set of users that are front-end only users, who do not appear in the default WordPress users area, and allows content to be tailored based on user profiles
 Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
+Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
 Version: 1.3
 */
