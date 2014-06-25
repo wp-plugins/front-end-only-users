@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 1.3
+Version: 1.4
 */
 
 global $EWD_FEUP_db_version;

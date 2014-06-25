@@ -100,6 +100,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.4 =
+- Fixed a naming conflict error
+
 = 1.3 =
 - Shortcodes inside of [restricted][/restricted] tags should now work
 - Added 3 new methods to the "EWD_FEUP" class to access User_ID, Username and any custom field
