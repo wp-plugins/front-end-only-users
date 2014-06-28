@@ -22,13 +22,18 @@ function Privilege_Level($atts, $content = null) {
 																'maximum_level' => '',
 																'level' => '',
 																'field_name' => '',
-																'field_value' => ''),
+																'field_value' => '',
+																'sneak_peak_characters' => 0,
+																'sneak_peak_words' => 0),
 																$atts
 														)
 												);
 												
 		if (!$UserCookie) {
-			  $ReturnString .= __("Please log in to access this content.", 'EWD_FEUP'); 
+			  if ($sneak_peak_characters > 0) {$ReturnString = substr(do_shortcode($content), 0, $sneak_peak_characters) . "...<br>";}
+				if ($sneak_peak_words > 0) {$ReturnString = Return_Until_Nth_Occurance(do_shortcode($content), " ", $sneak_peak_words) . "...<br>";}
+				
+				$ReturnString .= __("Please log in to access this content.", 'EWD_FEUP'); 
 				if ($login_page != "") {$ReturnString .= "<br />" . __('Please', 'EWD_FEUP') . " <a href='" . $login_page . "'>" . __('login', 'EWD_FEUP') . "</a> " . __('to continue.', 'EWD_FEUP');}
 				if ($no_message != "Yes") {return $ReturnString;}
 				else {return;}
@@ -50,3 +55,19 @@ function Privilege_Level($atts, $content = null) {
 }
 add_shortcode("restricted", "Privilege_Level");
 
+
+function Return_Until_Nth_Occurance($String, $Needle, $N) {
+		$Count = 0;
+		while ($Count < $N) {
+				$Pos = strpos($String, $Needle);
+				if (strpos($String, $Needle) === false) {$Pos = strlen($String); $Count = $N;}
+				$ReturnString .= substr($String, 0, $Pos) . $Needle;
+				$String = substr($String, $Pos+1);
+				$Count++;
+		}
+		
+		return $ReturnString;
+}
+
+
+?>

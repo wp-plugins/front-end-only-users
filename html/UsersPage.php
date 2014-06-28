@@ -200,7 +200,7 @@
 	<?php } elseif ($Field->Field_Type == "textarea") { ?>
 			<textarea name="<?php echo $Field->Field_Name; ?>" id="<?php echo $Field->Field_Name; ?>"></textarea>
 	<?php } elseif ($Field->Field_Type == "file") {?>
-			<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-date-input pure-input-1-3' type='file' value='' />
+			<input name='<?php echo $Field->Field_Name; ?>' id='ewd-feup-register-input-<?php echo $Field->Field_ID; ?>' class='ewd-feup-file-input pure-input-1-3' type='file' value='' />
 	<?php } elseif ($Field->Field_Type == "select") { ?>
 			<?php $Options = explode(",", $Field->Field_Options); ?>
 			<select name="<?php echo $Field->Field_Name; ?>" id="<?php echo $Field->Field_Name; ?>">

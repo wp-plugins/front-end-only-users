@@ -13,6 +13,8 @@ function Insert_Login_Form($atts) {
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
 						 								 		'redirect_page' => '#',
+																'redirect_field' => '',
+																'redirect_array_string' => '',
 																'submit_text' => __('Login', 'EWD_FEUP')),
 																$atts
 														)
@@ -22,6 +24,8 @@ function Insert_Login_Form($atts) {
 		$ReturnString .= $Custom_CSS;
 		$ReturnString .= "</style>";
 		
+		if ($feup_success and $redirect_field != "") {$redirect_page = Determine_Redirect_Page($redirect_field, $redirect_array_string, $redirect_page);}
+
 		if ($feup_success and $redirect_page != '#') {FEUPRedirect($redirect_page);}
 		
 		$ReturnString .= "<div id='ewd-feup-login-form-div'>";
@@ -47,3 +51,5 @@ function Insert_Login_Form($atts) {
 		return $ReturnString;
 }
 add_shortcode("login", "Insert_Login_Form");
+
+?>

@@ -11,7 +11,7 @@ function Add_Edit_User() {
 		$date = date("Y-m-d H:i:s");
 		
 		$UserCookie = CheckLoginCookie();
-		
+
 		$User = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $UserCookie['Username']));
 		$User_ID = $User->User_ID;
 		if ($User_ID == "" and is_admin()) {$User_ID = $_POST['User_ID'];}
@@ -61,6 +61,7 @@ function Add_Edit_User() {
 				}
 				/* Pass the data to the appropriate function in Update_Admin_Databases.php to edit the user */
 				else {
+						echo "Edit_User<br>";
 						if (isset($User_Fields)) {$user_update = Edit_EWD_FEUP_User($User_ID, $User_Fields);}
 						foreach ($Additional_Fields_Array as $Field) {
 								$CurrentField = $wpdb->get_row($wpdb->prepare("SELECT User_Field_ID FROM $ewd_feup_user_fields_table_name WHERE Field_ID='%d' AND User_ID='%d'", $Field['Field_ID'], $User_ID));

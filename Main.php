@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 1.4
+Version: 1.5
 */
 
 global $EWD_FEUP_db_version;
@@ -127,6 +127,7 @@ $Full_Version = get_option("EWD_FEUP_Full_Version");
 
 include "Functions/CheckLoginCookie.php";
 include "Functions/CreateLoginCookie.php";
+include "Functions/Determine_Redirect_Page.php";
 include "Functions/Error_Notices.php";
 include "Functions/EWD_FEUP_Output_Options.php";
 include "Functions/Initial_Data.php";

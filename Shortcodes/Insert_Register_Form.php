@@ -18,10 +18,14 @@ function Insert_Register_Form($atts) {
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
 						 								 		'redirect_page' => '#',
+																'redirect_field' => "",
+																'redirect_array_string' => "",
 																'submit_text' => __('Register', 'EWD_FEUP')),
 																$atts
 														)
 												);
+		
+		if ($feup_success and $redirect_field != "") {$redirect_page = Determine_Redirect_Page($redirect_field, $redirect_array_string, $redirect_page);}
 		
 		if ($feup_success and $redirect_page != '#') {FEUPRedirect($redirect_page);}
 		

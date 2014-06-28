@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: Rustaurius 
-Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, PureCSS
+Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, PureCSS
 Requires at least: 3.5.0
 Tested up to: 3.8
 License: GPLv3
@@ -27,6 +27,7 @@ Key Features:
 * PureCSS-styled forms for elegant design
 * Allows personalization of your site with the [user-data] shortcode
 * Options page lets you control how long a user remains logged in
+* User input-based redirects; send user groups to different pages after login (see FAQ)
 
 **For all of the plugin shortcodes, please see the FAQ page**
 
@@ -66,6 +67,7 @@ Tutorial Part 2
 On the admin page, go to the "Fields" tab. 
 
 = What's the complete list of plugin shortcodes? =
+
 * Register Form: [register]<br />
 * Login Form: [login]<br />
 * Logout Form: [logout]<br />
@@ -75,6 +77,12 @@ On the admin page, go to the "Fields" tab.
 * Inserting User Information (see below): [user-data]<br />
 * User Search Form: [user-search]<br />
 * User List: [user-list]<br />
+
+= How do I redirect based on a user field? =
+
+You need to add the following attributes to your [login] or [register] shortcodes:
+* redirect_field: the field the redirect is based off of (ex. Gender)
+* redirect_array_string: a comma separated list of pages to redirect to (ex. Male => http://ManPage.com, Female => http://WomanPage.com)
 
 = How do I display a user's first name on a page? =
 
@@ -100,6 +108,10 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.5 =
+- Added "sneak peak" attributes to the [restricted] shortcode; you can now set attributes for either sneak_peak_characters or sneak_peak_words within the shortcode
+- Added the ability to redirect based on a user field; to use it, see the plugin page
+
 = 1.4 =
 - Fixed a naming conflict error
 
