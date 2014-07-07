@@ -108,6 +108,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.6 = 
+- Tiny change
+
 = 1.5 =
 - Added "sneak peak" attributes to the [restricted] shortcode; you can now set attributes for either sneak_peak_characters or sneak_peak_words within the shortcode
 - Added the ability to redirect based on a user field; to use it, see the plugin page
