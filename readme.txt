@@ -108,6 +108,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.7 = 
+- Fixed an error that was causing e-mail subject to not be saved
+
 = 1.6 = 
 - Tiny change
 
