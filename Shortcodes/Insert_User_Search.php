@@ -52,7 +52,7 @@ function User_Search($atts, $content = null) {
 		
 		$search_fields_array = explode(",", $search_fields);
 		$ReturnString .= "<div id='ewd-feup-login-form-div'>";
-		$ReturnString .= $user_message['Message'];
+		if (isset($user_message['Message'])) {$ReturnString .= $user_message['Message'];}
 		$ReturnString .= "<form action='#' method='post' id='ewd-feup-login-form' class='pure-form pure-form-aligned'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";

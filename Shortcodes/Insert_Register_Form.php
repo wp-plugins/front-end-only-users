@@ -14,6 +14,7 @@ function Insert_Register_Form($atts) {
 		$Fields = $wpdb->get_results($Sql);
 		
 		$ReturnString = "";
+		$user_message['Message'] = "";
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
@@ -34,7 +35,7 @@ function Insert_Register_Form($atts) {
 		$ReturnString .= "</style>";
 		
 		$ReturnString .= "<div id='ewd-feup-register-form-div'>";
-		$ReturnString .= $user_message['Message'];
+		if (isset($user_message['Message'])) {$ReturnString .= $user_message['Message'];}
 		$ReturnString .= "<form action='#' method='post' id='ewd-feup-register-form' class='pure-form pure-form-aligned' enctype='multipart/form-data'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
