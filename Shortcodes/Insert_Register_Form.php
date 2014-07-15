@@ -14,7 +14,6 @@ function Insert_Register_Form($atts) {
 		$Fields = $wpdb->get_results($Sql);
 		
 		$ReturnString = "";
-		$user_message['Message'] = "";
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(

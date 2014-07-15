@@ -108,6 +108,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.9 = 
+- [register] file was edited to remove PHP warning
+
 = 1.8 = 
 - Edited a number of files to remove PHP warnings
 
