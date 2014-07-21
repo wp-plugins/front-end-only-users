@@ -21,6 +21,7 @@ function Insert_Edit_Profile($atts) {
 		extract( shortcode_atts( array(
 						 								 		'redirect_page' => '#',
 																'login_page' => '',
+																'omit_fields' => '',
 																'submit_text' => __('Edit Profile', 'EWD_FEUP')),
 																$atts
 														)
@@ -45,63 +46,67 @@ function Insert_Edit_Profile($atts) {
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='edit-profile'>";
 		
+		$Omitted_Fields = explode(",", $omit_fields);
+		
 		foreach ($Fields as $Field) {
-				$Value = "";
-				foreach ($UserData as $UserField) {
-						if ($Field->Field_Name == $UserField->Field_Name) {$Value = $UserField->Field_Value;}
-				}
-				$ReturnString .= "<div class='pure-control-group'>";
-				$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-edit-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . $Field->Field_Name . ": </label>";
-				if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
-					  $ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $Value . "' />";
-				}
-				elseif ($Field->Field_Type == "date") {
-						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='date' value='" . $Value . "' />";
-				}
-				elseif ($Field->Field_Type == "datetime") {
-						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' />";
-				}
-				elseif ($Field->Field_Type == "textarea") {
-						$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2'>" . $Value . "</textarea>";
-				}
-				elseif ($Field->Field_Type == "file") {
-						$ReturnString .= __("Current file:", 'EWD_FEUP') . " " . substr($Value, 10) . " | ";
-						$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='file' value='' />";
-				} 
-				elseif ($Field->Field_Type == "select") { 
-						$Options = explode(",", $Field->Field_Options);
-						$ReturnString .= "<select name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-select pure-input-1-3'>";
-			 			foreach ($Options as $Option) {
-								$ReturnString .= "<option value='" . $Option . "' ";
-								if (trim($Option) == trim($Value)) {$ReturnString .= "selected='selected'";}
-								$ReturnString .= ">" . $Option . "</option>";
+				if (!in_array($Field->Field_Name, $Omitted_Fields)) {
+					  $Value = "";
+						foreach ($UserData as $UserField) {
+								if ($Field->Field_Name == $UserField->Field_Name) {$Value = $UserField->Field_Value;}
 						}
-						$ReturnString .= "</select>";
-				} 
-				elseif ($Field->Field_Type == "radio") {
-						$Counter = 0;
-						$Options = explode(",", $Field->Field_Options);
-						foreach ($Options as $Option) {
-								if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
-								$ReturnString .= "<input type='radio' name='" . $Field->Field_Name . "' value='" . $Option . "' class='ewd-feup-radio' ";
-								if (trim($Option) == trim($Value)) {$ReturnString .= "checked";}
-								$ReturnString .= ">" . $Option;
-								$Counter++;
+						$ReturnString .= "<div class='pure-control-group'>";
+						$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-edit-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . $Field->Field_Name . ": </label>";
+						if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
+					  	  $ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $Value . "' />";
+						}
+						elseif ($Field->Field_Type == "date") {
+								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='date' value='" . $Value . "' />";
+						}
+						elseif ($Field->Field_Type == "datetime") {
+								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' />";
+						}
+						elseif ($Field->Field_Type == "textarea") {
+								$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2'>" . $Value . "</textarea>";
+						}
+						elseif ($Field->Field_Type == "file") {
+								$ReturnString .= __("Current file:", 'EWD_FEUP') . " " . substr($Value, 10) . " | ";
+								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='file' value='' />";
 						} 
-				} 
-				elseif ($Field->Field_Type == "checkbox") {
-  					$Counter = 0;
-						$Options = explode(",", $Field->Field_Options);
-						$Values = explode(",", $Value);
-						foreach ($Options as $Option) {
-								if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
-								$ReturnString .= "<input type='checkbox' name='" . $Field->Field_Name . "[]' value='" . $Option . "' class='ewd-feup-checkbox' ";
-								if (in_array($Option, $Values)) {$ReturnString .= "checked";}
-								$ReturnString .= ">" . $Option . "</br>";
-								$Counter++;
+						elseif ($Field->Field_Type == "select") { 
+								$Options = explode(",", $Field->Field_Options);
+								$ReturnString .= "<select name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-select pure-input-1-3'>";
+			 					foreach ($Options as $Option) {
+										$ReturnString .= "<option value='" . $Option . "' ";
+										if (trim($Option) == trim($Value)) {$ReturnString .= "selected='selected'";}
+										$ReturnString .= ">" . $Option . "</option>";
+								}
+								$ReturnString .= "</select>";
+						} 
+						elseif ($Field->Field_Type == "radio") {
+								$Counter = 0;
+								$Options = explode(",", $Field->Field_Options);
+								foreach ($Options as $Option) {
+										if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
+										$ReturnString .= "<input type='radio' name='" . $Field->Field_Name . "' value='" . $Option . "' class='ewd-feup-radio' ";
+										if (trim($Option) == trim($Value)) {$ReturnString .= "checked";}
+										$ReturnString .= ">" . $Option;
+										$Counter++;
+								} 
+						} 
+						elseif ($Field->Field_Type == "checkbox") {
+  							$Counter = 0;
+								$Options = explode(",", $Field->Field_Options);
+								$Values = explode(",", $Value);
+								foreach ($Options as $Option) {
+										if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
+										$ReturnString .= "<input type='checkbox' name='" . $Field->Field_Name . "[]' value='" . $Option . "' class='ewd-feup-checkbox' ";
+										if (in_array($Option, $Values)) {$ReturnString .= "checked";}
+										$ReturnString .= ">" . $Option . "</br>";
+										$Counter++;
+								}
 						}
+						$ReturnString .= "</div>";
 				}
-				$ReturnString .= "</div>";
 		}
 		
 		$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Edit_Profile_Submit' value='" . $submit_text . "'></div>";

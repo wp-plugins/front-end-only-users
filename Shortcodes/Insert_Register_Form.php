@@ -34,7 +34,7 @@ function Insert_Register_Form($atts) {
 		$ReturnString .= "</style>";
 		
 		$ReturnString .= "<div id='ewd-feup-register-form-div'>";
-		if (isset($user_message['Message'])) {$ReturnString .= $user_message['Message'];}
+		$ReturnString .= $user_message['Message'];
 		$ReturnString .= "<form action='#' method='post' id='ewd-feup-register-form' class='pure-form pure-form-aligned' enctype='multipart/form-data'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";

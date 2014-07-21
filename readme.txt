@@ -109,6 +109,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 
 == Changelog ==
 = 1.9 = 
+- [edit-profile] now accepts the attribute "omit_fields", a comma-separated list of fields to not appear in the edit profile form
+
+= 1.9 = 
 - [register] file was edited to remove PHP warning
 
 = 1.8 = 
