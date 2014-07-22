@@ -108,7 +108,12 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
-= 1.9 = 
+= 1.11 =
+- Fixed a small error with edit-profile
+- Added language support
+- Added Russian language files
+ 
+= 1.10 = 
 - [edit-profile] now accepts the attribute "omit_fields", a comma-separated list of fields to not appear in the edit profile form
 
 = 1.9 = 
