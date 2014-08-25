@@ -9,7 +9,8 @@ function Insert_Logout($atts) {
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
-						 								 		'redirect_page' => '#',
+						 								 		'no_message' => '',
+																'redirect_page' => '#',
 																'submit_text' => 'Logout'),
 																$atts
 														)
@@ -26,6 +27,6 @@ function Insert_Logout($atts) {
 		$ReturnString .= __("You have been successfully logged out." , "EWD_FEUP");
 		$ReturnString .= "</div>";
 		
-		return $ReturnString;
+		if ($no_message != "Yes") {return $ReturnString;}
 }
 add_shortcode("logout", "Insert_Logout");

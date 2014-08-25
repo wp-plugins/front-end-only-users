@@ -55,12 +55,17 @@
 								<input type="checkbox" />
 						</th>
 						<?php if ($Admin_Approval == "Yes") { ?>
+								<?php if ($_GET['OrderBy'] == "User_Admin_Approved" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+									else {$Order = "ASC";} ?>
 								<th scope='col' class='manage-column column-cb check-column'  style="">
-										<span>Admin Approved</span>
+										<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=User_Admin_Approved&Order=<?php echo $Order; ?>">
+												<span>Admin Approved</span>
+												<span class="sorting-indicator"></span>
+										</a>
 								</th>
 						<?php } ?>
 						<?php foreach ($Fields as $Field) { ?>
-						<?php if ($_GET['OrderBy'] == "Item_Name" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+						<?php if ($_GET['OrderBy'] == $Field->Field_Name and $_GET['Order'] == "ASC") {$Order = "DESC";}
 									else {$Order = "ASC";} ?>
 									 <th scope='col' class='manage-column column-cb check-column'  style="">
 										<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=<?php echo $Field->Field_Name; ?>&Order=<?php echo $Order; ?>">
@@ -69,6 +74,20 @@
 										</a>
 									 </th>
 						<?php } ?>
+						<th scope='col' class='manage-column column-cb check-column'  style="">
+								<?php if ($_GET['OrderBy'] == "User_Last_Login" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+									else {$Order = "ASC";} ?>
+								<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=User_Last_Login&Order=<?php echo $Order; ?>">
+								<span>Last Login</span>
+								<span class="sorting-indicator"></span>
+						</th>
+						<th scope='col' class='manage-column column-cb check-column'  style="">
+								<?php if ($_GET['OrderBy'] == "User_Date_Created" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+									else {$Order = "ASC";} ?>
+								<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=User_Date_Created&Order=<?php echo $Order; ?>">
+								<span>Joined Date</span>
+								<span class="sorting-indicator"></span>
+						</th>
 				</tr>
 		</thead>
 
@@ -78,12 +97,17 @@
 								<input type="checkbox" />
 						</th>
 						<?php if ($Admin_Approval == "Yes") { ?>
+								<?php if ($_GET['OrderBy'] == "User_Admin_Approved" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+									else {$Order = "ASC";} ?>
 								<th scope='col' class='manage-column column-cb check-column'  style="">
-										<span>Admin Approved</span>
+										<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=User_Admin_Approved&Order=<?php echo $Order; ?>">
+												<span>Admin Approved</span>
+												<span class="sorting-indicator"></span>
+										</a>
 								</th>
 						<?php } ?>
 						<?php foreach ($Fields as $Field) { ?>
-						<?php if ($_GET['OrderBy'] == "Item_Name" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+						<?php if ($_GET['OrderBy'] == $Field->Field_Name and $_GET['Order'] == "ASC") {$Order = "DESC";}
 									else {$Order = "ASC";} ?>
 						<th scope='col' class='manage-column column-cb check-column'  style="">
 										<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=<?php echo $Field->Field_Name; ?>&Order=<?php echo $Order; ?>">
@@ -92,6 +116,20 @@
 										</a>
 						</th>
 						<?php } ?>
+						<th scope='col' class='manage-column column-cb check-column'  style="">
+								<?php if ($_GET['OrderBy'] == "User_Last_Login" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+									else {$Order = "ASC";} ?>
+								<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=User_Last_Login&Order=<?php echo $Order; ?>">
+								<span>Last Login</span>
+								<span class="sorting-indicator"></span>
+						</th>
+						<th scope='col' class='manage-column column-cb check-column'  style="">
+								<?php if ($_GET['OrderBy'] == "User_Date_Created" and $_GET['Order'] == "ASC") {$Order = "DESC";}
+									else {$Order = "ASC";} ?>
+								<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users&OrderBy=User_Date_Created&Order=<?php echo $Order; ?>">
+								<span>Joined Date</span>
+								<span class="sorting-indicator"></span>
+						</th>
 				</tr>
 		</tfoot>
 
@@ -132,6 +170,8 @@
 												echo "</td>";
 												$FieldCount++;
 										}
+								echo "<td class='name column-name'>" .  $User->User_Last_Login . "</td>";
+								echo "<td class='name column-name'>" .  $User->User_Date_Created . "</td>";
 								echo "</tr>";
 						}
 				}

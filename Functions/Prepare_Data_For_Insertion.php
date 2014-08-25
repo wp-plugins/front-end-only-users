@@ -16,6 +16,9 @@ function Add_Edit_User() {
 		$User_ID = $User->User_ID;
 		if ($User_ID == "" and is_admin()) {$User_ID = $_POST['User_ID'];}
 		
+		if (isset($_POST['Omit_Fields'])) {$Omitted_Fields = explode(",", $_POST['Omit_Fields']);}
+		else {$Omitted_Fields = array();}
+		
 		if (isset($_POST['Username'])) {$User_Fields['Username'] = $_POST['Username'];}
 		if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = sha1(md5($_POST['User_Password'].$Salt));}
 		if ($_POST['Admin_Approved'] == "Yes") {$User_Fields['User_Admin_Approved'] = "Yes";}
@@ -25,28 +28,33 @@ function Add_Edit_User() {
 		if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
 			  $wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $_POST['Username']));
 				if ($wpdb->num_rows > 0) {$user_update['Message'] = __("There is already a user with that Username, please select a different one.", "EWD_FEUP"); return $user_update;}
+				if (strlen($_POST['Username']) < 3) {$user_update['Message'] = __("Username must be at least 3 characters.", "EWD_FEUP"); return $user_update;}
 		}
-				
-		foreach ($Fields as $Field) {
-				$Additional_Fields_Array[$Field->Field_Name]['Field_ID'] = $Field->Field_ID;
-				$Additional_Fields_Array[$Field->Field_Name]['Field_Name'] = $Field->Field_Name;
-				$Field_Name = str_replace(" ", "_", $Field->Field_Name);
-				if ($Field->Field_Type == "file") {
-					  $File_Upload_Return = Handle_File_Upload($Field_Name);
-						if ($File_Upload_Return['Success'] == "No") {return $File_Upload_Return['Data'];}
-						elseif ($File_Upload_Return['Success'] == "N/A") {unset($Additional_Fields_Array[$Field->Field_Name]);}
-						else {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $File_Upload_Return['Data'];}
+		
+		if ($_POST['ewd-feup-action'] != "edit-account") {
+			  foreach ($Fields as $Field) {
+						if (!in_array($Field->Field_Name, $Omitted_Fields)) {
+							  $Additional_Fields_Array[$Field->Field_Name]['Field_ID'] = $Field->Field_ID;
+								$Additional_Fields_Array[$Field->Field_Name]['Field_Name'] = $Field->Field_Name;
+								$Field_Name = str_replace(" ", "_", $Field->Field_Name);
+								if ($Field->Field_Type == "file") {
+					  	  	  $File_Upload_Return = Handle_File_Upload($Field_Name);
+										if ($File_Upload_Return['Success'] == "No") {return $File_Upload_Return['Data'];}
+										elseif ($File_Upload_Return['Success'] == "N/A") {unset($Additional_Fields_Array[$Field->Field_Name]);}
+										else {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $File_Upload_Return['Data'];}
+								}
+								elseif (is_array($_POST[$Field_Name])) {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = implode(",", $_POST[$Field_Name]);}
+								else {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $_POST[$Field_Name];}
+						}
 				}
-				elseif (is_array($_POST[$Field_Name])) {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = implode(",", $_POST[$Field_Name]);}
-				else {$Additional_Fields_Array[$Field->Field_Name]['Field_Value'] = $_POST[$Field_Name];}
 		}
-
 		if (!isset($error)) {
 				/* Pass the data to the appropriate function in Update_Admin_Databases.php to create the user */
 				if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
 						if ($User->User_ID != "") {$user_update = __("There is already an account with that Username. Please select a different one.", "EWD_FEUP"); return $user_update;}
 						if (!isset($User_Fields['User_Admin_Approved'])) {$User_Fields['User_Admin_Approved'] = "No";}
 						$User_Fields['User_Date_Created'] = $date;
+						$User_Fields['User_Last_Login'] = $date;
 						$user_update = Add_EWD_FEUP_User($User_Fields);
 						$User_ID = $wpdb->insert_id;
 						foreach ($Additional_Fields_Array as $Field) {
@@ -62,11 +70,15 @@ function Add_Edit_User() {
 				/* Pass the data to the appropriate function in Update_Admin_Databases.php to edit the user */
 				else {
 						if (isset($User_Fields)) {$user_update = Edit_EWD_FEUP_User($User_ID, $User_Fields);}
-						foreach ($Additional_Fields_Array as $Field) {
-								$CurrentField = $wpdb->get_row($wpdb->prepare("SELECT User_Field_ID FROM $ewd_feup_user_fields_table_name WHERE Field_ID='%d' AND User_ID='%d'", $Field['Field_ID'], $User_ID));
-								if ($CurrentField->User_Field_ID != "") {$user_update = Edit_EWD_FEUP_User_Field($Field['Field_ID'], $User_ID, $Field['Field_Name'], $Field['Field_Value']);}
-								else {$user_update = Add_EWD_FEUP_User_Field($Field['Field_ID'], $User_ID, $Field['Field_Name'], $Field['Field_Value'], $date);}
+						if (is_array($Additional_Fields_Array)) {
+							  foreach ($Additional_Fields_Array as $Field) {
+										$CurrentField = $wpdb->get_row($wpdb->prepare("SELECT User_Field_ID FROM $ewd_feup_user_fields_table_name WHERE Field_ID='%d' AND User_ID='%d'", $Field['Field_ID'], $User_ID));
+										if ($CurrentField->User_Field_ID != "") {$user_update = Edit_EWD_FEUP_User_Field($Field['Field_ID'], $User_ID, $Field['Field_Name'], $Field['Field_Value']);}
+										else {$user_update = Add_EWD_FEUP_User_Field($Field['Field_ID'], $User_ID, $Field['Field_Name'], $Field['Field_Value'], $date);}
+								}
 						}
+						
+						if ($_POST['ewd-feup-action'] == "edit-account") {CreateLoginCookie($_POST['Username'], $_POST['User_Password']);}
 				}
 				$user_update = array("Message_Type" => "Update", "Message" => $user_update);
 				$feup_success = true;

@@ -7,6 +7,7 @@ function Process_EWD_FEUP_Front_End_Forms() {
 			  switch ($_POST['ewd-feup-action']) {
 						case "register":
 						case "edit-profile":
+						case "edit-account":
 								 $user_message = Add_Edit_User();
 								 break;
 						case "login":
@@ -29,6 +30,8 @@ function Confirm_Login() {
 			  if ($Admin_Approval != "Yes" or $User->User_Admin_Approved == "Yes") {
 					  if ($Email_Confirmation != "Yes" or $User->User_Email_Confirmed == "Yes") {
 			  			  CreateLoginCookie($_POST['Username'], $_POST['User_Password']);
+								$Date = date("Y-m-d H:i:s");   
+								$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Last_Login='" . $Date . "' WHERE Username ='%s'", $_POST['Username']));
 								$feup_success = true;
 								return __("Login succesful", 'EWD_FEUP');
 						}

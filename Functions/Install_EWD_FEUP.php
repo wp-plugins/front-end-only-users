@@ -14,6 +14,9 @@ function Install_EWD_FEUP() {
 		User_Email_Confirmed text NULL,
 		User_Admin_Approved text NULL,
 		User_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
+		User_Last_Login datetime DEFAULT '0000-00-00 00:00:00' NULL,
+		User_Password_Reset_Code text NULL,
+		User_Password_Reset_Date datetime DEFAULT '0000-00-00 00:00:00' NULL,
   	UNIQUE KEY id (User_ID)
     )
 		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";

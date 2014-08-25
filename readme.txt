@@ -108,6 +108,13 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.12 =
+- Added the attribute "no_message" to the [logout] shortcode
+- Fixed 2 registration errors
+- Fixed an error that stopped the [account-details] shortcode from working
+- Fixed an error to make translation possible
+- Fixed an error where "omitted fields" in the edit profile form were being overwritten as blanks
+
 = 1.11 =
 - Fixed a small error with edit-profile
 - Added language support

@@ -25,6 +25,7 @@ if (!class_exists('FEUP_User')){
 				function Get_Field_Value($Field) {
 						global $wpdb, $ewd_feup_user_fields_table_name;
 						$Value = $wpdb->get_var("SELECT Field_Value FROM $ewd_feup_user_fields_table_name WHERE Field_Name='" . $Field ."'");
+						return $Value;
 				}
 
     		function Is_Logged_In() {

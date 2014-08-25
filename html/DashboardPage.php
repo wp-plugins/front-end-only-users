@@ -28,7 +28,7 @@
 		<div class="handlediv" title="Click to toggle"></div><h3 class='hndle'><span><?php _e("Thank You!", 'EWD_FEUP') ?></span></h3>
 		<div class="inside">
 				<ul>
-						<li><?php _e("Thanks for being an early adopter! Anyone who installs before July 31st will always have access to new features, updates and full product support.", 'EWD_FEUP'); ?></li>
+						<li><?php _e("Thanks for being an early adopter! Anyone who installs before September 30th will always have access to new features, updates and full product support.", 'EWD_FEUP'); ?></li>
 						<li><a href="https://www.facebook.com/EtoileWebDesign"><?php _e("Follow us on Facebook ", "EWD_FEUP");?></a><?php _e("to stay up to date with new features and plugins.", "EWD_FEUP"); ?></li>
 				</ul>
 		</div>
