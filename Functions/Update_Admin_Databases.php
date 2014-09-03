@@ -29,9 +29,14 @@ function Edit_EWD_FEUP_User($User_ID, $User_Data_Array) {
 function Delete_EWD_FEUP_User($User_ID) {
 		global $wpdb;
 		global $ewd_feup_user_table_name;
+		global $ewd_feup_fields_table_name;
 		
 		$wpdb->delete(
 						$ewd_feup_user_table_name,
+						array('User_ID' => $User_ID)
+					);
+		$wpdb->delete(
+						$ewd_feup_fields_table_name,
 						array('User_ID' => $User_ID)
 					);
 

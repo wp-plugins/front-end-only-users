@@ -51,27 +51,28 @@ function Insert_Edit_Profile($atts) {
 		
 		foreach ($Fields as $Field) {
 				if (!in_array($Field->Field_Name, $Omitted_Fields)) {
-					  $Value = "";
+					  if ($Field->Field_Required == "Yes") {$Req_Text = "required";}
+						$Value = "";
 						foreach ($UserData as $UserField) {
 								if ($Field->Field_Name == $UserField->Field_Name) {$Value = $UserField->Field_Value;}
 						}
 						$ReturnString .= "<div class='pure-control-group'>";
 						$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-edit-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . $Field->Field_Name . ": </label>";
 						if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
-					  	  $ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $Value . "' />";
+					  	  $ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $Value . "' " . $Req_Text . "/>";
 						}
 						elseif ($Field->Field_Type == "date") {
-								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='date' value='" . $Value . "' />";
+								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='date' value='" . $Value . "' " . $Req_Text . "/>";
 						}
 						elseif ($Field->Field_Type == "datetime") {
-								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' />";
+								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' " . $Req_Text . "/>";
 						}
 						elseif ($Field->Field_Type == "textarea") {
-								$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2'>" . $Value . "</textarea>";
+								$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2' " . $Req_Text . ">" . $Value . "</textarea>";
 						}
 						elseif ($Field->Field_Type == "file") {
 								$ReturnString .= __("Current file:", 'EWD_FEUP') . " " . substr($Value, 10) . " | ";
-								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='file' value='' />";
+								$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='file' value='' " . $Req_Text . "/>";
 						} 
 						elseif ($Field->Field_Type == "select") { 
 								$Options = explode(",", $Field->Field_Options);
@@ -88,7 +89,7 @@ function Insert_Edit_Profile($atts) {
 								$Options = explode(",", $Field->Field_Options);
 								foreach ($Options as $Option) {
 										if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
-										$ReturnString .= "<input type='radio' name='" . $Field->Field_Name . "' value='" . $Option . "' class='ewd-feup-radio' ";
+										$ReturnString .= "<input type='radio' name='" . $Field->Field_Name . "' value='" . $Option . "' class='ewd-feup-radio' " . $Req_Text . " ";
 										if (trim($Option) == trim($Value)) {$ReturnString .= "checked";}
 										$ReturnString .= ">" . $Option;
 										$Counter++;
@@ -100,13 +101,14 @@ function Insert_Edit_Profile($atts) {
 								$Values = explode(",", $Value);
 								foreach ($Options as $Option) {
 										if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
-										$ReturnString .= "<input type='checkbox' name='" . $Field->Field_Name . "[]' value='" . $Option . "' class='ewd-feup-checkbox' ";
+										$ReturnString .= "<input type='checkbox' name='" . $Field->Field_Name . "[]' value='" . $Option . "' class='ewd-feup-checkbox' " . $Req_Text . " ";
 										if (in_array($Option, $Values)) {$ReturnString .= "checked";}
 										$ReturnString .= ">" . $Option . "</br>";
 										$Counter++;
 								}
 						}
 						$ReturnString .= "</div>";
+						unset($Req_Text);
 				}
 		}
 		

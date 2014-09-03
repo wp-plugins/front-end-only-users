@@ -14,7 +14,8 @@ function Insert_User_Data($atts) {
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
-						 								 		'field_name' => 'Username'),
+						 								 		'field_name' => 'Username',
+																'plain_text' => 'No'),
 																$atts
 														)
 												);
@@ -30,7 +31,8 @@ function Insert_User_Data($atts) {
 						if ($Field->Field_Name == $field_name) {$ReturnString .= $Field->Field_Value;}
 				}
 		}
-		$ReturnString = "<span class='ewd-feup-user-data'>" . $ReturnString . "</span>";
+		
+		if ($plain_text != "Yes") {$ReturnString = "<span class='ewd-feup-user-data'>" . $ReturnString . "</span>";}
 		return $ReturnString;
 }
 add_shortcode("user-data", "Insert_User_Data");

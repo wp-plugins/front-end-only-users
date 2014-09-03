@@ -2,7 +2,7 @@
 Contributors: Rustaurius 
 Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, PureCSS
 Requires at least: 3.5.0
-Tested up to: 3.8
+Tested up to: 3.9.2
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -108,6 +108,11 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.13 =
+- Added "plain_text" as an attribute for the [user-data] tag
+- Required fields should now actually be required on register and edit profile forms
+- When a user is deleted, all of the associated user fields are now deleted as well
+
 = 1.12 =
 - Added the attribute "no_message" to the [logout] shortcode
 - Fixed 2 registration errors
