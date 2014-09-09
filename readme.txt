@@ -108,6 +108,10 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.14 =
+- Fixed a registration bug
+- Fixed a bug which did stopped admins from being unable to "unapprove" a user
+
 = 1.13 =
 - Added "plain_text" as an attribute for the [user-data] tag
 - Required fields should now actually be required on register and edit profile forms
