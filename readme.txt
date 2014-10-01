@@ -34,7 +34,10 @@ Key Features:
 This plugin creates a cookie to store login information. 
 
 Please head to the "Support" tab to report errors or make suggestions.
-Demo videos will be posted as soon as they are available.
+
+Tranlations:
+* Russian
+* Brazilian Portugese (thanks to Humberto W.)
 
 == Installation ==
 
@@ -108,6 +111,11 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.15 =
+- Added a translation for Brazilian Portugese
+- Fixed a compatibility error
+- Fixed a spelling mistake
+
 = 1.14 =
 - Fixed a registration bug
 - Fixed a bug which did stopped admins from being unable to "unapprove" a user

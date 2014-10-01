@@ -201,7 +201,7 @@ function Handle_File_Upload($Field_Name) {
 							  mkdir($target_path, 0777, true);
 						}
 
-						$Random = RandomString();
+						$Random = EWD_FEUP_RandomString();
 						$target_path = $target_path . $Random . basename( $_FILES[$Field_Name]['name']); 
 
 						if (!move_uploaded_file($_FILES[$Field_Name]['tmp_name'], $target_path)) {
@@ -229,7 +229,7 @@ function Handle_File_Upload($Field_Name) {
 		return $Return;
 }
 
-function RandomString($CharLength = 10)
+function EWD_FEUP_RandomString($CharLength = 10)
 {
     $characters = ’0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ’;
     $randstring = '';

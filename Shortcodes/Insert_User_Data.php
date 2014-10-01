@@ -15,7 +15,7 @@ function Insert_User_Data($atts) {
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
 						 								 		'field_name' => 'Username',
-																'plain_text' => 'No'),
+																'plain_text' => 'Yes'),
 																$atts
 														)
 												);

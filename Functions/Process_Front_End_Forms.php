@@ -33,7 +33,7 @@ function Confirm_Login() {
 								$Date = date("Y-m-d H:i:s");   
 								$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Last_Login='" . $Date . "' WHERE Username ='%s'", $_POST['Username']));
 								$feup_success = true;
-								return __("Login succesful", 'EWD_FEUP');
+								return __("Login successful", 'EWD_FEUP');
 						}
 						return __("Login failed - you need to confirm your e-mail before you can log in", 'EWD_FEUP');
 				}
