@@ -111,6 +111,13 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.16 =
+- Implemented user levels
+- Fixed a registration bug
+- Added tracking for user login times
+- Fixed a bug so that users can be clicked from the dashboard
+- Fixed a user page bug which limited the number of users that could be displayed
+
 = 1.15 =
 - Added a translation for Brazilian Portugese
 - Fixed a compatibility error

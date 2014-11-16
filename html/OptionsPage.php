@@ -3,6 +3,7 @@
 		$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
 		$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
+		$Default_User_Level = get_option("EWD_Default_User_Level");
 ?>
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Settings</h2>
@@ -24,6 +25,21 @@
 	<fieldset><legend class="screen-reader-text"><span>Admin Approval of Users</span></legend>
 	<label title='Yes'><input type='radio' name='admin_approval' value='Yes' <?php if($Admin_Approval == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='admin_approval' value='No' <?php if($Admin_Approval == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Require users to be approved by an administrator in the WordPress back-end before they can log in.</p>
+	</fieldset>
+</td>
+</tr>
+<th scope="row">Default User Level</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Default User Level</span></legend>
+	<label title='Default User Level'><select name='default_user_level'>
+		<option value='0'>None (0)</option>
+		<?php foreach ($Levels as $Level) {
+				echo "<option value='" . $Level->Level_ID . "' ";
+				if ($Default_User_Level == $Level->Level_ID) {echo "selected=selected";}
+				echo ">" . $Level->Level_Name . " (" . $Level->Level_Privilege . ")</option>";
+		}?> 
+	</select>
 	<p>Require users to be approved by an administrator in the WordPress back-end before they can log in.</p>
 	</fieldset>
 </td>

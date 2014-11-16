@@ -4,12 +4,13 @@ function Add_Edit_User() {
 		global $wpdb, $feup_success, $ewd_feup_fields_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_user_table_name;
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
 		$Sign_Up_Email = get_option("EWD_FEUP_Sign_Up_Email");
+		$Default_User_Level = get_option("EWD_Default_User_Level");
 		
 		$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
 		$Fields = $wpdb->get_results($Sql);
 		
 		$date = date("Y-m-d H:i:s");
-		
+
 		$UserCookie = CheckLoginCookie();
 
 		$User = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $UserCookie['Username']));
@@ -21,17 +22,18 @@ function Add_Edit_User() {
 		
 		if (isset($_POST['Username'])) {$User_Fields['Username'] = $_POST['Username'];}
 		if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = sha1(md5($_POST['User_Password'].$Salt));}
+		if (isset($_POST['Level_ID'])) {$User_Fields['Level_ID'] = $_POST['Level_ID'];}
+		else {$User_Fields['Level_ID'] = $Default_User_Level;}
 		if ($_POST['Admin_Approved'] == "Yes") {$User_Fields['User_Admin_Approved'] = "Yes";}
 		if ($_POST['Admin_Approved'] == "No") {$User_Fields['User_Admin_Approved'] = "No";}
-		
-		if ($_POST['User_Password'] != $_POST['Confirm_User_Password']) {$user_update['Message'] = __("The passwords you entered did not match.", "EWD_FEUP"); return $user_update;}
-		
+
+		if ($_POST['User_Password'] != $_POST['Confirm_User_Password']) {$user_update = array("Message_Type" => "Error", "Message" => __("The passwords you entered did not match.", "EWD_FEUP")); return $user_update;}
 		if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
-			  $wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $_POST['Username']));
-				if ($wpdb->num_rows > 0) {$user_update['Message'] = __("There is already a user with that Username, please select a different one.", "EWD_FEUP"); return $user_update;}
-				if (strlen($_POST['Username']) < 3) {$user_update['Message'] = __("Username must be at least 3 characters.", "EWD_FEUP"); return $user_update;}
+				$wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $_POST['Username']));
+				if ($wpdb->num_rows > 0) {$user_update = array("Message_Type" => "Error", "Message" => __("There is already a user with that Username, please select a different one.", "EWD_FEUP")); return $user_update;}
+				if (strlen($_POST['Username']) < 3) {$user_update = array("Message_Type" => "Error", "Message" => __("Username must be at least 3 characters.", "EWD_FEUP")); return $user_update;}
 		}
-		
+
 		if ($_POST['ewd-feup-action'] != "edit-account") {
 			  foreach ($Fields as $Field) {
 						if (!in_array($Field->Field_Name, $Omitted_Fields)) {
@@ -49,9 +51,11 @@ function Add_Edit_User() {
 						}
 				}
 		}
+
 		if (!isset($error)) {
 				/* Pass the data to the appropriate function in Update_Admin_Databases.php to create the user */
 				if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
+
 						if ($User->User_ID != "") {$user_update = __("There is already an account with that Username. Please select a different one.", "EWD_FEUP"); return $user_update;}
 						if (!isset($User_Fields['User_Admin_Approved'])) {$User_Fields['User_Admin_Approved'] = "No";}
 						$User_Fields['User_Date_Created'] = $date;

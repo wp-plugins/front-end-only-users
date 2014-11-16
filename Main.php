@@ -7,13 +7,13 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 1.15
+Version: 1.16
 */
 
 global $EWD_FEUP_db_version;
 global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name;
 global $wpdb;
-global $message;
+global $feup_message;
 global $user_message;
 global $feup_success;
 global $Full_Version;
@@ -21,7 +21,7 @@ $ewd_feup_user_table_name = $wpdb->prefix . "EWD_FEUP_Users";
 $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";
 $ewd_feup_fields_table_name = $wpdb->prefix . "EWD_FEUP_Fields";
 $ewd_feup_levels_table_name = $wpdb->prefix . "EWD_FEUP_Levels";
-$EWD_FEUP_db_version = "2.0.1";
+$EWD_FEUP_db_version = "1.16";
 
 define( 'EWD_FEUP_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_FEUP_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -39,39 +39,39 @@ register_deactivation_hook( __FILE__, 'Remove_EWD_FEUP' );
 
 /* Creates the admin menu for the contests plugin */
 if ( is_admin() ){
-	  add_action('admin_menu', 'EWD_FEUP_Plugin_Menu');
-		add_action('admin_head', 'EWD_FEUP_Admin_Options');
-		add_action('admin_init', 'Add_EWD_FEUP_Scripts');
-		add_action('widgets_init', 'Update_EWD_FEUP_Content');
-		add_action('admin_notices', 'EWD_FEUP_Error_Notices');
+	add_action('admin_menu', 'EWD_FEUP_Plugin_Menu');
+	add_action('admin_head', 'EWD_FEUP_Admin_Options');
+	add_action('admin_init', 'Add_EWD_FEUP_Scripts');
+	add_action('widgets_init', 'Update_EWD_FEUP_Content');
+	add_action('admin_notices', 'EWD_FEUP_Error_Notices');
 }
 
 function Remove_EWD_FEUP() {
   	/* Deletes the database field */
-		delete_option('EWD_FEUP_db_version');
+	delete_option('EWD_FEUP_db_version');
 }
 
 // Process the forms posted by users from the front-end of the plugin
 if (isset($_POST['ewd-feup-action'])) {
-	  add_action('init', 'Process_EWD_FEUP_Front_End_Forms');
+	add_action('init', 'Process_EWD_FEUP_Front_End_Forms');
 }
 
 /* Admin Page setup */
 function EWD_FEUP_Plugin_Menu() {
-		add_menu_page('Front End User Plugin', 'Front-End Users', 'administrator', 'EWD-FEUP-options', 'EWD_FEUP_Output_Options',null , '50.6');
+	add_menu_page('Front End User Plugin', 'Front-End Users', 'administrator', 'EWD-FEUP-options', 'EWD_FEUP_Output_Options',null , '50.6');
 }
 
 /* Add localization support */
 function EWD_FEUP_localization_setup() {
-		load_plugin_textdomain('EWD_FEUP', false, dirname(plugin_basename(__FILE__)) . '/lang/');
+	load_plugin_textdomain('EWD_FEUP', false, dirname(plugin_basename(__FILE__)) . '/lang/');
 }
 add_action('after_setup_theme', 'EWD_FEUP_localization_setup');
 
 // Add settings link on plugin page
 function EWD_FEUP_plugin_settings_link($links) { 
-  $settings_link = '<a href="admin.php?page=EWD-FEUP-options">Settings</a>'; 
-  array_unshift($links, $settings_link); 
-  return $links; 
+	$settings_link = '<a href="admin.php?page=EWD-FEUP-options">Settings</a>'; 
+	array_unshift($links, $settings_link); 
+	return $links; 
 }
  
 $plugin = plugin_basename(__FILE__); 
@@ -81,22 +81,22 @@ add_filter("plugin_action_links_$plugin", 'EWD_FEUP_plugin_settings_link' );
 //add_filter( 'query_vars', 'add_query_vars_filter' );
 
 function Add_EWD_FEUP_Scripts() {
-		if (isset($_GET['page']) && $_GET['page'] == 'EWD-FEUP-options') {
-			  $url_one = plugins_url("front-end-only-users/js/Admin.js");
-				$url_two = plugins_url("front-end-only-users/js/sorttable.js");
-				wp_enqueue_script('PageSwitch', $url_one, array('jquery'));
-				wp_enqueue_script('sorttable', $url_two, array('jquery'));
-				wp_enqueue_script('jquery-ui-sortable');
-				wp_enqueue_script('update-privilege-level-order', plugin_dir_url(__FILE__) . '/js/update-privilege-level-order.js');
-		}
+	if (isset($_GET['page']) && $_GET['page'] == 'EWD-FEUP-options') {
+		$url_one = plugins_url("front-end-only-users/js/Admin.js");
+		$url_two = plugins_url("front-end-only-users/js/sorttable.js");
+		wp_enqueue_script('PageSwitch', $url_one, array('jquery'));
+		wp_enqueue_script('sorttable', $url_two, array('jquery'));
+		wp_enqueue_script('jquery-ui-sortable');
+		wp_enqueue_script('update-privilege-level-order', plugin_dir_url(__FILE__) . '/js/update-privilege-level-order.js');
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'EWD_FEUP_Add_Stylesheet' );
 function EWD_FEUP_Add_Stylesheet() {
     wp_register_style( 'ewd-feup-style', plugins_url('css/feu-styles.css', __FILE__) );
-		wp_register_style( 'yahoo-pure-css', plugins_url('css/pure.css', __FILE__) );
+	wp_register_style( 'yahoo-pure-css', plugins_url('css/pure.css', __FILE__) );
     wp_enqueue_style( 'ewd-feup-style' );
-		wp_enqueue_style( 'yahoo-pure-css' );
+	wp_enqueue_style( 'yahoo-pure-css' );
 }
 
 /*add_action( 'wp_enqueue_scripts', 'Add_EWD_FEUP_FrontEnd_Scripts' );
@@ -109,14 +109,14 @@ function Add_EWD_FEUP_FrontEnd_Scripts() {
 }*/
 
 function EWD_FEUP_Admin_Options() {
-		$url = plugins_url("front-end-only-users/css/Admin.css");
-		echo "<link rel='stylesheet' type='text/css' href='$url' />\n";
+	$url = plugins_url("front-end-only-users/css/Admin.css");
+	echo "<link rel='stylesheet' type='text/css' href='$url' />\n";
 }
 
 add_action('activated_plugin','save_feup_error');
 function save_feup_error(){
-		update_option('plugin_error',  ob_get_contents());
-		file_put_contents("Error.txt", ob_get_contents());
+	update_option('plugin_error',  ob_get_contents());
+	file_put_contents("Error.txt", ob_get_contents());
 }
 
 $Full_Version = get_option("EWD_FEUP_Full_Version");
@@ -153,7 +153,7 @@ include "Shortcodes/Privilege_Level.php";
 
 // Updates the UPCP database when required
 if (get_option('EWD_FEUP_DB_Version') != $EWD_FEUP_db_version) {
-	  Update_EWD_FEUP_Tables();
+	Update_EWD_FEUP_Tables();
 }
 
 /*if (get_option("EWD_FEUP_Update_RR_Rules") == "Yes") {

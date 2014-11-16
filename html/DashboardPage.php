@@ -244,23 +244,23 @@
 		<div id="tabs-panel-posttype-page-most-recent" class="tabs-panel tabs-panel-active">
 			<ul id="pagechecklist-most-recent" class="categorychecklist form-no-clear">
 				<?php //$Products = $wpdb->get_results("SELECT Item_ID, Item_Name FROM $items_table_name ORDER BY Item_Views DESC"); 
-							if ($Admin_Approval == "Yes") {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");}
-							else {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name");}
-							foreach ($Users as $User) {
-									echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=UEWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
-							}
+					if ($Admin_Approval == "Yes") {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");}
+					else {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name");}
+					foreach ($Users as $User) {
+						echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
+					}
 				?>
 			</ul>
 		</div><!-- /.tabs-panel -->
 
 		<div class="tabs-panel tabs-panel-inactive" id="tabs-panel-posttype-page-search">
-						<!--<p class="quick-search-wrap">
-				<input type="search" class="quick-search input-with-default-title" title="Search" value="" name="quick-search-posttype-page" />
-				<img class="waiting" src="http://www.etoilewebdesign.com/wp-admin/images/wpspin_light.gif" alt="" />
-				<input type="submit" name="submit" id="submit-quick-search-posttype-page" class="quick-search-submit button-secondary hide-if-js" value="Search"  />			</p>-->
+			<!--<p class="quick-search-wrap">
+			<input type="search" class="quick-search input-with-default-title" title="Search" value="" name="quick-search-posttype-page" />
+			<img class="waiting" src="http://www.etoilewebdesign.com/wp-admin/images/wpspin_light.gif" alt="" />
+			<input type="submit" name="submit" id="submit-quick-search-posttype-page" class="quick-search-submit button-secondary hide-if-js" value="Search"  />			</p>-->
 
 			<ul id="page-search-checklist" class="list:page categorychecklist form-no-clear">
-						</ul>
+			</ul>
 		</div><!-- /.tabs-panel -->
 
 		<div id="page-all" class="tabs-panel tabs-panel-view-all tabs-panel-inactive">

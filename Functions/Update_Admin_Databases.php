@@ -41,7 +41,8 @@ function Delete_EWD_FEUP_User($User_ID) {
 					);
 
 		$update = __("User has been successfully deleted.", 'EWD_FEUP');
-		return $update;
+		$user_update = array("Message_Type" => "Update", "Message" => $update);
+		return $user_update;
 }
 
 function Add_EWD_FEUP_Field($Field_Name, $Field_Type, $Field_Description, $Field_Options, $Field_Show_In_Admin, $Field_Show_In_Front_End, $Field_Required, $Field_Date_Created) {
@@ -92,7 +93,8 @@ function Delete_EWD_FEUP_Field($Field_ID) {
 					);
 		
 		$update = __("Field has been successfully deleted.", 'EWD_FEUP');
-		return $update;
+		$user_update = array("Message_Type" => "Update", "Message" => $update);
+		return $user_update;
 }
 
 function Add_EWD_FEUP_User_Field($Field_ID, $User_ID, $Field_Name, $Field_Value, $date) {
@@ -206,17 +208,20 @@ function Delete_EWD_FEUP_Level($Level_ID) {
 					);
 
 		$update = __("Level has been successfully deleted.", 'EWD_FEUP');
-		return $update;
+		$user_update = array("Message_Type" => "Update", "Message" => $update);
+		return $user_update;
 }
 
 function Update_EWD_FEUP_Options() {
 		update_option('EWD_FEUP_Login_Time', $_POST['login_time']);
 		update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);
+		update_option("EWD_Default_User_Level", $_POST['default_user_level']);
 		update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);
 		update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);
 		
 		$update = __("Options have been succesfully updated.", 'EWD_FEUP');
-		return $update;
+		$user_update = array("Message_Type" => "Update", "Message" => $update);
+		return $user_update;
 }
 
 function Update_EWD_FEUP_Email_Settings() {
@@ -243,5 +248,9 @@ function Update_EWD_FEUP_Email_Settings() {
 		update_option('EWD_FEUP_SMTP_Mail_Server', $SMTP_Mail_Server);
 		update_option('EWD_FEUP_Admin_Password', $Encrypted_Admin_Password);
 		update_option('EWD_FEUP_Email_Field', $Email_Field);
+		
+		$update = __("Email options have been succesfully updated.", 'EWD_FEUP');
+		$user_update = array("Message_Type" => "Update", "Message" => $update);
+		return $user_update;
 }
 ?>
