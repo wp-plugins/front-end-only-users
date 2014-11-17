@@ -1,5 +1,6 @@
-=== Plugin Name ===
-Contributors: Rustaurius 
+=== Front-End Only Users ===
+Contributors: Rustaurius, EtoileWebDesign
+Dontate Link: http://www.etoilewebdesign.com/plugin-donations/
 Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, PureCSS
 Requires at least: 3.5.0
 Tested up to: 3.9.2
