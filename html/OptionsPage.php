@@ -2,6 +2,7 @@
 		$Login_Time = get_option("EWD_FEUP_Login_Time");
 		$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
 		$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
+		$Sign_Up_Email = get_option("EWD_FEUP_Sign_Up_Email");
 		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 		$Default_User_Level = get_option("EWD_Default_User_Level");
 ?>
@@ -41,6 +42,16 @@
 		}?> 
 	</select>
 	<p>Require users to be approved by an administrator in the WordPress back-end before they can log in.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Send Sign Up Emails</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Send Sign Up Emails</span></legend>
+	<label title='Yes'><input type='radio' name='sign_up_email' value='Yes' <?php if($Sign_Up_Email == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='sign_up_email' value='No' <?php if($Sign_Up_Email == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Send e-mails to users after they successfully register.</p>
 	</fieldset>
 </td>
 </tr>

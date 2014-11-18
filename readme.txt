@@ -112,6 +112,10 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.17 =
+- Fixed a registrations e-mail bug
+- Fixed the error where being logged in meant you couldn't edit another user in the admin area
+
 = 1.16 =
 - Implemented user levels
 - Fixed a registration bug

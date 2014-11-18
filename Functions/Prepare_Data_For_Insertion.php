@@ -15,7 +15,7 @@ function Add_Edit_User() {
 
 		$User = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $UserCookie['Username']));
 		$User_ID = $User->User_ID;
-		if ($User_ID == "" and is_admin()) {$User_ID = $_POST['User_ID'];}
+		if (is_admin()) {$User_ID = $_POST['User_ID'];}
 		
 		if (isset($_POST['Omit_Fields'])) {$Omitted_Fields = explode(",", $_POST['Omit_Fields']);}
 		else {$Omitted_Fields = array();}

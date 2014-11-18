@@ -216,6 +216,7 @@ function Update_EWD_FEUP_Options() {
 		update_option('EWD_FEUP_Login_Time', $_POST['login_time']);
 		update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);
 		update_option("EWD_Default_User_Level", $_POST['default_user_level']);
+		update_option("EWD_FEUP_Sign_Up_Email", $_POST['sign_up_email']);
 		update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);
 		update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);
 		
