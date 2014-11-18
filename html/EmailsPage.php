@@ -3,6 +3,7 @@
 		$Email_Subject = get_option("EWD_FEUP_Email_Subject");
 		$Encrypted_Admin_Password = get_option("EWD_FEUP_Admin_Password");
 		$SMTP_Mail_Server = get_option("EWD_FEUP_SMTP_Mail_Server");
+		$SMTP_Username = get_option("EWD_FEUP_SMTP_Username");
 		$Message_Body = get_option("EWD_FEUP_Message_Body");
 		$Email_Field = get_option("EWD_FEUP_Email_Field");
 		
@@ -56,6 +57,15 @@
 	<fieldset><legend class="screen-reader-text"><span>SMTP Mail Server Address</span></legend>
 	<label title='Mail Server'><input type='text' name='smtp_mail_server' value='<?php echo $SMTP_Mail_Server; ?>' /> </label><br />
 	<p>The server that should be connected to for SMTP e-mail, if you'd like to use SMTP to send your e-mails.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">SMTP Mail Username</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>SMTP Mail Username</span></legend>
+	<label title='Email Username'><input type='text' name='smtp_username' value='<?php echo isset($SMTP_Username) ? $SMTP_Username : "" ?>' /> </label><br />
+	<p>The username to connect to SMTP server, if you'd like to use SMTP to send your e-mails and it's different from the admin e-mail address.</p>
 	</fieldset>
 </td>
 </tr>

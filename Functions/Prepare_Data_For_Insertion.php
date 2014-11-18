@@ -101,6 +101,7 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array) {
 		$Email_Subject = get_option("EWD_FEUP_Email_Subject");
 		$Encrypted_Admin_Password = get_option("EWD_FEUP_Admin_Password");
 		$SMTP_Mail_Server = get_option("EWD_FEUP_SMTP_Mail_Server");
+		$SMTP_Username = get_option("EWD_FEUP_SMTP_Username", "");
 		$Message_Body = get_option("EWD_FEUP_Message_Body");
 		$Email_Field = get_option("EWD_FEUP_Email_Field");
 		
@@ -122,7 +123,7 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array) {
 						$mail->IsSMTP();
   					$mail->Host = $SMTP_Mail_Server;
   					$mail->SMTPAuth = true;
-  					$mail->Username = $Admin_Email;
+  					$mail->Username = $SMTP_Username == "" ? $Admin_Email : $SMTP_Username;
   					$mail->Password = $Admin_Password;
   					$mail->WordWrap = 0;
   					$mail->AddCustomHeader('X-Mailer: EWD_FEUP v1.0');

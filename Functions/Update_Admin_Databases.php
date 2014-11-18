@@ -230,6 +230,7 @@ function Update_EWD_FEUP_Email_Settings() {
 		$Message_Body = $_POST['message_body'];
 		$Email_Subject = $_POST['email_subject'];
 		$SMTP_Mail_Server = $_POST['smtp_mail_server'];
+		$SMTP_Username = $_POST['smtp_username'];
 		$Admin_Password = $_POST['admin_password'];
 		$Email_Field = $_POST['email_field'];
 		
@@ -237,6 +238,7 @@ function Update_EWD_FEUP_Email_Settings() {
 		$Message_Body = stripslashes_deep($Message_Body);
 		$Email_Subject = stripslashes_deep($Email_Subject);
 		$SMTP_Mail_Server = stripslashes_deep($SMTP_Mail_Server);
+		$SMTP_Username = stripslashes_deep($SMTP_Username);
 		$Admin_Password = stripslashes_deep($Admin_Password);
 		$Email_Field = stripslashes_deep($Email_Field);
 		
@@ -247,6 +249,7 @@ function Update_EWD_FEUP_Email_Settings() {
 		update_option('EWD_FEUP_Message_Body', $Message_Body);
 		update_option('EWD_FEUP_Email_Subject', $Email_Subject);
 		update_option('EWD_FEUP_SMTP_Mail_Server', $SMTP_Mail_Server);
+		update_option('EWD_FEUP_SMTP_Username', $SMTP_Username);
 		update_option('EWD_FEUP_Admin_Password', $Encrypted_Admin_Password);
 		update_option('EWD_FEUP_Email_Field', $Email_Field);
 		
