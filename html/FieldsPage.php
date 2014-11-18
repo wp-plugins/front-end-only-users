@@ -17,7 +17,6 @@
 				$TotalFields = $wpdb->get_results("SELECT Field_ID FROM $ewd_feup_fields_table_name");
 				$num_rows = $wpdb->num_rows; 
 				$Number_of_Pages = ceil($num_rows/20);
-				echo $Number_Of_Pages;
 				$Current_Page_With_Order_By = "admin.php?page=EWD-FEUP-options&DisplayPage=Fields";
 				if (isset($_GET['OrderBy'])) {$Current_Page_With_Order_By .= "&OrderBy=" .$_GET['OrderBy'] . "&Order=" . $_GET['Order'];}?>
 

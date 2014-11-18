@@ -21,7 +21,6 @@
 	$myrows = $wpdb->get_results($Sql);
 	$RowCount = $wpdb->get_results("SELECT User_ID FROM $ewd_feup_user_table_name ");
 	$Number_of_Pages = ceil($wpdb->num_rows/20);
-	echo $Number_Of_Pages;
 	$Current_Page_With_Order_By = "admin.php?page=EWD-FEUP-options&DisplayPage=Users";
 	if (isset($_GET['OrderBy'])) {$Current_Page_With_Order_By .= "&OrderBy=" .$_GET['OrderBy'] . "&Order=" . $_GET['Order'];}
 	$UserCount = $wpdb->num_rows;
@@ -165,7 +164,7 @@
 						echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteUser&DisplayPage=Users&User_ID=" . $User->User_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
 		 				echo "</span>";
 						echo "</div>";
-						echo "<div class='hidden' id='inline_" . $Item->Item_ID ."'>";
+						echo "<div class='hidden' id='inline_" . $User->User_ID ."'>";
 					}												
 					echo "</td>";
 					$FieldCount++;

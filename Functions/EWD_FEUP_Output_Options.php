@@ -8,6 +8,14 @@ function EWD_FEUP_Output_Options() {
 		if (isset($_GET['DisplayPage'])) {
 			  $Display_Page = $_GET['DisplayPage'];
 		}
+		else {
+			$Display_Page = null;
+		}
+
+		if (!isset($_GET['Action'])) {
+			$_GET['Action'] = null;
+		}
+		
 		include( plugin_dir_path( __FILE__ ) . '../html/AdminHeader.php');
 		if ($_GET['Action'] == "EWD_FEUP_User_Details")  {include( plugin_dir_path( __FILE__ ) . '../html/UserDetails.php');}
 		elseif ($_GET['Action'] == "EWD_FEUP_Field_Details")  {include( plugin_dir_path( __FILE__ ) . '../html/FieldDetails.php');}
