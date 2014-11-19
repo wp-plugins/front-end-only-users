@@ -1,14 +1,14 @@
 <?php
 function Install_EWD_FEUP() {
-		/* Add in the required globals to be able to create the tables */
+	/* Add in the required globals to be able to create the tables */
   	global $wpdb;
    	global $EWD_FEUP_db_version;
-		global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name;
+	global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name;
     
-		/* Create the users table */  
+	/* Create the users table */  
    	$sql = "CREATE TABLE $ewd_feup_user_table_name (
-  	User_ID mediumint(9) NOT NULL AUTO_INCREMENT,
-  	Username text  NULL,
+  		User_ID mediumint(9) NOT NULL AUTO_INCREMENT,
+  		Username text  NULL,
 		User_Password text   NULL,
 		Level_ID mediumint(9) DEFAULT 0 NOT NULL,
 		User_Email_Confirmed text NULL,
@@ -17,16 +17,16 @@ function Install_EWD_FEUP() {
 		User_Last_Login datetime DEFAULT '0000-00-00 00:00:00' NULL,
 		User_Password_Reset_Code text NULL,
 		User_Password_Reset_Date datetime DEFAULT '0000-00-00 00:00:00' NULL,
-  	UNIQUE KEY id (User_ID)
-    )
+  		UNIQUE KEY id (User_ID)
+    	)
 		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
 		
-		/* Create the fields table */
-		$sql = "CREATE TABLE $ewd_feup_fields_table_name (
-  	Field_ID mediumint(9) NOT NULL AUTO_INCREMENT,
-  	Field_Name text   NULL,
+	/* Create the fields table */
+	$sql = "CREATE TABLE $ewd_feup_fields_table_name (
+  		Field_ID mediumint(9) NOT NULL AUTO_INCREMENT,
+  		Field_Name text   NULL,
 		Field_Description text   NULL,
 		Field_Type text   NULL,
 		Field_Options text   NULL,
@@ -34,43 +34,43 @@ function Install_EWD_FEUP() {
 		Field_Show_In_Front_End   text NULL,
 		Field_Required text   NULL,
 		Field_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
-  	UNIQUE KEY id (Field_ID)
-    )	
+  		UNIQUE KEY id (Field_ID)
+    	)	
 		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
 		
-		/* Create the user-fields table */
-		$sql = "CREATE TABLE $ewd_feup_user_fields_table_name (
-  	User_Field_ID mediumint(9) NOT NULL AUTO_INCREMENT,
+	/* Create the user-fields table */
+	$sql = "CREATE TABLE $ewd_feup_user_fields_table_name (
+  		User_Field_ID mediumint(9) NOT NULL AUTO_INCREMENT,
 		Field_ID mediumint(9) DEFAULT 0 NOT NULL,
 		User_ID mediumint(9) DEFAULT 0 NOT NULL,
-  	Field_Name text NULL,
+  		Field_Name text NULL,
 		Field_Value text NULL,
 		User_Field_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
-  	UNIQUE KEY id (User_Field_ID)
-    )	
+  		UNIQUE KEY id (User_Field_ID)
+    	)	
 		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
 		
-		/* Create the levels table */
-		$sql = "CREATE TABLE $ewd_feup_levels_table_name (
-  	Level_ID mediumint(9) NOT NULL AUTO_INCREMENT,
-  	Level_Name text   NULL,
+	/* Create the levels table */
+	$sql = "CREATE TABLE $ewd_feup_levels_table_name (
+  		Level_ID mediumint(9) NOT NULL AUTO_INCREMENT,
+  		Level_Name text   NULL,
 		Level_Privilege text   NULL,
 		Level_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
-  	UNIQUE KEY id (Level_ID)
-    )
+  		UNIQUE KEY id (Level_ID)
+    	)
 		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
  
    	add_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
-		add_option("EWD_FEUP_Admin_Approval", "No");
-		add_option("EWD_FEUP_Login_Time", "1440");
-		add_option("EWD_FEUP_Email_Confirmation", "No");
-		add_option("EWD_FEUP_Full_Version", "Yes");
-		add_option("EWD_FEUP_Custom_CSS", "");
+	add_option("EWD_FEUP_Admin_Approval", "No");
+	add_option("EWD_FEUP_Login_Time", "1440");
+	add_option("EWD_FEUP_Email_Confirmation", "No");
+	add_option("EWD_FEUP_Full_Version", "Yes");
+	add_option("EWD_FEUP_Custom_CSS", "");
 }
 ?>

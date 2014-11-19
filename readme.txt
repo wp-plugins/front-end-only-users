@@ -112,6 +112,13 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.20 =
+- Added the ability to export all users to Excel
+- Added confirmation before deleting a user
+- Added a button to delete all users from the database
+- Fixed an error with a missing </div> tag in the account-details shortcode
+- Fixed a link error on the dashboard page
+
 = 1.19 =
 - Allow a different SMTP username, instead of it needing to be the admin e-mail address
 

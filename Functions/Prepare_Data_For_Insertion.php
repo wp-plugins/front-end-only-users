@@ -109,7 +109,7 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array) {
 		$Admin_Password = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($Encrypted_Admin_Password), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
 		
 		$Message_Body = str_replace("[username]", $User_Fields['Username'], $Message_Body);
-		$Message_Body = str_replace("[password]", $User_Fields['User_Password'], $Message_Body);
+		$Message_Body = str_replace("[password]", $_POST['User_Password'], $Message_Body);
 		$Message_Body = str_replace("[join-date]", $User_Fields['User_Date_Created'], $Message_Body);
 		
 		$Email_Field = str_replace(" ", "_", $Email_Field);
@@ -152,7 +152,7 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array) {
 				$headers = 'From: ' . $Admin_Email . "\r\n" .
     						 	 'Reply-To: ' . $Admin_Email . "\r\n" .
     							 'X-Mailer: PHP/' . phpversion();
-				$Mail_Success = mail($Order_Email, "Order Update", $Message_Body, $headers);
+				$Mail_Success = mail($User_Email, $Email_Subject , $Message_Body, $headers);
 		}
 }
 
@@ -256,6 +256,23 @@ function Mass_Delete_EWD_FEUP_Users() {
 		}
 		
 		$update = __("Users have been successfully deleted.", 'EWD_FEUP');
+		$user_update = array("Message_Type" => "Update", "Message" => $update);
+		return $user_update;
+}
+
+function Delete_All_EWD_FEUP_Users() {
+		global $wpdb, $ewd_feup_user_table_name;
+		$Users = $wpdb->get_results("SELECT User_ID FROM $ewd_feup_user_table_name");
+		
+		if (is_array($Users)) {
+				foreach ($Users as $User) {
+						if ($User->User_ID != "") {
+								Delete_EWD_FEUP_User($User->User_ID);
+						}
+				}
+		}
+		
+		$update = __("Users have been successfully deleted.", 'EWD_OTP');
 		$user_update = array("Message_Type" => "Update", "Message" => $update);
 		return $user_update;
 }

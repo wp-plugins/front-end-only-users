@@ -246,7 +246,7 @@
 					if ($Admin_Approval == "Yes") {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");}
 					else {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name");}
 					foreach ($Users as $User) {
-						echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=UEWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
+						echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
 					}
 				?>
 			</ul>

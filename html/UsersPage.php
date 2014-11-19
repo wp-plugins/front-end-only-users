@@ -34,6 +34,7 @@
 			<option value='delete'><?php _e("Delete", 'EWD_FEUP') ?></option>
 		</select>
 		<input type="submit" name="" id="doaction" class="button-secondary action" value="<?php _e('Apply', 'EWD_FEUP') ?>"  />
+		<a class='feup-confirm-all-users button-secondary action' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteAllUsers&DisplayPage=Users'><?php _e("Delete All Users", 'EWD_FEUP'); ?></a>
 	</div>
 	<div class='tablenav-pages <?php if ($Number_of_Pages == 1) {echo "one-page";} ?>'>
 		<span class="displaying-num"><?php echo $UserCount; ?> <?php _e("items", 'EWD_FEUP') ?></span>
@@ -161,7 +162,7 @@
 						echo "<br />";
 						echo "<div class='row-actions'>";
 						echo "<span class='delete'>";
-						echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteUser&DisplayPage=Users&User_ID=" . $User->User_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
+						echo "<a class='delete-tag feup-confirm-one-user' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteUser&DisplayPage=Users&User_ID=" . $User->User_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
 		 				echo "</span>";
 						echo "</div>";
 						echo "<div class='hidden' id='inline_" . $User->User_ID ."'>";
@@ -270,5 +271,14 @@ $Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name ORDER BY
 
 </div>
 <br class="clear" />
+
+<h3><?php _e("Export Users to Spreadsheet", 'EWD_FEUP') ?></h3>
+<div class="wrap">
+
+<form method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_ExportToExcel">
+<p><?php _e("Downloads all users currently in the database to Excel", 'EWD_FEUP') ?></p>
+<p class="submit"><input type="submit" name="Export_Submit" id="submit" class="button button-primary" value="Export to Excel"  /></p>
+</form>
+</div>
 </div>
 </div>		

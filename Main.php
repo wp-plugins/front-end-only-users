@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 1.19
+Version: 1.20
 */
 
 global $EWD_FEUP_db_version;
@@ -85,8 +85,12 @@ function Add_EWD_FEUP_Scripts() {
 	if (isset($_GET['page']) && $_GET['page'] == 'EWD-FEUP-options') {
 		$url_one = plugins_url("front-end-only-users/js/Admin.js");
 		$url_two = plugins_url("front-end-only-users/js/sorttable.js");
+		$url_three = plugins_url("front-end-only-users/js/jquery.confirm.min.js");
+		$url_four = plugins_url("front-end-only-users/js/bootstrap.min.js");
 		wp_enqueue_script('PageSwitch', $url_one, array('jquery'));
 		wp_enqueue_script('sorttable', $url_two, array('jquery'));
+		wp_enqueue_script('confirmation', $url_three, array('jquery'));
+		wp_enqueue_script('bootstrap', $url_four, array('jquery'));
 		wp_enqueue_script('jquery-ui-sortable');
 		wp_enqueue_script('update-privilege-level-order', plugin_dir_url(__FILE__) . '/js/update-privilege-level-order.js');
 	}
@@ -130,6 +134,7 @@ include "Functions/CheckLoginCookie.php";
 include "Functions/CreateLoginCookie.php";
 include "Functions/Determine_Redirect_Page.php";
 include "Functions/Error_Notices.php";
+include "Functions/EWD_FEUP_Export_To_Excel.php";
 include "Functions/EWD_FEUP_Output_Options.php";
 include "Functions/Initial_Data.php";
 include "Functions/Install_EWD_FEUP.php";
