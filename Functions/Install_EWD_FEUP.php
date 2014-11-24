@@ -12,6 +12,7 @@ function Install_EWD_FEUP() {
 		User_Password text   NULL,
 		Level_ID mediumint(9) DEFAULT 0 NOT NULL,
 		User_Email_Confirmed text NULL,
+		User_Confirmation_Code text NULL,
 		User_Admin_Approved text NULL,
 		User_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
 		User_Last_Login datetime DEFAULT '0000-00-00 00:00:00' NULL,

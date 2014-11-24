@@ -14,10 +14,10 @@ if (isset($_GET['Action'])) {
 						case "EWD_FEUP_DeleteUser":
 								$feup_message = Delete_EWD_FEUP_User($_GET['User_ID']);
 								break;
-						case "EWD_FEUP_MassDeleteUsers":
-								$feup_message = Mass_Delete_EWD_FEUP_Users();
+						case "EWD_FEUP_MassUserAction":
+								$feup_message = EWD_FEUP_Mass_User_Action();
 								break;
-						case "EWD_FEUP_MassDeleteUsers":
+						case "EWD_FEUP_DeleteAllUsers":
 								$feup_message = Delete_All_EWD_FEUP_Users();
 								break;
 						case "EWD_FEUP_AddField":
@@ -47,7 +47,7 @@ if (isset($_GET['Action'])) {
         				$feup_message = Update_EWD_FEUP_Email_Settings();
 								break;
 						case "EWD_FEUP_ExportToExcel":
-								$ewd_otp_message = EWD_FEUP_Export_To_Excel();
+								$feup_message = EWD_FEUP_Export_To_Excel();
 								break;
 						default:
 								//$feup_update_message = __("The form has not worked correctly. Please contact the plugin developer.", 'EWD_FEUP');

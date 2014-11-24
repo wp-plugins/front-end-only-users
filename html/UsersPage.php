@@ -26,12 +26,22 @@
 	$UserCount = $wpdb->num_rows;
 ?>
 
-<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassDeleteUsers&DisplayPage=Users" method="post">    
+<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassUserAction&DisplayPage=Users" method="post">    
 <div class="tablenav top">
 	<div class="alignleft actions">
 		<select name='action'>
   			<option value='-1' selected='selected'><?php _e("Bulk Actions", 'EWD_FEUP') ?></option>
 			<option value='delete'><?php _e("Delete", 'EWD_FEUP') ?></option>
+			<option value='approve'><?php _e("Approve", 'EWD_FEUP') ?></option>
+			<option value='0'>Level: None (0)</option>
+			<?php 
+				$Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name");
+				if (is_array($Levels)) {
+					foreach ($Levels as $Level) {
+						echo "<option value='" . $Level->Level_ID . "'>Level: " . $Level->Level_Name . " (" . $Level->Level_Privilege . ")</option>"; 
+					}
+				}
+			?>
 		</select>
 		<input type="submit" name="" id="doaction" class="button-secondary action" value="<?php _e('Apply', 'EWD_FEUP') ?>"  />
 		<a class='feup-confirm-all-users button-secondary action' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteAllUsers&DisplayPage=Users'><?php _e("Delete All Users", 'EWD_FEUP'); ?></a>
@@ -181,13 +191,13 @@
 </table>
 
 <div class="tablenav bottom">
-	<div class="alignleft actions">
+	<?php /*<div class="alignleft actions">
 		<select name='action'>
   			<option value='-1' selected='selected'><?php _e("Bulk Actions", 'EWD_FEUP') ?></option>
 			<option value='delete'><?php _e("Delete", 'EWD_FEUP') ?></option>
 		</select>
 		<input type="submit" name="" id="doaction" class="button-secondary action" value="<?php _e('Apply', 'EWD_FEUP') ?>"  />
-	</div>
+	</div>*/ ?>
 	<div class='tablenav-pages <?php if ($Number_of_Pages == 1) {echo "one-page";} ?>'>
 		<span class="displaying-num"><?php echo $UserCount; ?> <?php _e("items", 'EWD_FEUP') ?></span>
 		<span class='pagination-links'>

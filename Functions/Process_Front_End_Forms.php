@@ -46,6 +46,25 @@ function FEUPRedirect($redirect_page) {
 	header("location:" . $redirect_page);
 }
 
+function ConfirmUserEmail() {
+	global $wpdb, $ewd_feup_user_table_name;
+
+	$User_ID = $_GET['UserID'];
+	$Email_Address = $_GET['ConfirmEmail'];
+	$Confirmation_Code = $_GET['ConfirmationCode'];
+
+	$Retrieved_User_ID = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE User_ID=%d AND User_Confirmation_Code=%s", $User_ID, $ConfirmationCode));
+	if (isset($Retrieved_User_ID->User_ID)) {
+		$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Email_Confirmed='Yes' WHERE User_ID=%d", $Retrieved_User_ID->User_ID));
+		$ConfirmationSuccess = "Yes";
+	}
+	else {
+		$ConfirmationSuccess = "No";
+	}
+
+	return $ConfirmationSuccess;
+}
+
 function Get_User_Search_Results() {
 	global $wpdb, $ewd_feup_user_fields_table_name, $ewd_feup_user_table_name;
 		

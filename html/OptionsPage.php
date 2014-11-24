@@ -55,7 +55,7 @@
 	</fieldset>
 </td>
 </tr>
-<!--<tr>
+<tr>
 <th scope="row">Email Confirmation</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>Email Confirmation</span></legend>
@@ -64,7 +64,7 @@
 	<p>Make users confirm their e-mail address before they can log in.</p>
 	</fieldset>
 </td>
-</tr>-->
+</tr>
 <tr>
 <th scope="row">Custom CSS</th>
 <td>

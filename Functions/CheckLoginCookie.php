@@ -5,7 +5,8 @@ global $wpdb, $ewd_feup_user_table_name;
 $LoginTime = get_option("EWD_FEUP_Login_Time");
 $Salt = get_option("EWD_FEUP_Hash_Salt");
 $CookieName = "EWD_FEUP_Login" . "%" . sha1(md5(get_site_url().$Salt)); 
-$Cookie = $_COOKIE[$CookieName];
+if (isset($_COOKIE['$CookieName'])) {$Cookie = $_COOKIE[$CookieName];}
+else {$Cookie = null;}
 
 $Username = substr($Cookie, 0, strpos($Cookie, "%"));
 $TimeStamp = substr($Cookie, strpos($Cookie, "%")+1, strrpos($Cookie, "%")-strpos($Cookie, "%")); 

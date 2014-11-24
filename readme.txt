@@ -112,6 +112,13 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.21 =
+- Added the ability to require users to confirm their e-mail before logging in
+- Added bulk approval of users
+- Added bulk user level setting
+- Fixed an error with apostrophes in user fields
+- Eliminated a number of PHP notices
+
 = 1.20 =
 - Added the ability to export all users to Excel
 - Added confirmation before deleting a user

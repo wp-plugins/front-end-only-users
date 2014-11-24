@@ -3,84 +3,84 @@
 
 /* Adds a single new category to the UPCP database */
 function Add_EWD_FEUP_User($User_Data_Array) {
-		global $wpdb;
-		global $ewd_feup_user_table_name;
-		
-		$wpdb->insert($ewd_feup_user_table_name, $User_Data_Array);
-		$update = __("User has been successfully created.", 'EWD_FEUP');
-		return $update;
+	global $wpdb;
+	global $ewd_feup_user_table_name;
+	
+	$wpdb->insert($ewd_feup_user_table_name, $User_Data_Array);
+	$update = __("User has been successfully created.", 'EWD_FEUP');
+	return $update;
 }
 
 /* Edits a single category with a given ID in the UPCP database */
 function Edit_EWD_FEUP_User($User_ID, $User_Data_Array) {
-		global $wpdb;
-		global $ewd_feup_user_table_name;
-		
-		$wpdb->update(
-						$ewd_feup_user_table_name,
-						$User_Data_Array,
-						array( 'User_ID' => $User_ID)
-		);
-		$update = __("User has been successfully edited.", 'EWD_FEUP');
-		return $update;
+	global $wpdb;
+	global $ewd_feup_user_table_name;
+	
+	$wpdb->update(
+		$ewd_feup_user_table_name,
+		$User_Data_Array,
+		array( 'User_ID' => $User_ID)
+	);
+	$update = __("User has been successfully edited.", 'EWD_FEUP');
+	return $update;
 }
 
 /* Deletes a single category with a given ID in the UPCP database */
 function Delete_EWD_FEUP_User($User_ID) {
-		global $wpdb;
-		global $ewd_feup_user_table_name;
-		global $ewd_feup_fields_table_name;
-		
-		$wpdb->delete(
-						$ewd_feup_user_table_name,
-						array('User_ID' => $User_ID)
-					);
-		$wpdb->delete(
-						$ewd_feup_fields_table_name,
-						array('User_ID' => $User_ID)
-					);
+	global $wpdb;
+	global $ewd_feup_user_table_name;
+	global $ewd_feup_fields_table_name;
+	
+	$wpdb->delete(
+		$ewd_feup_user_table_name,
+		array('User_ID' => $User_ID)
+	);
+	$wpdb->delete(
+		$ewd_feup_fields_table_name,
+		array('User_ID' => $User_ID)
+	);
 
-		$update = __("User has been successfully deleted.", 'EWD_FEUP');
-		$user_update = array("Message_Type" => "Update", "Message" => $update);
-		return $user_update;
+	$update = __("User has been successfully deleted.", 'EWD_FEUP');
+	$user_update = array("Message_Type" => "Update", "Message" => $update);
+	return $user_update;
 }
 
 function Add_EWD_FEUP_Field($Field_Name, $Field_Type, $Field_Description, $Field_Options, $Field_Show_In_Admin, $Field_Show_In_Front_End, $Field_Required, $Field_Date_Created) {
-		global $wpdb;
-		global $ewd_feup_fields_table_name;
+	global $wpdb;
+	global $ewd_feup_fields_table_name;
 		
-		$wpdb->insert($ewd_feup_fields_table_name, 
-									array( 'Field_Name' => $Field_Name,
-												 'Field_Type' => $Field_Type,
-												 'Field_Description' => $Field_Description,
-												 'Field_Options' => $Field_Options,
-												 'Field_Show_In_Admin' => $Field_Show_In_Admin,
-												 'Field_Show_In_Front_End' => $Field_Show_In_Front_End,
-												 'Field_Required' => $Field_Required,
-												 'Field_Date_Created' => $Field_Date_Created)
-									);							
+	$wpdb->insert($ewd_feup_fields_table_name, 
+		array( 'Field_Name' => $Field_Name,
+			'Field_Type' => $Field_Type,
+			'Field_Description' => $Field_Description,
+			'Field_Options' => $Field_Options,
+			'Field_Show_In_Admin' => $Field_Show_In_Admin,
+			'Field_Show_In_Front_End' => $Field_Show_In_Front_End,
+			'Field_Required' => $Field_Required,
+			'Field_Date_Created' => $Field_Date_Created)
+	);							
 		
-		$update = __("Field has been successfully created.", 'EWD_FEUP');
-		return $update;
+	$update = __("Field has been successfully created.", 'EWD_FEUP');
+	return $update;
 }
 
 function Edit_EWD_FEUP_Field($Field_ID, $Field_Name, $Field_Type, $Field_Description, $Field_Options, $Field_Show_In_Admin, $Field_Show_In_Front_End, $Field_Required) {
-		global $wpdb;
-		global $ewd_feup_fields_table_name;
+	global $wpdb;
+	global $ewd_feup_fields_table_name;
 		
-		$wpdb->update($ewd_feup_fields_table_name, 
-									array( 'Field_Name' => $Field_Name,
-												 'Field_Type' => $Field_Type,
-												 'Field_Description' => $Field_Description,
-												 'Field_Options' => $Field_Options,
-												 'Field_Show_In_Admin' => $Field_Show_In_Admin,
-												 'Field_Show_In_Front_End' => $Field_Show_In_Front_End,
-												 'Field_Required' => $Field_Required),
-									array( 'Field_ID' => $Field_ID)
-									);
+	$wpdb->update($ewd_feup_fields_table_name, 
+		array( 'Field_Name' => $Field_Name,
+			'Field_Type' => $Field_Type,
+			'Field_Description' => $Field_Description,
+			'Field_Options' => $Field_Options,
+			'Field_Show_In_Admin' => $Field_Show_In_Admin,
+			'Field_Show_In_Front_End' => $Field_Show_In_Front_End,
+			'Field_Required' => $Field_Required),
+		array( 'Field_ID' => $Field_ID)
+	);
 		
-		$update = __("Field has been successfully edited.", 'EWD_FEUP');
-		return $update;
+	$update = __("Field has been successfully edited.", 'EWD_FEUP');
+	return $update;
 }
 
 function Delete_EWD_FEUP_Field($Field_ID) {
