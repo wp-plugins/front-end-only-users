@@ -42,6 +42,66 @@ function Confirm_Login() {
 	return __("Login failed - incorrect username or password", 'EWD_FEUP');
 }
 
+function Forgot_Password() {
+	global $wpdb, $feup_success;
+	global $ewd_feup_user_table_name, $ewd_feup_fields_table_name;
+
+	$Salt = get_option("EWD_FEUP_Hash_Salt");
+	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
+	$Email_Field = get_option("EWD_FEUP_Email_Field");
+	$Email_Field = str_replace(" ", "_", $Email_Field);
+		
+	$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username ='%s'", $_POST['Username']));
+		
+		
+	if( !empty( $User ) )
+	{
+		//update users password
+		$password = wp_generate_password();
+		$hashedPassword = sha1( md5( $password.$Salt ) );
+		
+		$wpdb -> update( $ewd_feup_user_table_name, array(
+				'User_Password' => $hashedPassword,
+			),
+			array(
+				'Username' => $_POST['Username'],
+			),
+			array(
+				'%s'
+			)
+		);
+		
+		$User_Email = $wpdb -> get_row( $wpdb -> prepare( "SELECT * FROM $ewd_feup_user_fields_table_name WHERE User_ID = '%d' AND Field_Name = '%s' ", $User->User_ID, $Email_Field ) );
+		$User_Email = $User_Email->Field_Value;
+		
+		//send email to user with account credentials
+		$subject = __("Password changed");
+
+		$headers = 'From: ' . $Admin_Email . "\r\n" .
+    		'Reply-To: ' . $Admin_Email . "\r\n" .
+    		'X-Mailer: PHP/' . phpversion();
+		
+		$message = __("Hello,")."<br /><br />";
+		$message .= __("Your new credentials are:")."<br /><br />";
+		$message .= __("Username:")." ".$User->Username."<br />";
+		$message .= __("Password:")." ".$password;
+		
+		wp_mail( $User_Email, $subject, $message, $headers);
+		
+		$feup_success = true;
+		
+		//return success message
+		return __("Your new credentials have been sent to the email address specified.", 'EWD_FEUP');
+	}
+	else
+	{
+		//return failed message
+		return __("The email address does not exist!", 'EWD_FEUP');
+	}
+}
+
+
 function FEUPRedirect($redirect_page) {
 	header("location:" . $redirect_page);
 }
