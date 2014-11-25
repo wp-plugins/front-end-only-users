@@ -112,6 +112,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.23 =
+- Fixes a critical error with the login checking
+
 = 1.22 =
 - Added in a forgot password form
 - Fields that have "Show in Front End?" set to "No" will no longer display in the "Edit Profile" form
