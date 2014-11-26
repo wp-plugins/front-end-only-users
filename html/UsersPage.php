@@ -13,8 +13,20 @@
 	else {$Page = 1;}
 			
 	$Fields = $wpdb->get_results("SELECT * FROM $ewd_feup_fields_table_name WHERE Field_Show_In_Admin='Yes'");
+	$AllFields = $wpdb->get_results("SELECT * FROM $ewd_feup_fields_table_name"); 
 			
 	$Sql = "SELECT * FROM $ewd_feup_user_table_name ";
+	if (isset($_POST['UserSearchValue']) and $_POST['UserSearchField'] == "Username") {
+		$Sql .= "WHERE " . $_POST['UserSearchField'] . " ";
+		if ($_POST['UserSearchOperator'] == "LIKE") {$Sql .= " LIKE '%". $_POST['UserSearchValue'] . "%' ";}
+		else {$Sql .= "='" . $_POST['UserSearchValue'] . "' ";}
+	}
+	elseif (isset($_POST['UserSearchValue'])) {
+		$Sql .= "INNER JOIN $ewd_feup_user_fields_table_name ON $ewd_feup_user_table_name.User_ID=$ewd_feup_user_fields_table_name.User_ID";
+		$Sql .= " WHERE Field_ID=" . $_POST['UserSearchField'] . " AND Field_Value ";
+		if ($_POST['UserSearchOperator'] == "LIKE") {$Sql .= " LIKE '%". $_POST['UserSearchValue'] . "%' ";}
+		else {$Sql .= "='" . $_POST['UserSearchValue'] . "' ";}
+	}
 	if (isset($_GET['OrderBy'])) {$Sql .= "ORDER BY " . $_GET['OrderBy'] . " " . $_GET['Order'] . " ";}
 	else {$Sql .= "ORDER BY User_Date_Created ";}
 	$Sql .= "LIMIT " . ($Page - 1)*20 . ",20";
@@ -26,7 +38,24 @@
 	$UserCount = $wpdb->num_rows;
 ?>
 
-<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassUserAction&DisplayPage=Users" method="post">    
+<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassUserAction&DisplayPage=Users" method="post"> 
+<p class="search-box">
+	<label class="screen-reader-text" for="post-search-input">Search Users:</label>
+	<select name='UserSearchField' class='ewd-admin-select-search'>
+		<option value='Username'>Username</option>
+		<?php 
+			foreach ($AllFields as $Field) {
+				echo "<option value='" . $Field->Field_ID . "'>" . $Field->Field_Name . "</option>";
+			}
+		?>
+	</select>
+	<select name='UserSearchOperator' class='ewd-admin-select-search'>
+		<option value='LIKE'>Like</option>
+		<option value='EQUALS'>Equals</option>
+	</select>
+	<input type="search" id="post-search-input" name="UserSearchValue" value="">
+	<input type="submit" name="" id="search-submit" class="button" value="Search Users">
+</p>   
 <div class="tablenav top">
 	<div class="alignleft actions">
 		<select name='action'>
@@ -223,7 +252,7 @@
 <div class="form-wrap">
 <h2><?php _e("Add New User", 'EWD_FEUP') ?></h2>
 <?php 
-$Fields = $wpdb->get_results("SELECT * FROM $ewd_feup_fields_table_name"); 
+$Fields = $AllFields;
 $Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name ORDER BY Level_Privilege ASC");
 ?>
 <!-- Form to create a new product -->

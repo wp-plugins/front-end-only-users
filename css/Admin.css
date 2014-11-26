@@ -23,3 +23,7 @@
 a {
   cursor:pointer;
 }
+
+.ewd-admin-select-search {
+	vertical-align:baseline !important;
+}

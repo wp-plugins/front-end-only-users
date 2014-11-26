@@ -112,6 +112,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.24 =
+- Updated to the latest version of pure.css
+
 = 1.23 =
 - Fixes a critical error with the login checking
 
