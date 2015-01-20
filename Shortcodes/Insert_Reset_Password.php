@@ -1,5 +1,5 @@
 <?php
-function Insert_Edit_Account_Form($atts) {
+function Insert_Reset_Password_Form($atts) {
 	global $wpdb, $user_message, $feup_success;
 	global $ewd_feup_user_table_name;
 		
@@ -41,7 +41,7 @@ function Insert_Edit_Account_Form($atts) {
 	$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='edit-account'>";
 	$ReturnString .= "<input type='hidden' name='Username' value='" . $User->Username . "'>";
-	$ReturnString .= "<div id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Username', 'EWD_FEUP') . ": " . $User->Username . "</div>";
+	$ReturnString .= "<div id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": " . $User->Username . "</div>";
 	$ReturnString .= "<div class='pure-control-group'>";
 	$ReturnString .= "<label for='User_Password' id='ewd-feup-edit-password' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </label>";
 	$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password' class='ewd-feup-text-input pure-input-1-3' value='' />";
@@ -52,8 +52,9 @@ function Insert_Edit_Account_Form($atts) {
 	$ReturnString .= "</div>";
 	$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Edit_Password_Submit' value='" . $submit_text . "'></div>";
 	$ReturnString .= "</div>";
+	$ReturnString .= "</form>";
 
 	return $ReturnString;
 }
-add_shortcode("account-details", "Insert_Edit_Account_Form");
+add_shortcode("reset-password", "Insert_Reset_Password_Form");
 ?>

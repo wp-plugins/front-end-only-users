@@ -219,6 +219,8 @@ function Update_EWD_FEUP_Options() {
 		update_option("EWD_FEUP_Sign_Up_Email", $_POST['sign_up_email']);
 		update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);
 		update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);
+		update_option("EWD_FEUP_Use_Crypt", $_POST['use_crypt']);
+		update_option("EWD_FEUP_Username_Is_Email", $_POST['username_is_email']);
 		
 		$update = __("Options have been succesfully updated.", 'EWD_FEUP');
 		$user_update = array("Message_Type" => "Update", "Message" => $update);

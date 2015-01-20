@@ -18,6 +18,7 @@ function Install_EWD_FEUP() {
 		User_Last_Login datetime DEFAULT '0000-00-00 00:00:00' NULL,
 		User_Password_Reset_Code text NULL,
 		User_Password_Reset_Date datetime DEFAULT '0000-00-00 00:00:00' NULL,
+		User_Sessioncheck varchar(255) DEFAULT NULL,
   		UNIQUE KEY id (User_ID)
     	)
 		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
@@ -72,6 +73,8 @@ function Install_EWD_FEUP() {
 	add_option("EWD_FEUP_Login_Time", "1440");
 	add_option("EWD_FEUP_Email_Confirmation", "No");
 	add_option("EWD_FEUP_Full_Version", "Yes");
+	if (get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", true);}
+	if (get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", false);}
 	add_option("EWD_FEUP_Custom_CSS", "");
 }
 ?>

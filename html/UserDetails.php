@@ -3,13 +3,13 @@
 ?>
 <!-- The details of a specific user for editing, based on the user ID -->
 	<?php $UserDetails = $wpdb->get_results($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE User_ID ='%d'", $_GET['User_ID'])); ?>
-	<?php $UserAdmin = $wpdb->get_row($wpdb->prepare("SELECT Level_ID, User_Admin_Approved FROM $ewd_feup_user_table_name WHERE User_ID ='%d'", $_GET['User_ID'])); ?>
+	<?php $UserAdmin = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE User_ID ='%d'", $_GET['User_ID'])); ?>
 	<?php $Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name ORDER BY Level_Privilege ASC"); ?>
 		
 	<div class="OptionTab ActiveTab" id="EditProduct">
 		<div class="form-wrap UserDetail">
 			<a href="admin.php?page=EWD-FEUP-options&DisplayPage=Users" class="NoUnderline">&#171; <?php _e("Back", 'EWD_FEUP') ?></a>
-			<h2><?php _e("Edit User", 'EWD_FEUP') ?></h2>
+			<h2><?php _e("Edit User", 'EWD_FEUP'); ?>: <?php echo($UserAdmin->Username); ?></h2>
 			<?php $Fields = $wpdb->get_results("SELECT * FROM $ewd_feup_fields_table_name"); ?>
 			<!-- Form to update a user -->
 			<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_EditUser&DisplayPage=Users" class="validate" enctype="multipart/form-data">

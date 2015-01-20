@@ -1,5 +1,6 @@
 <?php 
 		$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+		$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
 ?>
 <div id="col-right">
 <div class="col-wrap">
@@ -260,8 +261,13 @@ $Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name ORDER BY
 <input type="hidden" name="action" value="Add_User" />
 <?php wp_nonce_field(); ?>
 <?php wp_referer_field(); ?>
+<?php if($Username_Is_Email) { ?>
+<label for='Username' id='ewd-feup-register-username-div' class='ewd-feup-field-label'><?php _e('Email', 'EWD_FEUP');?>: </label>
+<input type='email' class='ewd-feup-text-input' name='Username'>
+<?php } else {?>
 <label for='Username' id='ewd-feup-register-username-div' class='ewd-feup-field-label'><?php _e('Username', 'EWD_FEUP');?>: </label>
 <input type='text' class='ewd-feup-text-input' name='Username'>
+<?php } ?>
 <label for='Password' id='ewd-feup-register-password-div' class='ewd-feup-field-label'><?php _e('Password', 'EWD_FEUP')?>: </label>
 <input type='password' class='ewd-feup-text-input' name='User_Password'>
 <label for='Repeat Password' id='ewd-feup-register-password-confirm-div' class='ewd-feup-field-label'><?php _e('Repeat Password', 'EWD_FEUP');?>: </label>

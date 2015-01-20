@@ -29,7 +29,6 @@ Key Features:
 * Allows personalization of your site with the [user-data] shortcode
 * Options page lets you control how long a user remains logged in
 * User input-based redirects; send user groups to different pages after login (see FAQ)
-* CREATES SEPERATE USERS from the default WordPress users, meaning other user management plugins will have no effect on FEUP users
 
 **For all of the plugin shortcodes, please see the FAQ page**
 
@@ -113,6 +112,12 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.25 =
+- Added an option to use e-mails as a username
+- Added a new encryption option type
+- CAREFUL UPGRADING for those using the plugin in production
+- Changed the password reset option
+
 = 1.24 =
 - Updated to the latest version of pure.css
 

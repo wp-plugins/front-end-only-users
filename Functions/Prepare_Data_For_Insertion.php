@@ -1,11 +1,23 @@
 <?php
+
+function Generate_Password($plainPassword = null) {
+	if(!$plainPassword) {
+		return false;
+	}
+	$intermediateSalt = bin2hex(openssl_random_pseudo_bytes(30));
+	$intermediateSalt = substr($intermediateSalt,0,22);
+	$finalSalt = '$2y$13$'.$intermediateSalt.'$';
+	$hashedPassword = crypt($plainPassword,$finalSalt);
+	return $hashedPassword;
+}
+
 /* Prepare the data to add or edit a single product */
 function Add_Edit_User() {
 	global $wpdb, $feup_success, $ewd_feup_fields_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_user_table_name;
 	$Salt = get_option("EWD_FEUP_Hash_Salt");
 	$Sign_Up_Email = get_option("EWD_FEUP_Sign_Up_Email");
 	$Default_User_Level = get_option("EWD_Default_User_Level");
-	
+	$Use_Crypt = get_option("EWD_FEUP_Use_Crypt");
 	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
 	
@@ -28,14 +40,21 @@ function Add_Edit_User() {
 	else {$Omitted_Fields = array();}
 		
 	if (isset($_POST['Username'])) {$User_Fields['Username'] = $_POST['Username'];}
+	// check if the password is empty - so we won't try to update it if it is empty
+	if (empty($_POST['User_Password'])) { unset($_POST['User_Password']); }
+
+	if($Use_Crypt) {
+		if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = Generate_Password($_POST['User_Password']);}
+	} else {
 	if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = sha1(md5($_POST['User_Password'].$Salt));}
+	}
 	if (isset($_POST['Level_ID'])) {$User_Fields['Level_ID'] = $_POST['Level_ID'];}
 	else {$User_Fields['Level_ID'] = $Default_User_Level;}
 	if ($_POST['Admin_Approved'] == "Yes") {$User_Fields['User_Admin_Approved'] = "Yes";}
 	if ($_POST['Admin_Approved'] == "No") {$User_Fields['User_Admin_Approved'] = "No";}
-
 	if ($_POST['User_Password'] != $_POST['Confirm_User_Password']) {$user_update = array("Message_Type" => "Error", "Message" => __("The passwords you entered did not match.", "EWD_FEUP")); return $user_update;}
 	if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
+		if (empty($_POST['User_Password'])) { $user_update = array("Message_Type" => "Error", "Message" => __("The password cannot be empty.", "EWD_FEUP")); return $user_update;}
 		$wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $_POST['Username']));
 		if ($wpdb->num_rows > 0) {$user_update = array("Message_Type" => "Error", "Message" => __("There is already a user with that Username, please select a different one.", "EWD_FEUP")); return $user_update;}
 		if (strlen($_POST['Username']) < 3) {$user_update = array("Message_Type" => "Error", "Message" => __("Username must be at least 3 characters.", "EWD_FEUP")); return $user_update;}
@@ -113,6 +132,7 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID = 
 	$SMTP_Username = get_option("EWD_FEUP_SMTP_Username", "");
 	$Message_Body = get_option("EWD_FEUP_Message_Body");
 	$Email_Field = get_option("EWD_FEUP_Email_Field");
+	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
 
 	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 	
@@ -137,7 +157,11 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID = 
 	if ($Email_Confirmation == "Yes") {$Message_Body = str_replace("[confirmation-link]", $ConfirmationLink, $Message_Body);}
 	
 	$Email_Field = str_replace(" ", "_", $Email_Field);
+	if($Username_Is_Email) {
+		$User_Email = $User_Fields['Username'];
+	} else {
 	$User_Email = $Additional_Fields_Array[$Email_Field]['Field_Value'];
+	}
 	
 	if ($SMTP_Mail_Server != "") {
 		require_once(EWD_FEUP_CD_PLUGIN_PATH . '/PHPMailer/class.phpmailer.php');
@@ -256,7 +280,7 @@ function Handle_File_Upload($Field_Name) {
 
 function EWD_FEUP_RandomString($CharLength = 10)
 {
-    $characters = ’0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ’;
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randstring = '';
     for ($i = 0; $i < $CharLength; $i++) {
         $randstring .= $characters[rand(0, strlen($characters))];

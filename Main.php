@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 1.24
+Version: 1.25
 */
 
 global $EWD_FEUP_db_version;
@@ -21,14 +21,14 @@ $ewd_feup_user_table_name = $wpdb->prefix . "EWD_FEUP_Users";
 $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";
 $ewd_feup_fields_table_name = $wpdb->prefix . "EWD_FEUP_Fields";
 $ewd_feup_levels_table_name = $wpdb->prefix . "EWD_FEUP_Levels";
-$EWD_FEUP_db_version = "1.16";
+$EWD_FEUP_db_version = "1.25";
 
 define( 'EWD_FEUP_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_FEUP_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
- /*error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+ /* error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 //define('WP_DEBUG', true);
-$wpdb->show_errors();*/
+$wpdb->show_errors(); */
 
 /* When plugin is activated */
 register_activation_hook(__FILE__,'Install_EWD_FEUP');
@@ -147,6 +147,8 @@ include "Functions/Update_Admin_Databases.php";
 include "Functions/Update_EWD_FEUP_Content.php";
 include "Functions/Update_EWD_FEUP_Tables.php";
 
+include "Shortcodes/Insert_Confirm_Forgot_Password.php";
+include "Shortcodes/Insert_Edit_Account.php";
 include "Shortcodes/Insert_Edit_Profile.php";
 include "Shortcodes/Insert_Forgot_Password.php";
 include "Shortcodes/Insert_Login_Form.php";

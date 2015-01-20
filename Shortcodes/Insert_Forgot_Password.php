@@ -9,6 +9,7 @@ function Insert_Forgot_Password_Form($atts) {
 	extract( shortcode_atts( array(
 				'redirect_page' => '#',
 				'loggedin_page' => '/',
+				'reset_email_url' => '',
 				'submit_text' => __('Reset password', 'EWD_FEUP')),
 			$atts
 		)
@@ -34,10 +35,11 @@ function Insert_Forgot_Password_Form($atts) {
 	$ReturnString .= "<form action='#' method='post' id='ewd-feup-forgot-password-form' class='pure-form pure-form-aligned'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
+	$ReturnString .= "<input type='hidden' name='ewd-feup-reset-email-url' value='".$reset_email_url."'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='forgot-password'>";
 	$ReturnString .= "<div class='pure-control-group'>";
-	$ReturnString .= "<label for='Username' id='ewd-feup-reset-password' class='ewd-feup-field-label'>" . __('Username', 'EWD_FEUP') . ": </label>";
-	$ReturnString .= "<input type='text' class='ewd-feup-text-input pure-input-1-3' name='Username' value='' />";
+	$ReturnString .= "<label for='Email' id='ewd-feup-reset-password' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
+	$ReturnString .= "<input type='email' class='ewd-feup-text-input pure-input-1-3' name='Email' value='' />";
 	$ReturnString .= "</div>";
 	$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Reset_Password_Submit' value='" . $submit_text . "'></div>";
 	$ReturnString .= "</div>";

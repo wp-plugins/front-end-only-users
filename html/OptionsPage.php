@@ -1,10 +1,12 @@
 <?php 
-		$Login_Time = get_option("EWD_FEUP_Login_Time");
-		$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
-		$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
-		$Sign_Up_Email = get_option("EWD_FEUP_Sign_Up_Email");
-		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
-		$Default_User_Level = get_option("EWD_Default_User_Level");
+	$Login_Time = get_option("EWD_FEUP_Login_Time");
+	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
+	$Sign_Up_Email = get_option("EWD_FEUP_Sign_Up_Email");
+	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
+	$Default_User_Level = get_option("EWD_Default_User_Level");
+	$Use_Crypt = get_option("EWD_FEUP_Use_Crypt");
+	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
 ?>
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Settings</h2>
@@ -41,7 +43,7 @@
 				echo ">" . $Level->Level_Name . " (" . $Level->Level_Privilege . ")</option>";
 		}?> 
 	</select>
-	<p>Require users to be approved by an administrator in the WordPress back-end before they can log in.</p>
+	<p>Which level should users be set to when they register (created on the "Levels" tab)?</p>
 	</fieldset>
 </td>
 </tr>
@@ -71,6 +73,26 @@
 	<fieldset><legend class="screen-reader-text"><span>Custom CSS</span></legend>
 	<label title='Custom CSS'><textarea name='custom_css'><?php echo $Custom_CSS ?></textarea></label><br />
 	<p>Custom CSS that should be included on any page that uses one of the FEUP shortcodes.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Use Crypt</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Use Crypt</span></legend>
+	<label title='Yes'><input type='radio' name='use_crypt' value='true' <?php if($Use_Crypt) {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='use_crypt' value='false' <?php if(!$Use_Crypt) {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Should the plugin use crypt to encode user passwords? (Higher security)<br /><strong>Warning! All current user passwords will permanently stop working when switching between encoding methods!</strong></p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Username is Email</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Username is Email</span></legend>
+	<label title='Yes'><input type='radio' name='username_is_email' value='true' <?php if($Username_Is_Email) {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='username_is_email' value='false' <?php if(!$Username_Is_Email) {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Should your users register using their e-mail addresses instead of by creating usernames?</p>
 	</fieldset>
 </td>
 </tr>

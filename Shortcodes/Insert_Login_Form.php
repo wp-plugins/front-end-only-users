@@ -6,6 +6,7 @@ function Insert_Login_Form($atts) {
 		// Include the required global variables, and create a few new ones
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
 		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
+		$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
 		$Time = time();
 		
 		$ReturnString = "";
@@ -35,8 +36,13 @@ function Insert_Login_Form($atts) {
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='login'>";
 		$ReturnString .= "<div class='pure-control-group'>";
+		if($Username_Is_Email) {
+			$ReturnString .= "<label for='Username' id='ewd-feup-login-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
+			$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Username' placeholder='" . __('Email', 'EWD_FEUP') . "...'>";
+		} else {
 		$ReturnString .= "<label for='Username' id='ewd-feup-login-username-div' class='ewd-feup-field-label'>" . __('Username', 'EWD_FEUP') . ": </label>";
 		$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' placeholder='" . __('Username', 'EWD_FEUP') . "...'>";
+		}
 		$ReturnString .= "</div>";
 		$ReturnString .= "<div class='pure-control-group'>";
 		$ReturnString .= "<label for='Password' id='ewd-feup-login-password-div' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </label>";

@@ -8,6 +8,7 @@ function Insert_Register_Form($atts) {
 		
 	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 	$Salt = get_option("EWD_FEUP_Hash_Salt");
+	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
 	$Time = time();
 		
 	$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
@@ -46,9 +47,18 @@ function Insert_Register_Form($atts) {
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='register'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-post-id' value='" . $post->ID . "'>";
 		$ReturnString .= "<div class='pure-control-group'>";
+		if($Username_Is_Email) {
+			$ReturnString .= "<label for='Username' id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
+			if (isset($_POST['Username'])) {
+				$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Username' value='" . $_POST['Username'] . "'>";
+			} else {
+				$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Username' placeholder='" . __('Email', 'EWD_FEUP') . "...'>";
+			}
+		} else {
 		$ReturnString .= "<label for='Username' id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Username', 'EWD_FEUP') . ": </label>";
 		if (isset($_POST['Username'])) {$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' value='" . $_POST['Username'] . "'>";}
 		else {$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' placeholder='" . __('Username', 'EWD_FEUP') . "...'>";}
+		}
 		$ReturnString .= "</div>";
 		$ReturnString .= "<div class='pure-control-group'>";
 		$ReturnString .= "<label for='Password' id='ewd-feup-register-password-div' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </label>";
@@ -65,7 +75,7 @@ function Insert_Register_Form($atts) {
 			if ($Field->Field_Required == "Yes") {$Req_Text = "required";}
 			else {$Req_Text = "";}
 			$ReturnString .= "<div class='pure-control-group'>";
-			$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-register-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . $Field->Field_Name . ": </label>";
+			$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-register-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . __($Field->Field_Name, 'EWD_FEUP') . ": </label>";
 			if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
 				if (isset($_POST[str_replace(" ", "_", $Field->Field_Name)])) {$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $_POST[str_replace(" ", "_", $Field->Field_Name)] . "' " . $Req_Text . "/>";}
 				else {$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' placeholder='" . $Field->Field_Name . "' " . $Req_Text . "/>";}
