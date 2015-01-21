@@ -36,13 +36,13 @@ function Confirm_Login() {
 		
 	$Passwords_Match = false;
 	if (function_exists('hash_equals')) {
-		if($Use_Crypt) {
+		if($Use_Crypt == "Yes") {
 			$Passwords_Match = hash_equals($User->User_Password, crypt($_POST['User_Password'], $User->User_Password));
 		} else {
 			$Passwords_Match = hash_equals($User->User_Password, sha1(md5($_POST['User_Password'].$Salt)));
 		}
 	} else {
-		if($Use_Crypt) {
+		if($Use_Crypt == "Yes") {
 			if (strcmp($User->User_Password, crypt($_POST['User_Password'], $User->User_Password)) === 0) {
 				$Passwords_Match = true;
 			} else {
@@ -87,7 +87,7 @@ function Forgot_Password() {
 	$Email_Field = str_replace(" ", "_", $Email_Field);
 		
 	//$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username ='%s'", $_POST['Email']));
-	if($Username_Is_Email) {
+	if($Username_Is_Email == "Yes") {
 		$User = $wpdb -> get_row( $wpdb -> prepare( "SELECT * FROM $ewd_feup_user_table_name WHERE Username = '%s'", $_POST['Email'] ) );
 		$User_Email = $User->Username;
 	} else {
@@ -172,7 +172,7 @@ function Confirm_Forgot_Password() {
 		if (strcmp($Given_Password, $_POST['Confirm_User_Password']) === 0) {
 			if(!empty($Given_Password)) {
 
-				if ($Username_Is_Email) {
+				if ($Username_Is_Email == "Yes") {
 					$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username = '%s'", $_POST['Email']));
 					$User_Email = $User->Username;
 				} else {

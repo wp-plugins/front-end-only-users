@@ -41,12 +41,12 @@ function Insert_Edit_Account_Form($atts) {
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='edit-profile'>";
-		if($Username_Is_Email) {
+		if($Username_Is_Email == "Yes") {
 			$ReturnString .= "<div id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </div>";
 			$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Username' value='" . $User->Username . "'>";
 		} else {
-		$ReturnString .= "<div id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Username', 'EWD_FEUP') . ": </div>";
-		$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' value='" . $User->Username . "'>";
+			$ReturnString .= "<div id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Username', 'EWD_FEUP') . ": </div>";
+			$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' value='" . $User->Username . "'>";
 		}
 		$ReturnString .= "<div id='ewd-feup-register-password-div' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </div>";
 		$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password' value=''>";

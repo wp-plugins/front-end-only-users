@@ -68,8 +68,10 @@ function Update_EWD_FEUP_Tables() {
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
  	
-   	if (get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", false);}
-	if (get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", false);}
+   	if (get_option("EWD_FEUP_Use_Crypt") == "true" or get_option("EWD_FEUP_Use_Crypt")) {add_option("EWD_FEUP_Use_Crypt", "Yes");}
+   	if (get_option("EWD_FEUP_Use_Crypt") == "false" or get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", "No");}
+	if (get_option("EWD_FEUP_Username_Is_Email") == "true" or get_option("EWD_FEUP_Username_Is_Email")) {add_option("EWD_FEUP_Username_Is_Email", "Yes");}
+	if (get_option("EWD_FEUP_Username_Is_Email") == "false" or get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", "No");}
 
 	update_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
 }

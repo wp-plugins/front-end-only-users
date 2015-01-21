@@ -80,8 +80,8 @@
 <th scope="row">Use Crypt</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>Use Crypt</span></legend>
-	<label title='Yes'><input type='radio' name='use_crypt' value='true' <?php if($Use_Crypt) {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
-	<label title='No'><input type='radio' name='use_crypt' value='false' <?php if(!$Use_Crypt) {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<label title='Yes'><input type='radio' name='use_crypt' value='Yes' <?php if($Use_Crypt == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='use_crypt' value='No' <?php if($Use_Crypt == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
 	<p>Should the plugin use crypt to encode user passwords? (Higher security)<br /><strong>Warning! All current user passwords will permanently stop working when switching between encoding methods!</strong></p>
 	</fieldset>
 </td>
@@ -90,8 +90,8 @@
 <th scope="row">Username is Email</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>Username is Email</span></legend>
-	<label title='Yes'><input type='radio' name='username_is_email' value='true' <?php if($Username_Is_Email) {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
-	<label title='No'><input type='radio' name='username_is_email' value='false' <?php if(!$Username_Is_Email) {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<label title='Yes'><input type='radio' name='username_is_email' value='Yes' <?php if($Username_Is_Email == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='username_is_email' value='No' <?php if($Username_Is_Email == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
 	<p>Should your users register using their e-mail addresses instead of by creating usernames?</p>
 	</fieldset>
 </td>

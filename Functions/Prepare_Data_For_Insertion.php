@@ -43,7 +43,7 @@ function Add_Edit_User() {
 	// check if the password is empty - so we won't try to update it if it is empty
 	if (empty($_POST['User_Password'])) { unset($_POST['User_Password']); }
 
-	if($Use_Crypt) {
+	if($Use_Crypt == "Yes") {
 		if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = Generate_Password($_POST['User_Password']);}
 	} else {
 	if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = sha1(md5($_POST['User_Password'].$Salt));}
@@ -157,7 +157,7 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID = 
 	if ($Email_Confirmation == "Yes") {$Message_Body = str_replace("[confirmation-link]", $ConfirmationLink, $Message_Body);}
 	
 	$Email_Field = str_replace(" ", "_", $Email_Field);
-	if($Username_Is_Email) {
+	if($Username_Is_Email == "Yes") {
 		$User_Email = $User_Fields['Username'];
 	} else {
 	$User_Email = $Additional_Fields_Array[$Email_Field]['Field_Value'];

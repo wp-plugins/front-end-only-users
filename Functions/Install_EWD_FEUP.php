@@ -73,8 +73,8 @@ function Install_EWD_FEUP() {
 	add_option("EWD_FEUP_Login_Time", "1440");
 	add_option("EWD_FEUP_Email_Confirmation", "No");
 	add_option("EWD_FEUP_Full_Version", "Yes");
-	if (get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", true);}
-	if (get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", false);}
+	if (get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", "No");}
+	if (get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", "No");}
 	add_option("EWD_FEUP_Custom_CSS", "");
 }
 ?>

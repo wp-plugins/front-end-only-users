@@ -36,7 +36,7 @@ function Insert_Login_Form($atts) {
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='login'>";
 		$ReturnString .= "<div class='pure-control-group'>";
-		if($Username_Is_Email) {
+		if($Username_Is_Email == "Yes") {
 			$ReturnString .= "<label for='Username' id='ewd-feup-login-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
 			$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Username' placeholder='" . __('Email', 'EWD_FEUP') . "...'>";
 		} else {

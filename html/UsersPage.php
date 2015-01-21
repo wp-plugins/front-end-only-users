@@ -261,7 +261,7 @@ $Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name ORDER BY
 <input type="hidden" name="action" value="Add_User" />
 <?php wp_nonce_field(); ?>
 <?php wp_referer_field(); ?>
-<?php if($Username_Is_Email) { ?>
+<?php if($Username_Is_Email == "Yes") { ?>
 <label for='Username' id='ewd-feup-register-username-div' class='ewd-feup-field-label'><?php _e('Email', 'EWD_FEUP');?>: </label>
 <input type='email' class='ewd-feup-text-input' name='Username'>
 <?php } else {?>

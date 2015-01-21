@@ -47,7 +47,7 @@ function Insert_Register_Form($atts) {
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='register'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-post-id' value='" . $post->ID . "'>";
 		$ReturnString .= "<div class='pure-control-group'>";
-		if($Username_Is_Email) {
+		if($Username_Is_Email == "Yes") {
 			$ReturnString .= "<label for='Username' id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
 			if (isset($_POST['Username'])) {
 				$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Username' value='" . $_POST['Username'] . "'>";

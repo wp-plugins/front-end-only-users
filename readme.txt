@@ -112,6 +112,9 @@ Content can be restricted using the [restricted][/restricted] tag. Any content b
 5. The admin area
 
 == Changelog ==
+= 1.26 =
+- Fixed a display error for the options added in version 1.25
+
 = 1.25 =
 - Added an option to use e-mails as a username
 - Added a new encryption option type
