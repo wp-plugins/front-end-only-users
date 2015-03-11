@@ -7,38 +7,41 @@ Tested up to: 4.1
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
-Allow visitors to sign up as users on the front-end of your website only. Completely customizable, allows personalization of a website.
+A customizable plugin lets users sign up to the front end only of your site with shortcodes for registration, login, profile editing forms and more.
 
 == Description ==
+This  plugin allows visitors to sign up as users on the front-end on any page of your website. It is completely customizable using CSS and is easily personalized with the use of shortcodes. These shortcodes can be used to insert registration, login, or profile editing forms on any page of your website and to restrict content. Users are created in separate tables so that they have no access to the back-end of your site. Create different fields for members to fill out and customize content based on their profiles. Customize forms with CSS to suit your needs using the Admin panel. Ideal for paid content, membership, dating sites and more!
 
-Allow visitors to sign up as users on the front-end of your website only. Completely customizable, allows personalization of a website.
+= Key Features =
 
-Use shortcodes to insert registration, login or profile editing forms on any page of your website.
-Users are created in tables separate from the main WordPress user tables so that they have no access to the back-end of your site.
-You create different fields for members to fill out, and can customize content based on their profiles (location, gender, language preference, etc.)
-
-[youtube http://www.youtube.com/watch?v=3HI8-t8a1wA]
-
-Key Features:
-
-* Customizable membership fields 
+* Customizable membership fields
+* Pure CSS-styled forms 
 * Supports all input types for user fields
-* UTF8 support
-* Different membership levels, content can be restricted to certain levels
-* PureCSS-styled forms for elegant design
-* Allows personalization of your site with the [user-data] shortcode
-* Options page lets you control how long a user remains logged in
-* User input-based redirects; send user groups to different pages after login (see FAQ)
+* Include different membership levels and restrict content accordingly
+* Option to send sign-up emails and to require admin approval of users
+* User input-based redirects
+* Send user groups to different pages after login
+* Personalize the experience of your site with the [user-data] shortcode
+* UTF-8 support
+* Front end features: registration, login, edit user profile, and account management
+* Back end features: add new users, add new fields, add new levels, email settings and options
 
-**For all of the plugin shortcodes, please see the FAQ page**
+For a complete list of the plugin shortcodes please go to our FAQs page:
+<https://wordpress.org/plugins/front-end-only-users/faq/>
 
-This plugin creates a cookie to store login information. 
+= Additional Languages =
 
-Please head to the "Support" tab to report errors or make suggestions.
-
-Tranlations:
 * Russian
 * Brazilian Portugese (thanks to Humberto W.)
+
+Check out our Frequently Asked Questions here:
+<https://wordpress.org/plugins/front-end-only-users/faq/>
+Please head to the "Support" forum to report issues or make suggestions:
+<https://wordpress.org/support/plugin/front-end-only-users>
+
+For more FEUP videos check out FAQ page!
+[youtube https://www.youtube.com/watch?v=3HI8-t8a1wA]
+
 
 == Installation ==
 
@@ -65,42 +68,88 @@ Tutorial Part 2
 
 
 == Frequently Asked Questions ==
-
+= What's the complete list of plugin shortcodes? =
+* Register Form: ‘[register]’
+* Login Form: ‘[login]’
+* Logout Form:’[logout]’
+* Edit Profile Form: ‘[edit-profile]’
+* Edit Account Information: ‘[account-details]’
+* Restricted Content: ‘[restricted][/restricted]’
+* Inserting User Information: ‘[user-data]’
+* User Search Form: ‘[user-search]’
+* User List: ‘[user-list]’
+* Forgot Password: ‘[forgot-password]’
 = How do I add fields for my users to fill out? =
 
-On the admin page, go to the "Fields" tab. 
-
-= What's the complete list of plugin shortcodes? =
-
-* Register Form: [register]<br />
-* Login Form: [login]<br />
-* Logout Form: [logout]<br />
-* Edit Profile Form: [edit-profile]<br />
-* Edit Account Information: [account-details]<br />
-* Restriced Content: [restricted][/restricted]<br />
-* Inserting User Information (see below): [user-data]<br />
-* User Search Form: [user-search]<br />
-* User List: [user-list]<br />
-
+On the admin page, go to the "Fields" tab.
 = How do I redirect based on a user field? =
 
-You need to add the following attributes to your [login] or [register] shortcodes:
-* redirect_field: the field the redirect is based off of (ex. Gender)
-* redirect_array_string: a comma separated list of pages to redirect to (ex. Male => http://ManPage.com, Female => http://WomanPage.com)
-
+You need to add the following attributes to your '[login]' or '[register]' shortcodes: ‘redirect_field’: the field the redirect is based off of (ex. Gender) and ‘redirect_array_string’: a comma separated list of pages to redirect to (ex. Male => http://ManPage.com, Female => http://WomanPage.com)
 = How do I display a user's first name on a page? =
 
-You can use the [user-data field_name='First Name'] shortcode, assuming that you called your field "First Name" for a user's first name.
+You can use the '[user-data field_name='First Name']' shortcode, assuming that you called your field "First Name" for a user's first name.
+= How do I restrict content to visitors who have logged in? =
 
-= How do I restrict content to vistors who have logged in? =
+Content can be restricted using the '[restricted]'’[/restricted]' tag. Any content between the opening and closing tags will only be visible to those who are logged in.
 
-Content can be restricted using the [restricted][/restricted] tag. Any content between the opening and closing tags will only be visible to those who are logged in. 
+= How do I approve an user? =
 
-= Tutorial Part 1 =
-[youtube http://www.youtube.com/watch?v=9WE1ftZBlPw]
+Click on the user you want to approve to see their details and there should be a radio button at the top of the page to approve the user.
 
-= Tutorial Part 2 =
-[youtube http://www.youtube.com/watch?v=viF7-yPY4H4]
+= How do I restrict content based on the privilege levels? =
+
+To restrict content to a certain level(X) your shortcode would be: ‘restricted level='X'’...content’/restricted’
+For all levels above "X" level: '[restricted minimum_level='X''...content'/restricted]'
+For all levels below "X" level: '[restricted maximum_level='X''...content'/restricted]'
+
+= Once a user registers their information, is there a way to redirect them to a page that will have further instructions? =
+
+You can add the attribute ‘redirect_page’ to the register tag to send newly registered users to a new page: '[register redirect_page='http://www.example.com']’
+
+= When I go on the profile page, I see "You must be logged in to access this page." even though I'm already logged in. How can I fix this? =
+
+Check the “Options” page, and make sure that 'Login Time' isn't blank. If it's blank, then you're only logged in for a second. Anything non-blank and higher than 0 should solve the problem.
+
+= Is it possible to not the show message: "Sorry, this content is only for those whose FIELD is FIELD-value"? =
+
+You can add the attribute ‘[no_message='Yes']’ to your shortcode, so it would look something like this: '[restricted field_name='Name' field_value='Alex' no_message='Yes''/restricted]'
+= Is there a way to indicate to users that they are logged in? I know this can be added to a page using 'user-data', but is there a way to add it to the page header? =
+
+You could add the ‘[user-data]’ tag to your header file and wrap it in restricted tags so that only logged in users can see it.
+
+= I can't seem to find an option that requires a user to confirm his email upon registration. How do I add this feature? =
+
+To add the confirmation link to the email, you need to include the shortcode ‘confirmation-link’ inside the body of your e-mail.
+
+= How do I use the forgot password shortcode? =
+
+You would want to create a separate page with the ‘[forgot-password]’ shortcode, and then another page with the ‘confirm-forgot-password’ shortcode on it. For the ‘[forgot-password]’ shortcode, you would then add an attribute ‘reset_email_url’ with a value set to whatever URL you're using for the ‘[confirm-forgot-password]’ shortcode.
+
+=How do I restrict and redirect a user to the login page when user is not logged in? =
+
+Content can be restricted using the ‘[restricted/restricted]’ tag. Any content between the opening and closing tags will only be visible to those who are logged in. To redirect a user when the user in not logged in you would want to use the ‘[login redirect_page='url']’ shortcode where the url is the login page you want to redirect to.
+
+= How do I customize the style of this plugin? I'd like to change the color of my button. Can you let me know how I can do that? =
+
+You can customize the plugin by adding code to the "Custom CSS" box on the "Options" page. For example, if you want the button to be red you might try adding:
+‘.ewd-feup-submit.pure-button.pure-button-primary {background: red;}’
+
+= How do I translate the plugin into my language? =
+A great place to start learning about how to translate a plugin is at the link below: <http://premium.wpmudev.org/blog/how-to-translate-a-wordpress-plugin>
+Once translated, you'll need to put the translated mo- and po- files directly in the lang folder and make sure they are named properly for your localization.
+If you do translate the plugin, other users would love to have access to the files in your language. You can send them to us at Contact@EtoileWebDesign.com, and we’ll be sure they’re included in a future release.
+
+For more questions and support you can post in the support forum:
+<https://wordpress.org/support/plugin/front-end-only-users>
+
+
+= Videos =
+
+Tutorial Part 1
+[youtube https://www.youtube.com/watch?v=9WE1ftZBlPw]
+
+Tutorial Part 2
+[youtube https://www.youtube.com/watch?v=viF7-yPY4H4]
 
 
 == Screenshots ==
