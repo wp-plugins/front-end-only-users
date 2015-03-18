@@ -10,7 +10,9 @@ License URI:http://www.gnu.org/licenses/gpl-3.0.html
 A customizable plugin lets users sign up to the front end only of your site with shortcodes for registration, login, profile editing forms and more.
 
 == Description ==
-This  plugin allows visitors to sign up as users on the front-end on any page of your website. It is completely customizable using CSS and is easily personalized with the use of shortcodes. These shortcodes can be used to insert registration, login, or profile editing forms on any page of your website and to restrict content. Users are created in separate tables so that they have no access to the back-end of your site. Create different fields for members to fill out and customize content based on their profiles. Customize forms with CSS to suit your needs using the Admin panel. Ideal for paid content, membership, dating sites and more!
+This  plugin allows visitors to sign up as users on the front-end on any page of your website. It is completely customizable using CSS and is easily personalized with the use of shortcodes. These shortcodes can be used to insert registration, login, or profile editing forms on any page of your website and to restrict content. Users are created in separate tables so that they have no access to the back-end of your site. Create different fields for members to fill out and customize content based on their profiles. Customize forms with CSS to suit your needs using the Admin panel.
+ 
+Ideal for paid content, membership, dating sites and more!
 
 = Key Features =
 
@@ -36,7 +38,8 @@ For a complete list of the plugin shortcodes please go to our FAQs page:
 
 Check out our Frequently Asked Questions here:
 <https://wordpress.org/plugins/front-end-only-users/faq/>
-Please head to the "Support" forum to report issues or make suggestions:
+
+Head over to the "Support" forum to report issues or make suggestions:
 <https://wordpress.org/support/plugin/front-end-only-users>
 
 For more FEUP videos check out FAQ page!
@@ -69,28 +72,28 @@ Tutorial Part 2
 
 == Frequently Asked Questions ==
 = What's the complete list of plugin shortcodes? =
-* Register Form: ‘[register]’
-* Login Form: ‘[login]’
-* Logout Form:’[logout]’
-* Edit Profile Form: ‘[edit-profile]’
-* Edit Account Information: ‘[account-details]’
-* Restricted Content: ‘[restricted][/restricted]’
-* Inserting User Information: ‘[user-data]’
-* User Search Form: ‘[user-search]’
-* User List: ‘[user-list]’
-* Forgot Password: ‘[forgot-password]’
+* Register Form: [register]
+* Login Form: [login]
+* Logout Form:[logout]
+* Edit Profile Form: [edit-profile]
+* Edit Account Information: [account-details]
+* Restricted Content: [restricted][/restricted]
+* Inserting User Information: [user-data]
+* User Search Form: [user-search]
+* User List: [user-list]
+* Forgot Password: [forgot-password]
 = How do I add fields for my users to fill out? =
 
 On the admin page, go to the "Fields" tab.
 = How do I redirect based on a user field? =
 
-You need to add the following attributes to your '[login]' or '[register]' shortcodes: ‘redirect_field’: the field the redirect is based off of (ex. Gender) and ‘redirect_array_string’: a comma separated list of pages to redirect to (ex. Male => http://ManPage.com, Female => http://WomanPage.com)
+You need to add the following attributes to your [login] or [register] shortcodes: ‘redirect_field’: the field the redirect is based off of (ex. Gender) and ‘redirect_array_string’: a comma separated list of pages to redirect to (ex. Male => http: //ManPage.com, Female => http: //WomanPage.com)
 = How do I display a user's first name on a page? =
 
-You can use the '[user-data field_name='First Name']' shortcode, assuming that you called your field "First Name" for a user's first name.
+You can use the [user-data field_name='First Name'] shortcode, assuming that you called your field "First Name" for a user's first name.
 = How do I restrict content to visitors who have logged in? =
 
-Content can be restricted using the '[restricted]'’[/restricted]' tag. Any content between the opening and closing tags will only be visible to those who are logged in.
+Content can be restricted using the [restricted][/restricted] tag. Any content between the opening and closing tags will only be visible to those who are logged in.
 
 = How do I approve an user? =
 
@@ -99,12 +102,12 @@ Click on the user you want to approve to see their details and there should be a
 = How do I restrict content based on the privilege levels? =
 
 To restrict content to a certain level(X) your shortcode would be: ‘restricted level='X'’...content’/restricted’
-For all levels above "X" level: '[restricted minimum_level='X''...content'/restricted]'
-For all levels below "X" level: '[restricted maximum_level='X''...content'/restricted]'
+For all levels above "X" level: [restricted minimum_level='X''...content'/restricted]
+For all levels below "X" level: [restricted maximum_level='X''...content'/restricted]
 
 = Once a user registers their information, is there a way to redirect them to a page that will have further instructions? =
 
-You can add the attribute ‘redirect_page’ to the register tag to send newly registered users to a new page: '[register redirect_page='http://www.example.com']’
+You can add the attribute ‘redirect_page’ to the register tag to send newly registered users to a new page: [register redirect_page='http://www.example.com']
 
 = When I go on the profile page, I see "You must be logged in to access this page." even though I'm already logged in. How can I fix this? =
 
@@ -112,10 +115,10 @@ Check the “Options” page, and make sure that 'Login Time' isn't blank. If it
 
 = Is it possible to not the show message: "Sorry, this content is only for those whose FIELD is FIELD-value"? =
 
-You can add the attribute ‘[no_message='Yes']’ to your shortcode, so it would look something like this: '[restricted field_name='Name' field_value='Alex' no_message='Yes''/restricted]'
+You can add the attribute [no_message='Yes'] to your shortcode, so it would look something like this: [restricted field_name='Name' field_value='Alex' no_message='Yes''/restricted]
 = Is there a way to indicate to users that they are logged in? I know this can be added to a page using 'user-data', but is there a way to add it to the page header? =
 
-You could add the ‘[user-data]’ tag to your header file and wrap it in restricted tags so that only logged in users can see it.
+You could add the [user-data] tag to your header file and wrap it in restricted tags so that only logged in users can see it.
 
 = I can't seem to find an option that requires a user to confirm his email upon registration. How do I add this feature? =
 
@@ -123,16 +126,17 @@ To add the confirmation link to the email, you need to include the shortcode ‘
 
 = How do I use the forgot password shortcode? =
 
-You would want to create a separate page with the ‘[forgot-password]’ shortcode, and then another page with the ‘confirm-forgot-password’ shortcode on it. For the ‘[forgot-password]’ shortcode, you would then add an attribute ‘reset_email_url’ with a value set to whatever URL you're using for the ‘[confirm-forgot-password]’ shortcode.
+You would want to create a separate page with the [forgot-password] shortcode, and then another page with the ‘confirm-forgot-password’ shortcode on it. For the [forgot-password] shortcode, you would then add an attribute ‘reset_email_url’ with a value set to whatever URL you're using for the [confirm-forgot-password] shortcode.
 
-=How do I restrict and redirect a user to the login page when user is not logged in? =
+= How do I restrict and redirect a user to the login page when user is not logged in? =
 
-Content can be restricted using the ‘[restricted/restricted]’ tag. Any content between the opening and closing tags will only be visible to those who are logged in. To redirect a user when the user in not logged in you would want to use the ‘[login redirect_page='url']’ shortcode where the url is the login page you want to redirect to.
+Content can be restricted using the [restricted/restricted] tag. Any content between the opening and closing tags will only be visible to those who are logged in. To redirect a user when the user in not logged in you would want to use the [login redirect_page='url'] shortcode where the url is the login page you want to redirect to.
 
 = How do I customize the style of this plugin? I'd like to change the color of my button. Can you let me know how I can do that? =
 
 You can customize the plugin by adding code to the "Custom CSS" box on the "Options" page. For example, if you want the button to be red you might try adding:
-‘.ewd-feup-submit.pure-button.pure-button-primary {background: red;}’
+
+.ewd-feup-submit.pure-button.pure-button-primary {background: red;}
 
 = How do I translate the plugin into my language? =
 A great place to start learning about how to translate a plugin is at the link below: <http://premium.wpmudev.org/blog/how-to-translate-a-wordpress-plugin>
