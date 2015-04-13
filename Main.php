@@ -143,9 +143,9 @@ function save_feup_error(){
 
 $EWD_FEUP_Full_Version = get_option("EWD_FEUP_Full_Version");
 
-/*if (isset($_POST['Upgrade_To_Full'])) {
-	  add_action('admin_init', 'Upgrade_To_Full');
-}*/
+if (isset($_POST['Upgrade_To_Full'])) {
+	  add_action('admin_init', 'EWD_FEUP_Upgrade_To_Full');
+}
 
 include "Functions/CheckLoginCookie.php";
 include "Functions/CreateLoginCookie.php";
@@ -153,6 +153,7 @@ include "Functions/Determine_Redirect_Page.php";
 include "Functions/Error_Notices.php";
 include "Functions/EWD_FEUP_Export_To_Excel.php";
 include "Functions/EWD_FEUP_Output_Options.php";
+include "Functions/Full_Upgrade.php";
 include "Functions/Initial_Data.php";
 include "Functions/Install_EWD_FEUP.php";
 include "Functions/Output_Buffering.php";
