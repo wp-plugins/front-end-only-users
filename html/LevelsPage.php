@@ -1,3 +1,4 @@
+<?php if ($EWD_FEUP_Full_Version == "Yes") { ?>
 <div id="col-right">
 <div class="col-wrap">
 
@@ -31,7 +32,7 @@
 </div>-->
 
 					
-<table class="wp-list-table widefat tags sorttable level-list">
+<table class="wp-list-table widefat tags sorttable levels-list">
 	<thead>
 		<tr>
 			<th scope='col' id='cb' class='manage-column column-cb check-column'  style=""><input type="checkbox" /></th>
@@ -53,7 +54,7 @@
 			foreach ($Levels as $Level) { 
 				$user_count = $wpdb->get_var( "SELECT COUNT(*) FROM $ewd_feup_user_table_name WHERE Level_ID=" . $Level->Level_ID);
 		?>
-				<tr id="list-level-<?php echo $Level->Level_Item_ID; ?>" class="list-item">
+				<tr id="list-item-<?php echo $Level->Level_Item_ID; ?>" class="list-item">
 					<th scope='row' class='check-column'>
 						<input type='checkbox' name='Levels_Bulk[]' value='<?php echo $Level->Level_ID; ?>' />
 					</th>
@@ -87,7 +88,6 @@
 </div> <!-- /col-right -->
 
 
-<!-- Form to upload a list of new products from a spreadsheet -->
 <div id="col-left">
 <div class="col-wrap">
 
@@ -123,3 +123,11 @@
 <!--</div>-->
 </div><!-- /col-left -->
 
+<?php } else { ?>
+<div class="Info-Div">
+	<h2><?php _e("Full Version Required!", 'EWD_FEUP') ?></h2>
+	<div class="upcp-full-version-explanation">
+		<?php _e("The full version of Front-End Only Users is required to use tags.", "EWD_FEUP");?><a href="http://www.etoilewebdesign.com/front-end-users-plugin/"><?php _e(" Please upgrade to unlock this page!", 'EWD_FEUP'); ?></a>
+	</div>
+<!--</div>-->
+<?php } ?>

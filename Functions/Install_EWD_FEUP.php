@@ -16,6 +16,7 @@ function Install_EWD_FEUP() {
 		User_Admin_Approved text NULL,
 		User_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
 		User_Last_Login datetime DEFAULT '0000-00-00 00:00:00' NULL,
+		User_Total_Logins mediumint(9) DEFAULT 0 NOT NULL,
 		User_Password_Reset_Code text NULL,
 		User_Password_Reset_Date datetime DEFAULT '0000-00-00 00:00:00' NULL,
 		User_Sessioncheck varchar(255) DEFAULT NULL,
@@ -35,6 +36,7 @@ function Install_EWD_FEUP() {
 		Field_Show_In_Admin text   NULL,
 		Field_Show_In_Front_End   text NULL,
 		Field_Required text   NULL,
+		Field_Order mediumint(9) DEFAULT 0 NOT NULL,
 		Field_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NULL,
   		UNIQUE KEY id (Field_ID)
     	)	
@@ -75,6 +77,8 @@ function Install_EWD_FEUP() {
 	add_option("EWD_FEUP_Full_Version", "Yes");
 	if (get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", "No");}
 	if (get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", "No");}
+	if (get_option("EWD_FEUP_Use_SMTP") == "") {update_option("EWD_FEUP_Use_SMTP", "Yes");}
+	if (get_option("EWD_FEUP_Port") == "") {update_option("EWD_FEUP_Port", "25");}
 	add_option("EWD_FEUP_Custom_CSS", "");
 }
 ?>

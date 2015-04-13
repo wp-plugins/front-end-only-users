@@ -62,7 +62,7 @@ function Confirm_Login() {
 			if ($Email_Confirmation != "Yes" or $User->User_Email_Confirmed == "Yes") {
 			  	CreateLoginCookie($_POST['Username'], $_POST['User_Password']);
 				$Date = date("Y-m-d H:i:s");   
-				$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Last_Login='" . $Date . "' WHERE Username ='%s'", $_POST['Username']));
+				$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Last_Login='" . $Date . "', User_Total_Logins=User_Total_Logins+1 WHERE Username ='%s'", $_POST['Username']));
 				$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Sessioncheck='%s' WHERE Username ='%s'", sha1(md5($_SERVER['REMOTE_ADDR'].$Salt).$_SERVER['HTTP_USER_AGENT']), $_POST['Username']));
 				$feup_success = true;
 				return __("Login successful", 'EWD_FEUP');
@@ -132,8 +132,8 @@ function Forgot_Password() {
 		
 		$message = __("Greetings from ", 'EWD_FEUP').get_bloginfo('name')."\n\n";
 		$message .= __("Somebody requested a password reset for you. If this wasn't you, you can ignore this mail.", 'EWD_FEUP')."\n\n";
-		$message .= __("If you want to reset the password, please visit ", 'EWD_FEUP')."<a href=\"".$_POST['ewd-feup-reset-email-url']."?add=". $User_Email."&rc=".$resetcode."\">".$_POST['ewd-feup-reset-email-url']."?add=". $User_Email."&rc=".$resetcode."</a>\n";
-		$message .= __("If the link above doesn't work, go to ", 'EWD_FEUP').$_POST['ewd-feup-reset-email-url'].__(" and enter your email address and the following code:", 'EWD_FEUP')."\n";
+		$message .= __("If you want to reset the password, please visit ", 'EWD_FEUP').site_url()."/".$_POST['ewd-feup-reset-email-url']."&add=". $User_Email."&rc=".$resetcode."\n";
+		$message .= __("If the link above doesn't work, go to ", 'EWD_FEUP').site_url()."/".$_POST['ewd-feup-reset-email-url'].__(" and enter your email address and the following code:", 'EWD_FEUP')."\n";
 		$message .= $resetcode;
 		//$feup_success = true;
 		//return($User_Email."\n". $subject."\n". $message."\n". $headers);
@@ -168,7 +168,6 @@ function Confirm_Forgot_Password() {
 	$Given_Password = $_POST['User_Password'];
 
 	if(!empty($Given_Reset_Code)) {
-
 		if (strcmp($Given_Password, $_POST['Confirm_User_Password']) === 0) {
 			if(!empty($Given_Password)) {
 
@@ -244,11 +243,11 @@ function FEUPRedirect($redirect_page) {
 function ConfirmUserEmail() {
 	global $wpdb, $ewd_feup_user_table_name;
 
-	$User_ID = $_GET['UserID'];
+	$User_ID = $_GET['User_ID'];
 	$Email_Address = $_GET['ConfirmEmail'];
-	$Confirmation_Code = $_GET['ConfirmationCode'];
+	$Confirmation_Code = $_GET['Confirmation_Code'];
 
-	$Retrieved_User_ID = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE User_ID=%d AND User_Confirmation_Code=%s", $User_ID, $ConfirmationCode));
+	$Retrieved_User_ID = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE User_ID=%d AND User_Confirmation_Code=%s", $User_ID, $Confirmation_Code));
 	if (isset($Retrieved_User_ID->User_ID)) {
 		$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Email_Confirmed='Yes' WHERE User_ID=%d", $Retrieved_User_ID->User_ID));
 		$ConfirmationSuccess = "Yes";

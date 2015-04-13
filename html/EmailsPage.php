@@ -1,14 +1,16 @@
 <?php 
-		$Admin_Email = get_option("EWD_FEUP_Admin_Email");
-		$Email_Subject = get_option("EWD_FEUP_Email_Subject");
-		$Encrypted_Admin_Password = get_option("EWD_FEUP_Admin_Password");
-		$SMTP_Mail_Server = get_option("EWD_FEUP_SMTP_Mail_Server");
-		$SMTP_Username = get_option("EWD_FEUP_SMTP_Username");
-		$Message_Body = get_option("EWD_FEUP_Message_Body");
-		$Email_Field = get_option("EWD_FEUP_Email_Field");
-		
-		$key = 'EWD_FEUP';
-		$Admin_Password = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($Encrypted_Admin_Password), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
+	$Admin_Email = get_option("EWD_FEUP_Admin_Email");
+	$Email_Subject = get_option("EWD_FEUP_Email_Subject");
+	$Encrypted_Admin_Password = get_option("EWD_FEUP_Admin_Password");
+	$Port = get_option("EWD_FEUP_Port");
+	$Use_SMTP = get_option("EWD_FEUP_Use_SMTP");
+	$SMTP_Mail_Server = get_option("EWD_FEUP_SMTP_Mail_Server");
+	$SMTP_Username = get_option("EWD_FEUP_SMTP_Username");
+	$Message_Body = get_option("EWD_FEUP_Message_Body");
+	$Email_Field = get_option("EWD_FEUP_Email_Field");
+	
+	$key = 'EWD_FEUP';
+	$Admin_Password = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($Encrypted_Admin_Password), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
 ?>
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Email Settings</h2>
@@ -50,13 +52,34 @@
 	</fieldset>
 </td>
 </tr>
+</table>
 <h3>SMTP Mail Settings</h3>
+<table class="form-table">
+<tr>
+<th scope="row">Use SMTP</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Use SMTP</span></legend>
+	<label title='Yes'><input type='radio' name='use_smtp' value='Yes' <?php if($Use_SMTP == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label>
+	<label title='No'><input type='radio' name='use_smtp' value='No' <?php if($Use_SMTP == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+	<p>Should SMTP be used to send order e-mails?</p>
+	</fieldset>
+</td>
+</tr>
 <tr>
 <th scope="row">SMTP Mail Server Address</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>SMTP Mail Server Address</span></legend>
 	<label title='Mail Server'><input type='text' name='smtp_mail_server' value='<?php echo $SMTP_Mail_Server; ?>' /> </label><br />
 	<p>The server that should be connected to for SMTP e-mail, if you'd like to use SMTP to send your e-mails.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">SMTP Port</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>SMTP Port</span></legend>
+	<label title='Port'><input type='text' name='port' value='<?php echo $Port; ?>' /> </label><br />
+	<p>The port that should be used to send e-mail.</p>
 	</fieldset>
 </td>
 </tr>

@@ -3,11 +3,11 @@ function Insert_Confirm_Forgot_Password($atts) {
 	global $wpdb, $user_message, $feup_success;
 	global $ewd_feup_user_table_name;
 		
-	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
-		
+	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");	
 
-	/*$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
-	$Fields = $wpdb->get_results($Sql);*/
+	$CheckCookie = CheckLoginCookie();
+	$Salt = get_option("EWD_FEUP_Hash_Salt");
+	$Time = time();
 	$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username='%s'", $CheckCookie['Username']));
 		
 	$ReturnString = "";

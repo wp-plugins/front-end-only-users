@@ -11,7 +11,7 @@ function Insert_Register_Form($atts) {
 	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
 	$Time = time();
 		
-	$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
+	$Sql = "SELECT * FROM $ewd_feup_fields_table_name ORDER BY Field_Order";
 	$Fields = $wpdb->get_results($Sql);
 		
 	$ReturnString = "";

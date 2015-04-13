@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 1.26
+Version: 2.0.0
 */
 
 global $EWD_FEUP_db_version;
@@ -16,17 +16,17 @@ global $wpdb;
 global $feup_message;
 global $user_message;
 global $feup_success;
-global $Full_Version;
+global $EWD_FEUP_Full_Version;
 $ewd_feup_user_table_name = $wpdb->prefix . "EWD_FEUP_Users";
 $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";
 $ewd_feup_fields_table_name = $wpdb->prefix . "EWD_FEUP_Fields";
 $ewd_feup_levels_table_name = $wpdb->prefix . "EWD_FEUP_Levels";
-$EWD_FEUP_db_version = "1.26";
+$EWD_FEUP_db_version = "2.0.0";
 
 define( 'EWD_FEUP_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_FEUP_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
- /* error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+/* error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 //define('WP_DEBUG', true);
 $wpdb->show_errors(); */
 
@@ -59,7 +59,24 @@ if (isset($_POST['ewd-feup-action'])) {
 
 /* Admin Page setup */
 function EWD_FEUP_Plugin_Menu() {
-	add_menu_page('Front End User Plugin', 'Front-End Users', 'administrator', 'EWD-FEUP-options', 'EWD_FEUP_Output_Options',null , '50.6');
+	global $wpdb, $ewd_feup_user_table_name;
+	
+	$Access_Role = get_option("EWD_FEUP_Access_Role");
+	if ($Access_Role == "") {$Access_Role = "administrator";}
+
+	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+	if ($Admin_Approval == "Yes") {
+		$TotalUsers = $wpdb->get_results("SELECT User_ID FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");
+		$Title = "F-E Users" . " <span class='update-plugins count-2' title='Unapproved Users'><span class='update-count'>" . $wpdb->num_rows . "</span></span>";
+	}
+	else {$Title = "F-E Users";}
+
+	add_menu_page('Front End User Plugin', $Title, $Access_Role, 'EWD-FEUP-options', 'EWD_FEUP_Output_Options',null , '50.6');
+	add_submenu_page('EWD-FEUP-options', 'FEUP Users', 'Users', $Access_Role, 'EWD-FEUP-options&DisplayPage=Users', 'EWD_FEUP_Output_Options');
+	add_submenu_page('EWD-FEUP-options', 'FEUP Fields', 'Fields', $Access_Role, 'EWD-FEUP-options&DisplayPage=Field', 'EWD_FEUP_Output_Options');
+	add_submenu_page('EWD-FEUP-options', 'FEUP Levels', 'Levels', $Access_Role, 'EWD-FEUP-options&DisplayPage=Levels', 'EWD_FEUP_Output_Options');
+	add_submenu_page('EWD-FEUP-options', 'FEUP Options', 'Options', $Access_Role, 'EWD-FEUP-options&DisplayPage=Options', 'EWD_FEUP_Output_Options');
+	add_submenu_page('EWD-FEUP-options', 'FEUP Emails', 'Emails', $Access_Role, 'EWD-FEUP-options&DisplayPage=Emails', 'EWD_FEUP_Output_Options');
 }
 
 /* Add localization support */
@@ -119,12 +136,12 @@ function EWD_FEUP_Admin_Options() {
 }
 
 add_action('activated_plugin','save_feup_error');
-function save_feup_error(){
-	update_option('plugin_error',  ob_get_contents());
-	file_put_contents("Error.txt", ob_get_contents());
+function save_feup_error(){ 
+    update_option('plugin_error',  ob_get_contents()); 
+    //file_put_contents(plugin_dir_path( __FILE__ )."Error.txt", ob_get_contents()); 
 }
 
-$Full_Version = get_option("EWD_FEUP_Full_Version");
+$EWD_FEUP_Full_Version = get_option("EWD_FEUP_Full_Version");
 
 /*if (isset($_POST['Upgrade_To_Full'])) {
 	  add_action('admin_init', 'Upgrade_To_Full');

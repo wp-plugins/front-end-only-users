@@ -28,7 +28,7 @@
 		if ($_POST['UserSearchOperator'] == "LIKE") {$Sql .= " LIKE '%". $_POST['UserSearchValue'] . "%' ";}
 		else {$Sql .= "='" . $_POST['UserSearchValue'] . "' ";}
 	}
-	if (isset($_GET['OrderBy'])) {$Sql .= "ORDER BY " . $_GET['OrderBy'] . " " . $_GET['Order'] . " ";}
+	if (isset($_GET['OrderBy']) and $_GET['DisplayPage'] == "Users") {$Sql .= "ORDER BY " . $_GET['OrderBy'] . " " . $_GET['Order'] . " ";}
 	else {$Sql .= "ORDER BY User_Date_Created ";}
 	$Sql .= "LIMIT " . ($Page - 1)*20 . ",20";
 	$myrows = $wpdb->get_results($Sql);
@@ -77,7 +77,7 @@
 		<a class='feup-confirm-all-users button-secondary action' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteAllUsers&DisplayPage=Users'><?php _e("Delete All Users", 'EWD_FEUP'); ?></a>
 	</div>
 	<div class='tablenav-pages <?php if ($Number_of_Pages == 1) {echo "one-page";} ?>'>
-		<span class="displaying-num"><?php echo $UserCount; ?> <?php _e("items", 'EWD_FEUP') ?></span>
+		<span class="displaying-num"><?php echo $UserCount; ?> <?php _e("users", 'EWD_FEUP') ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "out of 100";}?></span>
 		<span class='pagination-links'>
 			<a class='first-page <?php if ($Page == 1) {echo "disabled";} ?>' title='Go to the first page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=1'>&laquo;</a>
 			<a class='prev-page <?php if ($Page <= 1) {echo "disabled";} ?>' title='Go to the previous page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=<?php echo $Page-1;?>'>&lsaquo;</a>
@@ -88,11 +88,14 @@
 	</div>
 </div>
 
-<table class="wp-list-table widefat fixed tags sorttable" cellspacing="0">
+<table class="wp-list-table widefat tags sorttable fields-list ui-sortable" cellspacing="0">
 	<thead>
 		<tr>
 			<th scope='col' id='cb' class='manage-column column-cb check-column'  style="">
 				<input type="checkbox" />
+			</th>
+			<th scope='col' class='manage-column column-cb check-column'  style="">
+				<span>Username</span>
 			</th>
 			<?php if ($Admin_Approval == "Yes") { ?>
 				<?php if ($_GET['OrderBy'] == "User_Admin_Approved" and $_GET['Order'] == "ASC") {$Order = "DESC";}
@@ -135,6 +138,9 @@
 		<tr>
 			<th scope='col' id='cb' class='manage-column column-cb check-column'  style="">
 				<input type="checkbox" />
+			</th>
+			<th scope='col' class='manage-column column-cb check-column'  style="">
+				<span>Username</span>
 			</th>
 			<?php if ($Admin_Approval == "Yes") { ?>
 				<?php if ($_GET['OrderBy'] == "User_Admin_Approved" and $_GET['Order'] == "ASC") {$Order = "DESC";}
@@ -183,6 +189,8 @@
 				echo "<th scope='row' class='check-column'>";
 				echo "<input type='checkbox' name='Users_Bulk[]' value='" . $User->User_ID ."' />";
 				echo "</th>";
+				$Username = $wpdb->get_var("SELECT Username FROM $ewd_feup_user_table_name WHERE User_ID='" . $User->User_ID . "'");
+				echo "<td class='username column-name'>" . $Username . "</td>";
 				if ($Admin_Approval == "Yes") {
 					echo "<td class='name column-name'>";
 					echo $User->User_Admin_Approved;
@@ -318,12 +326,22 @@ $Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name ORDER BY
 <br class="clear" />
 
 <h3><?php _e("Export Users to Spreadsheet", 'EWD_FEUP') ?></h3>
-<div class="wrap">
 
+<?php if ($EWD_FEUP_Full_Version == "Yes") { ?>
+<div class="wrap">
 <form method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_ExportToExcel">
 <p><?php _e("Downloads all users currently in the database to Excel", 'EWD_FEUP') ?></p>
 <p class="submit"><input type="submit" name="Export_Submit" id="submit" class="button button-primary" value="Export to Excel"  /></p>
 </form>
 </div>
+<?php } else { ?>
+<div class="Info-Div">
+	<h2><?php _e("Full Version Required!", 'EWD_FEUP') ?></h2>
+	<div class="upcp-full-version-explanation">
+		<?php _e("The full version of Front-End Only Users is required to use tags.", "EWD_FEUP");?><a href="http://www.etoilewebdesign.com/front-end-users-plugin/"><?php _e(" Please upgrade to unlock this page!", 'EWD_FEUP'); ?></a>
+	</div>
+</div>
+<?php } ?>
+
 </div>
 </div>		

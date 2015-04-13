@@ -10,8 +10,8 @@
 			else {$Page = 1;}
 			
 			$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
-				if (isset($_GET['OrderBy'])) {$Sql .= "ORDER BY " . $_GET['OrderBy'] . " " . $_GET['Order'] . " ";}
-				else {$Sql .= "ORDER BY Field_Date_Created ";}
+				if (isset($_GET['OrderBy']) and $_GET['DisplayPage'] == "Fields") {$Sql .= "ORDER BY " . $_GET['OrderBy'] . " " . $_GET['Order'] . " ";}
+				else {$Sql .= "ORDER BY Field_Order ";}
 				$Sql .= "LIMIT " . ($Page - 1)*20 . ",20";
 				$myrows = $wpdb->get_results($Sql);
 				$TotalFields = $wpdb->get_results("SELECT Field_ID FROM $ewd_feup_fields_table_name");
@@ -41,7 +41,7 @@
 		</div>
 </div>
 
-<table class="wp-list-table widefat fixed tags sorttable" cellspacing="0">
+<table class="wp-list-table widefat tags sorttable fields-list ui-sortable" cellspacing="0">
 		<thead>
 				<tr>
 						<th scope='col' id='cb' class='manage-column column-cb check-column'  style="">
@@ -115,7 +115,7 @@
 		 <?php
 				if ($myrows) { 
 	  			  foreach ($myrows as $Field) {
-								echo "<tr id='Field" . $Field->Field_ID ."'>";
+								echo "<tr id='list-item-" . $Field->Field_ID . "' class='list-item'>";
 								echo "<th scope='row' class='check-column'>";
 								echo "<input type='checkbox' name='Fields_Bulk[]' value='" . $Field->Field_ID ."' />";
 								echo "</th>";

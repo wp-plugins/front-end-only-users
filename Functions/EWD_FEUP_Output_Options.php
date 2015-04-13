@@ -2,7 +2,7 @@
 /* Creates the admin page, and fills it in based on whether the user is looking at
 *  the overview page or an individual item is being edited */
 function EWD_FEUP_Output_Options() {
-		global $wpdb, $error, $Full_Version, $feup_message;;
+		global $wpdb, $error, $EWD_FEUP_Full_Version, $feup_message;;
 		global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name;
 		
 		if (isset($_GET['DisplayPage'])) {
@@ -14,6 +14,10 @@ function EWD_FEUP_Output_Options() {
 
 		if (!isset($_GET['Action'])) {
 			$_GET['Action'] = null;
+		}
+
+		if (!isset($_GET['OrderBy'])) {
+			$_GET['OrderBy'] = null;
 		}
 		
 		include( plugin_dir_path( __FILE__ ) . '../html/AdminHeader.php');

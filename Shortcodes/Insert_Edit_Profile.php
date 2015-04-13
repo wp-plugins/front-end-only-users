@@ -7,10 +7,12 @@ function Insert_Edit_Profile($atts) {
 	global $ewd_feup_fields_table_name, $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name;
 		
 	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
+	$Salt = get_option("EWD_FEUP_Hash_Salt");
+	$Time = time();
 	
 	$CheckCookie = CheckLoginCookie();
 	
-	$Sql = "SELECT * FROM $ewd_feup_fields_table_name WHERE Field_Show_In_Front_End='Yes'";
+	$Sql = "SELECT * FROM $ewd_feup_fields_table_name WHERE Field_Show_In_Front_End='Yes' ORDER BY Field_Order";
 	$Fields = $wpdb->get_results($Sql);
 	$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username='%s'", $CheckCookie['Username']));
 	$UserData = $wpdb->get_results($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE User_ID='%d'", $User->User_ID));
@@ -51,7 +53,8 @@ function Insert_Edit_Profile($atts) {
 	
 	foreach ($Fields as $Field) {
 		if (!in_array($Field->Field_Name, $Omitted_Fields)) {
-			if ($Field->Field_Required == "Yes") {$Req_Text = "required";}
+			if ($Field->Field_Required == "Yes") {$Req_Text = "required";} 
+			else {$Req_Text="";};
 			$Value = "";
 			foreach ($UserData as $UserField) {
 				if ($Field->Field_Name == $UserField->Field_Name) {$Value = $UserField->Field_Value;}

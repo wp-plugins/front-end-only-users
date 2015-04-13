@@ -6,6 +6,7 @@ function Insert_Logout($atts) {
 		$Salt = get_option("EWD_FEUP_Hash_Salt");
 		$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 		$CookieName = urlencode("EWD_FEUP_Login" . "%" . sha1(md5(get_site_url().$Salt))); 
+		$ReturnString="";
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(

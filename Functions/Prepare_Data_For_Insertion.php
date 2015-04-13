@@ -61,6 +61,7 @@ function Add_Edit_User() {
 	}
 
 	if ($_POST['ewd-feup-action'] != "edit-account") {
+		if (!isset($Additional_Fields_Array)) {$Additional_Fields_Array=array();}
 		foreach ($Fields as $Field) {
 			if (!in_array($Field->Field_Name, $Omitted_Fields)) {
 				$Additional_Fields_Array[$Field->Field_Name]['Field_ID'] = $Field->Field_ID;
@@ -81,19 +82,22 @@ function Add_Edit_User() {
 	if (!isset($error)) {
 		/* Pass the data to the appropriate function in Update_Admin_Databases.php to create the user */
 		if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
-			if ($User->User_ID != "") {$user_update = __("There is already an account with that Username. Please select a different one.", "EWD_FEUP"); return $user_update;}
+			if (is_object($User)) {$user_update = __("There is already an account with that Username. Please select a different one.", "EWD_FEUP"); return $user_update;}
 			if (!isset($User_Fields['User_Admin_Approved'])) {$User_Fields['User_Admin_Approved'] = "No";}
 			if (!isset($User_Fields['User_Email_Confirmed'])) {$User_Fields['User_Email_Confirmed'] = "No";}
 			$User_Fields['User_Date_Created'] = $date;
 			$User_Fields['User_Last_Login'] = $date;
 			$user_update = Add_EWD_FEUP_User($User_Fields);
 			$User_ID = $wpdb->insert_id;
+			if (!isset($Additional_Fields_Array)) {
+				$Additional_Fields_Array=array();
+			}
 			foreach ($Additional_Fields_Array as $Field) {
 				$user_update = Add_EWD_FEUP_User_Field($Field['Field_ID'], $User_ID, $Field['Field_Name'], $Field['Field_Value'], $date);
 			}
 			if ($_POST['ewd-feup-action'] == "register") {
 				$user_update = __("Your account has been succesfully created.", "EWD_FEUP");
-				if ($Sign_Up_Email == "Yes") {EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array);}
+				if ($Sign_Up_Email == "Yes") {EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID);}
 				if ($Email_Confirmation != "Yes" and $Admin_Approval != "Yes") {
 					CreateLoginCookie($_POST['Username'], $_POST['User_Password']);
 					$feup_success = true;
@@ -103,6 +107,7 @@ function Add_Edit_User() {
 		/* Pass the data to the appropriate function in Update_Admin_Databases.php to edit the user */
 		else {
 			if (isset($User_Fields)) {$user_update = Edit_EWD_FEUP_User($User_ID, $User_Fields);}
+			if (!isset($Additional_Fields_Array)) {$Additional_Fields_Array=array();}
 			if (is_array($Additional_Fields_Array)) {
 				foreach ($Additional_Fields_Array as $Field) {
 					$CurrentField = $wpdb->get_row($wpdb->prepare("SELECT User_Field_ID FROM $ewd_feup_user_fields_table_name WHERE Field_ID='%d' AND User_ID='%d'", $Field['Field_ID'], $User_ID));
@@ -128,6 +133,8 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID = 
 	$Admin_Email = get_option("EWD_FEUP_Admin_Email");
 	$Email_Subject = get_option("EWD_FEUP_Email_Subject");
 	$Encrypted_Admin_Password = get_option("EWD_FEUP_Admin_Password");
+	$Port = get_option("EWD_FEUP_Port");
+	$Use_SMTP = get_option("EWD_FEUP_Use_SMTP");
 	$SMTP_Mail_Server = get_option("EWD_FEUP_SMTP_Mail_Server");
 	$SMTP_Username = get_option("EWD_FEUP_SMTP_Username", "");
 	$Message_Body = get_option("EWD_FEUP_Message_Body");
@@ -140,15 +147,15 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID = 
 	$Admin_Password = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($Encrypted_Admin_Password), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
 	
 	if ($Email_Confirmation == "Yes") {
-		$ConfirmationCode = EWD_FEUP_RandomString();
+		$Confirmation_Code = EWD_FEUP_RandomString();
 		$PageLink = get_permalink($_POST['ewd-feup-post-id']);
 		if (strpos($PageLink, "?") !== false) {
-			$ConfirmationLink = $PageLink . "&User_ID=" . $User_ID . "&ConfirmationCode=" . $ConfirmationCode;
+			$ConfirmationLink = $PageLink . "&ConfirmEmail=true&User_ID=" . $User_ID . "&ConfirmationCode=" . $ConfirmationCode;
 		}
 		else {
-			$ConfirmationLink = $PageLink . "?User_ID=" . $User_ID . "&ConfirmationCode=" . $ConfirmationCode;
+			$ConfirmationLink = $PageLink . "?ConfirmEmail=true&User_ID=" . $User_ID . "&ConfirmationCode=" . $ConfirmationCode;
 		}
-		$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Confirmation_Code=%s", $ConfirmationCode));
+		$wpdb->query($wpdb->prepare("UPDATE $ewd_feup_user_table_name SET User_Confirmation_Code=%s WHERE User_ID=%d", $ConfirmationCode, $User_ID));
 	}
 
 	$Message_Body = str_replace("[username]", $User_Fields['Username'], $Message_Body);
@@ -168,11 +175,16 @@ function EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID = 
 		$mail = new PHPMailer(true);
 		try {
   			$mail->CharSet = 'UTF-8';
-			$mail->IsSMTP();
+			if ($Use_SMTP != "No") {
+					$mail->IsSMTP();
+					$mail->SMTPAuth = true;
+					$mail->Username = $Username;
+  					$mail->Password = $Admin_Password; 
+				}
   			$mail->Host = $SMTP_Mail_Server;
-  			$mail->SMTPAuth = true;
   			$mail->Username = $SMTP_Username == "" ? $Admin_Email : $SMTP_Username;
   			$mail->Password = $Admin_Password;
+  			$mail->Port = $Port;
   			$mail->WordWrap = 0;
   			$mail->AddCustomHeader('X-Mailer: EWD_FEUP v1.0');
   			$mail->SetFrom($Admin_Email);

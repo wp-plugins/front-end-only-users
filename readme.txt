@@ -10,7 +10,7 @@ License URI:http://www.gnu.org/licenses/gpl-3.0.html
 A customizable plugin lets users sign up to the front end only of your site with shortcodes for registration, login, profile editing forms and more.
 
 == Description ==
-This  plugin allows visitors to sign up as users on the front-end on any page of your website. It is completely customizable using CSS and is easily personalized with the use of shortcodes. These shortcodes can be used to insert registration, login, or profile editing forms on any page of your website and to restrict content. Users are created in separate tables so that they have no access to the back-end of your site. Create different fields for members to fill out and customize content based on their profiles. Customize forms with CSS to suit your needs using the Admin panel.
+This  plugin allows visitors to sign up as users on the front-end on any page of your website, turning your site into a membership site. It is completely customizable using CSS and is easily personalized with the use of shortcodes. These shortcodes can be used to insert registration, login, or profile editing forms on any page of your website and to restrict content. Users are created in separate tables so that they have no access to the back-end of your site. Create different fields for members to fill out and customize content based on their profiles. Customize forms with CSS to suit your needs using the Admin panel.
  
 Ideal for paid content, membership, dating sites and more!
 
@@ -165,6 +165,12 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.0.0 =
+- Too many changes to list, be careful when upgrading on a live site as there will likely be some un-caught bugs
+- Added a "Statistics" tab, to track user statistics
+- Added a premium version, which earlier users have complete access to
+- Improved e-mail options and settings
+
 = 1.26 =
 - Fixed a display error for the options added in version 1.25
 

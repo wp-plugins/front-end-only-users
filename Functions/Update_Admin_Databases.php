@@ -1,7 +1,7 @@
 <?php
-/* The file contains all of the functions which make changes to the UPCP tables */
+/* The file contains all of the functions which make changes to the FEUP tables */
 
-/* Adds a single new category to the UPCP database */
+/* Adds a single new user to the FEUP database */
 function Add_EWD_FEUP_User($User_Data_Array) {
 	global $wpdb;
 	global $ewd_feup_user_table_name;
@@ -11,7 +11,7 @@ function Add_EWD_FEUP_User($User_Data_Array) {
 	return $update;
 }
 
-/* Edits a single category with a given ID in the UPCP database */
+/* Edits a single user with a given ID in the FEUP database */
 function Edit_EWD_FEUP_User($User_ID, $User_Data_Array) {
 	global $wpdb;
 	global $ewd_feup_user_table_name;
@@ -25,18 +25,18 @@ function Edit_EWD_FEUP_User($User_ID, $User_Data_Array) {
 	return $update;
 }
 
-/* Deletes a single category with a given ID in the UPCP database */
+/* Deletes a single user with a given ID in the FEUP database */
 function Delete_EWD_FEUP_User($User_ID) {
 	global $wpdb;
 	global $ewd_feup_user_table_name;
-	global $ewd_feup_fields_table_name;
+	global $ewd_feup_user_fields_table_name;
 	
 	$wpdb->delete(
 		$ewd_feup_user_table_name,
 		array('User_ID' => $User_ID)
 	);
 	$wpdb->delete(
-		$ewd_feup_fields_table_name,
+		$ewd_feup_user_fields_table_name,
 		array('User_ID' => $User_ID)
 	);
 
@@ -142,32 +142,6 @@ function Delete_EWD_FEUP_User_Field($User_Field_ID) {
 		return $update;
 }
 
-/*function GenerateUsersTableSql() {
-		global $wpdb;
-		global $ewd_feup_user_fields_table_name;
-		
-		$Sql = "CREATE TABLE $ewd_feup_user_table_name (
-  	User_ID mediumint(9) NOT NULL AUTO_INCREMENT,
-  	Username text DEFAULT '' NOT NULL,
-		User_Password text  DEFAULT '' NOT NULL,
-		User_Date_Created datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,";
-  	
-		$Fields_Sql = "SELECT * FROM $ewd_feup_user_fields_table_name ";
-		$Fields = $wpdb->get_results($Fields_Sql);
-
-		foreach ($Fields as $Field) {
-				if ($Field['Field_Type'] == "text" or $Field['Field_Type'] == "select" or $Field['Field_Type'] == "radio" or $Field['Field_Type'] == "checkbox" or $Field['Field_Type'] == "textarea" or $Field['Field_Type'] == "countries") {$Type = "text";}
-				elseif ($Field['Field_Type'] == "mediumint") {$Type = "mediumint(9)";}
-				elseif ($Field['Field_Type'] == "datetime") {$Type = "datetime";}
-				elseif ($Field['Field_Type'] == "text") {$Type = "date";}
-				$Sql .= $Field['Field_Name'] . " " . $Type . ", ";
-		}
-		
-		$Sql .= " UNIQUE KEY id (User_ID))";
-		
-		return $Sql;
-}*/
-
 function Add_EWD_FEUP_Level($Level_Name, $Level_Privilege, $Level_Date_Created) {
 		global $wpdb;
 		global $ewd_feup_levels_table_name;
@@ -228,35 +202,41 @@ function Update_EWD_FEUP_Options() {
 }
 
 function Update_EWD_FEUP_Email_Settings() {
-		$Admin_Email = $_POST['admin_email'];
-		$Message_Body = $_POST['message_body'];
-		$Email_Subject = $_POST['email_subject'];
-		$SMTP_Mail_Server = $_POST['smtp_mail_server'];
-		$SMTP_Username = $_POST['smtp_username'];
-		$Admin_Password = $_POST['admin_password'];
-		$Email_Field = $_POST['email_field'];
-		
-		$Admin_Email = stripslashes_deep($Admin_Email);
-		$Message_Body = stripslashes_deep($Message_Body);
-		$Email_Subject = stripslashes_deep($Email_Subject);
-		$SMTP_Mail_Server = stripslashes_deep($SMTP_Mail_Server);
-		$SMTP_Username = stripslashes_deep($SMTP_Username);
-		$Admin_Password = stripslashes_deep($Admin_Password);
-		$Email_Field = stripslashes_deep($Email_Field);
-		
-		$key = 'EWD_FEUP';
-		$Encrypted_Admin_Password = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $Admin_Password, MCRYPT_MODE_CBC, md5(md5($key))));
-		
-		update_option('EWD_FEUP_Admin_Email', $Admin_Email);
-		update_option('EWD_FEUP_Message_Body', $Message_Body);
-		update_option('EWD_FEUP_Email_Subject', $Email_Subject);
-		update_option('EWD_FEUP_SMTP_Mail_Server', $SMTP_Mail_Server);
-		update_option('EWD_FEUP_SMTP_Username', $SMTP_Username);
-		update_option('EWD_FEUP_Admin_Password', $Encrypted_Admin_Password);
-		update_option('EWD_FEUP_Email_Field', $Email_Field);
-		
-		$update = __("Email options have been succesfully updated.", 'EWD_FEUP');
-		$user_update = array("Message_Type" => "Update", "Message" => $update);
-		return $user_update;
+	$Admin_Email = $_POST['admin_email'];
+	$Message_Body = $_POST['message_body'];
+	$Email_Subject = $_POST['email_subject'];
+	$SMTP_Mail_Server = $_POST['smtp_mail_server'];
+	$Use_SMTP = $_POST['use_smtp'];
+	$Port = $_POST['port'];
+	$SMTP_Username = $_POST['smtp_username'];
+	$Admin_Password = $_POST['admin_password'];
+	$Email_Field = $_POST['email_field'];
+	
+	$Admin_Email = stripslashes_deep($Admin_Email);
+	$Message_Body = stripslashes_deep($Message_Body);
+	$Email_Subject = stripslashes_deep($Email_Subject);
+	$SMTP_Mail_Server = stripslashes_deep($SMTP_Mail_Server);
+	$Use_SMTP = stripslashes_deep($Use_SMTP);
+	$Port = stripslashes_deep($Port);
+	$SMTP_Username = stripslashes_deep($SMTP_Username);
+	$Admin_Password = stripslashes_deep($Admin_Password);
+	$Email_Field = stripslashes_deep($Email_Field);
+	
+	$key = 'EWD_FEUP';
+	$Encrypted_Admin_Password = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $Admin_Password, MCRYPT_MODE_CBC, md5(md5($key))));
+	
+	update_option('EWD_FEUP_Admin_Email', $Admin_Email);
+	update_option('EWD_FEUP_Message_Body', $Message_Body);
+	update_option('EWD_FEUP_Email_Subject', $Email_Subject);
+	update_option('EWD_FEUP_SMTP_Mail_Server', $SMTP_Mail_Server);
+	update_option('EWD_FEUP_Use_SMTP', $Use_SMTP);
+	update_option('EWD_FEUP_Port', $Port);
+	update_option('EWD_FEUP_SMTP_Username', $SMTP_Username);
+	update_option('EWD_FEUP_Admin_Password', $Encrypted_Admin_Password);
+	update_option('EWD_FEUP_Email_Field', $Email_Field);
+	
+	$update = __("Email options have been succesfully updated.", 'EWD_FEUP');
+	$user_update = array("Message_Type" => "Update", "Message" => $update);
+	return $user_update;
 }
 ?>

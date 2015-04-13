@@ -3,39 +3,79 @@
 ?>
 
 <!-- Upgrade to pro link box -->
-<?php if ($Full_Version != "Yes") { ?>
-<!--<div id="side-sortables" class="metabox-holder ">
-<div id="upcp_pro" class="postbox " >
-		<div class="handlediv" title="Click to toggle"></div><h3 class='hndle'><span><?php _e("Full Version", 'EWD_FEUP') ?></span></h3>
-		<div class="inside">
-				<ul><li><a href="http://www.etoilewebdesign.com/ultimate-product-catalogue-plugin/"><?php _e("Upgrade to the full version ", "EWD_FEUP"); ?></a><?php _e("to take advantage of all the available features of the Ultimate Product Catalogue for Wordpress!", 'EWD_FEUP'); ?></li>
-				<div class="full-version-form-div">
-						<form action="admin.php?page=EWD-FEUP-options" method="post">
-								<div class="form-field form-required">
-										<label for="Catalogue_Name"><?php _e("Product Key", 'EWD_FEUP') ?></label>
-										<input name="Key" type="text" value="" size="40" />
-								</div>							
-								<input type="submit" name="Upgrade_To_Full" value="<?php _e('Upgrade', 'EWD_FEUP') ?>">
-						</form>
-				</div>
+<?php if ($EWD_FEUP_Full_Version != "Yes") { ?>
+<div id="side-sortables" class="metabox-holder ">
+<div id="feup_pro" class="postbox " >
+	<div class="handlediv" title="Click to toggle"></div><h3 class='hndle'><span><?php _e("Full Version", 'EWD_FEUP') ?></span></h3>
+	<div class="inside">
+		<ul><li><a href="http://www.etoilewebdesign.com/front-end-users-plugin/"><?php _e("Upgrade to the full version ", "EWD_FEUP"); ?></a><?php _e("to take advantage of all the available features of the Front-End Users for Wordpress!", 'EWD_FEUP'); ?></li>
+		<div class="full-version-form-div">
+			<form action="admin.php?page=EWD-FEUP-options" method="post">
+				<div class="form-field form-required">
+					<label for="Catalogue_Name"><?php _e("Product Key", 'EWD_FEUP') ?></label>
+					<input name="Key" type="text" value="" size="40" />
+				</div>							
+				<input type="submit" name="Upgrade_To_Full" value="<?php _e('Upgrade', 'EWD_FEUP') ?>">
+			</form>
 		</div>
+	</div>
 </div>
-</div>-->
+</div>
 <?php } ?>
 
+<?php/* echo get_option('plugin_error');*/?>
+<?php if (get_option("EWD_FEUP_Update_Flag") == "Yes" or get_option("EWD_FEUP_Install_Flag") == "Yes") {?>
+		<div id="side-sortables" class="metabox-holder ">
+			<div id="feup-upgrade" class="postbox " >
+				<div class="handlediv" title="Click to toggle"></div>
+				<h3 class='hndle'><span><?php _e("Thank You!", 'EWD_FEUP') ?></span></h3>
+				<div class="inside">
+					<?php /* if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing the Ultimate Product Catalogue Plugin.", "EWD_FEUP"); ?><br> <a href='https://www.youtube.com/channel/UCZPuaoetCJB1vZOmpnMxJNw'><?php _e("Subscribe to our YouTube channel ", "EWD_FEUP"); ?></a> <?php _e("for tutorial videos on this and our other plugins!", "EWD_FEUP");?> </li></ul>
+					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.4.21!", "EWD_FEUP"); ?><br> <a href='https://www.youtube.com/channel/UCZPuaoetCJB1vZOmpnMxJNw'><?php _e("Subscribe to our YouTube channel ", "EWD_FEUP"); ?></a> <?php _e("for tutorial videos on this and our other plugins!", "EWD_FEUP");?> </li></ul><?php } */ ?>
+					
+					<?php  if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing Front-End Only Users.", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?> </li></ul>
+					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.0.0!", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?> </li></ul><?php }  ?>
+					
+					<?php /* if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing Front-End Only Users.", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?>  </li></ul>
+					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.0.0!", "EWD_FEUP"); ?><br> <a href='http://wordpress.org/support/view/plugin-reviews/ultimate-product-catalogue'><?php _e("Please rate our plugin", "EWD_FEUP"); ?></a> <?php _e("if you find the Ultimate Product Catalogue Plugin useful!", "EWD_FEUP");?> </li></ul><?php } */ ?>
+					
+					<?php /* if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing the Ultimate Product Catalogue Plugin.", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?>  </li></ul>
+					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 3.0.9!", "EWD_FEUP"); ?><br> <a href='http://wordpress.org/plugins/order-tracking/'><?php _e("Try out order tracking plugin ", "EWD_FEUP"); ?></a> <?php _e("if you ship orders and find the Ultimate Product Catalogue Plugin useful!", "EWD_FEUP");?> </li></ul><?php } */ ?>
+					<?php /* if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing the Ultimate Product Catalogue Plugin.", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?>  </li></ul>
+					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.3.9!", "EWD_FEUP"); ?><br> <a href='http://wordpress.org/support/topic/error-hunt'><?php _e("Please let us know about any small display/functionality errors. ", "EWD_FEUP"); ?></a> <?php _e("We've noticed a couple, and would like to eliminate as many as possible.", "EWD_FEUP");?> </li></ul><?php } */ ?>
+					
+					<?php /* if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing the Ultimate Product Catalogue Plugin.", "EWD_FEUP"); ?><br> <a href='https://www.youtube.com/channel/UCZPuaoetCJB1vZOmpnMxJNw'><?php _e("Check out our YouTube channel ", "EWD_FEUP"); ?></a> <?php _e("for tutorial videos on this and our other plugins!", "EWD_FEUP");?> </li></ul>
+					<?php } elseif ($Full_Version == "Yes") { ?><ul><li><?php _e("Thanks for upgrading to version 2.6!", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?> </li></ul>
+					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 3.0!", "EWD_FEUP"); ?><br> <?php _e("Love the plugin but don't need the premium version? Help us speed up product support and development by donating. Thanks for using the plugin!", "EWD_FEUP");?>
+										<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick">
+										<input type="hidden" name="hosted_button_id" value="AQLMJFJ62GEFJ">
+										<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+										<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+										</form>
+										</li></ul>
+					<?php } */ ?>
+				</div>
+			</div>
+		</div>
+<?php 
+update_option('EWD_FEUP_Update_Flag', "No");
+update_option('EWD_FEUP_Install_Flag', "No");  
+} ?>
+
 <div id="side-sortables" class="metabox-holder ">
-<div id="upcp_pro" class="postbox " >
-	<div class="handlediv" title="Click to toggle"></div><h3 class='hndle'><span><?php _e("Thank You!", 'EWD_FEUP') ?></span></h3>
+<div id="ewd-feup-support" class="postbox " >
+	<div class="handlediv" title="Click to toggle"></div><h3 class='hndle'><span><?php _e("Support Options:", 'EWD_FEUP') ?></span></h3>
 	<div class="inside">
 		<ul>
-			<li><?php _e("Thanks for being an early adopter! Anyone who installs before January 25th will always have access to new features, updates and full product support.", 'EWD_FEUP'); ?></li>
-			<li><a href="https://www.facebook.com/EtoileWebDesign"><?php _e("Follow us on Facebook ", "EWD_FEUP");?></a><?php _e("to stay up to date with new features and plugins.", "EWD_FEUP"); ?></li>
+			<li><a href='https://www.youtube.com/channel/UCZPuaoetCJB1vZOmpnMxJNw/feed'>Our YouTube channel with getting started and plugin feature tutorials.</a></li>
+			<li><a href='http://www.etoilewebdesign.com/front-end-users-faq/'>Plugin in-depth FAQ page.</a></li>
+			<li><a href='https://wordpress.org/support/plugin/front-end-only-users'>WordPress support forum.</a></li>
+			<li><a href='#'>PDF of the plugin documentation. (Coming soon)</a></li>
 		</ul>
 	</div>
 </div>
 </div>
-
-<?php /* echo get_option('plugin_error');*/ ?>
 
 <!-- List of the catalogues which have already been created -->
 <div id="col-right">
@@ -44,108 +84,50 @@
 <?php wp_nonce_field(); ?>
 <?php wp_referer_field(); ?>
 
-<?php 
-	if (isset($_GET['Page'])) {$Page = $_GET['Page'];}
-	else {$Page = 1;}
-	if (!isset($_GET['OrderBy'])) {$_GET['OrderBy'] = null;}
-			
-	$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
-	if (isset($_GET['OrderBy']) and $_GET['DisplayPage'] == "Dashboard") {$Sql .= "ORDER BY " . $_GET['OrderBy'] . " " . $_GET['Order'] . " ";}
-	else {$Sql .= "ORDER BY Field_Name ";}
-	$Sql .= "LIMIT " . ($Page - 1)*20 . ",20";
-	$myrows = $wpdb->get_results($Sql);
-	$TotalFields = $wpdb->get_results("SELECT Field_ID FROM $ewd_feup_fields_table_name");
-	$num_rows = $wpdb->num_rows; 
-	$Number_of_Pages = ceil($wpdb->num_rows/20);
-	$Current_Page_With_Order_By = "admin.php?page=EWD-FEUP-options&DisplayPage=Dashboard";
-	if (isset($_GET['OrderBy'])) {$Current_Page_With_Order_By .= "&OrderBy=" .$_GET['OrderBy'] . "&Order=" . $_GET['Order'];}?>
+<?php if ($EWD_FEUP_Full_Version == "Yes") { ?>
 
-<form action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_MassDeleteUserFields" method="post">    
+<?php 			
+	$Sql = "SELECT * FROM $ewd_feup_user_table_name ORDER BY User_Last_Login DESC";
+	$myrows = $wpdb->get_results($Sql);
+?>
+
 <div class="tablenav top">
 	<div class="alignleft actions">
-		<select name='action'>
-  			<option value='-1' selected='selected'><?php _e("Bulk Actions", 'EWD_FEUP') ?></option>
-			<option value='delete'><?php _e("Delete", 'EWD_FEUP') ?></option>
-		</select>
-		<input type="submit" name="" id="doaction" class="button-secondary action" value="<?php _e('Apply', 'EWD_FEUP') ?>"  />
-	</div>
-	<div class='tablenav-pages <?php if ($Number_of_Pages == 1) {echo "one-page";} ?>'>
-		<span class="displaying-num"><?php echo $wpdb->num_rows; ?> <?php _e("items", 'EWD_FEUP') ?></span>
-		<span class='pagination-links'>
-			<a class='first-page <?php if ($Page == 1) {echo "disabled";} ?>' title='Go to the first page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=1'>&laquo;</a>
-			<a class='prev-page <?php if ($Page <= 1) {echo "disabled";} ?>' title='Go to the previous page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=<?php echo $Page-1;?>'>&lsaquo;</a>
-			<span class="paging-input"><?php echo $Page; ?> <?php _e("of", 'EWD_FEUP') ?> <span class='total-pages'><?php echo $Number_of_Pages; ?></span></span>
-			<a class='next-page <?php if ($Page >= $Number_of_Pages) {echo "disabled";} ?>' title='Go to the next page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=<?php echo $Page+1;?>'>&rsaquo;</a>
-			<a class='last-page <?php if ($Page == $Number_of_Pages) {echo "disabled";} ?>' title='Go to the last page' href='<?php echo $Current_Page_With_Order_By . "&Page=" . $Number_of_Pages; ?>'>&raquo;</a>
-		</span>
+		Recent User Activity
 	</div>
 </div>
 
-<table class="wp-list-table widefat fixed tags sorttable" cellspacing="0">
+<table class="wp-list-table widefat fixed tags " cellspacing="0">
 	<thead>
 		<tr>
-			<th scope='col' id='cb' class='manage-column column-cb check-column'  style="">
-				<input type="checkbox" /></th><th scope='col' id='field-name' class='manage-column column-name sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Name" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Name&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Name&Order=ASC'>";} ?>
-					<span><?php _e("Field Name", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-username-top' class='manage-column column-username'  style="">
+				Username
 			</th>
-			<th scope='col' id='type' class='manage-column column-type sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Type" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Type&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Type&Order=ASC'>";} ?>
-					<span><?php _e("Type", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-last-login-top' class='manage-column column-last-login'  style="">
+				Last Login
 			</th>
-			<th scope='col' id='description' class='manage-column column-description sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Description" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Description&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Description&Order=ASC'>";} ?>
-					<span><?php _e("Description", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-description-top' class='manage-column column-total-logins'  style="">
+				Total Logins
 			</th>
-			<th scope='col' id='required' class='manage-column column-users sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Required" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Required&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Required&Order=ASC'>";} ?>
-					<span><?php _e("Required?", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-required-top' class='manage-column column-joined-date'  style="">
+				Joined Date
 			</th>
 		</tr>
 	</thead>
 
 	<tfoot>
 		<tr>
-			<th scope='col' id='cb' class='manage-column column-cb check-column'  style="">
-				<input type="checkbox" /></th><th scope='col' id='field-name' class='manage-column column-name sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Name" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Name&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Name&Order=ASC'>";} ?>
-					<span><?php _e("Field Name", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-username-bottom' class='manage-column column-username'  style="">
+				Username
 			</th>
-			<th scope='col' id='type' class='manage-column column-type sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Type" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Type&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Type&Order=ASC'>";} ?>
-					<span><?php _e("Type", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-last-login-bottom' class='manage-column column-last-login'  style="">
+				Last Login
 			</th>
-			<th scope='col' id='description' class='manage-column column-description sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Description" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Description&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Description&Order=ASC'>";} ?>
-					<span><?php _e("Description", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-description-bottom' class='manage-column column-total-logins'  style="">
+				Total Logins
 			</th>
-			<th scope='col' id='required' class='manage-column column-users sortable desc'  style="">
-				<?php if (isset($_GET['OrderBy']) && $_GET['OrderBy'] == "Field_Required" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Required&Order=DESC'>";}
-				else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=User_Fields&OrderBy=Field_Required&Order=ASC'>";} ?>
-					<span><?php _e("Required?", 'EWD_FEUP') ?></span>
-					<span class="sorting-indicator"></span>
-				</a>
+			<th scope='col' id='db-required-bottom' class='manage-column column-joined-date'  style="">
+				Joined Date
 			</th>
 		</tr>
 	</tfoot>
@@ -153,29 +135,17 @@
 	<tbody id="the-list" class='list:tag'>
 		<?php
 			if ($myrows) { 
-	  			foreach ($myrows as $Field) {
-					echo "<tr id='Field" . $Field->Field_ID ."'>";
-					echo "<th scope='row' class='check-column'>";
-					echo "<input type='checkbox' name='Products_Bulk[]' value='" . $Field->Field_ID ."' />";
-					echo "</th>";
+	  			foreach ($myrows as $User) {
+					echo "<tr id='User-" . $User->User_ID ."'>";
 					echo "<td class='name column-name'>";
 					echo "<strong>";
-					echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_Field_Details&Selected=Product&Field_ID=" . $Field->Field_ID ."' title='Edit " . $Field->Field_Name . "'>" . $Field->Field_Name . "</a></strong>";
+					echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."' title='Edit " . $User->Username . "</a></strong>";
 					echo "<br />";
-					echo "<div class='row-actions'>";
-					echo "<span class='delete'>";
-					echo "<a class='delete-tag' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_DeleteField&DisplayPage=User_Fields&Field_ID=" . $Field->Field_ID ."'>" . __("Delete", 'EWD_FEUP') . "</a>";
-		 			echo "</span>";
-					echo "</div>";
-					echo "<div class='hidden' id='inline_" . $Field->Field_ID ."'>";
-					echo "<div class='name'>" . $Field->Field_Name . "</div>";
-					echo "</div>";
+					echo "<div class='username'>" . $User->Username . "</div>";
 					echo "</td>";
-					echo "<td class='description column-type'>" . $Field->Field_Type . "</td>";
-					echo "<td class='description column-description'>" . substr($Field->Field_Description, 0, 60);
-					if (strlen($Field->Field_Description) > 60) {echo "...";}
-					echo "</td>";
-					echo "<td class='users column-required'>" . $Field->Field_Required . "</td>";
+					echo "<td class='description column-last-login'>" . $User->User_Last_Login . "</td>";
+					echo "<td class='description column-description'>" . $User->User_Total_Logins . "</td>";
+					echo "<td class='users column-required'>" . $User->User_Date_Created . "</td>";
 					echo "</tr>";
 				}
 			}
@@ -183,27 +153,23 @@
 	</tbody>
 </table>
 
-<div class="tablenav bottom">
-	<div class="alignleft actions">
-		<select name='action'>
-  			<option value='-1' selected='selected'><?php _e("Bulk Actions", 'EWD_FEUP') ?></option>
-			<option value='delete'><?php _e("Delete", 'EWD_FEUP') ?></option>
-		</select>
-		<input type="submit" name="" id="doaction" class="button-secondary action" value="<?php _e('Apply', 'EWD_FEUP') ?>"  />
+<?php } else { ?>
+
+<div id="side-sortables" class="metabox-holder ">
+<div id="ewd-feup-pro-features" class="postbox " >
+	<div class="handlediv" title="Click to toggle"></div><h3 class='hndle'><span><?php _e("What you get by upgrading:", 'EWD_FEUP') ?></span></h3>
+	<div class="inside">
+		<ul>
+			<li>Access to the "Levels" tab, so you can decide which users can access what content.</li>
+			<li>Access to the "Statistics" tab, so you can see recent user activity, and how users interact with your site.</li>
+			<li>Ability to import/export users, so that your user information can easily be used by other software such as MailChimp.</li>
+			<li>Access to e-mail support. </li>
+		</ul>
 	</div>
-	<div class='tablenav-pages <?php if ($Number_of_Pages == 1) {echo "one-page";} ?>'>
-		<span class="displaying-num"><?php echo $wpdb->num_rows; ?> <?php _e("items", 'EWD_FEUP') ?></span>
-		<span class='pagination-links'>
-			<a class='first-page <?php if ($Page == 1) {echo "disabled";} ?>' title='Go to the first page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=1'>&laquo;</a>
-			<a class='prev-page <?php if ($Page <= 1) {echo "disabled";} ?>' title='Go to the previous page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=<?php echo $Page-1;?>'>&lsaquo;</a>
-			<span class="paging-input"><?php echo $Page; ?> <?php _e("of", 'EWD_FEUP') ?> <span class='total-pages'><?php echo $Number_of_Pages; ?></span></span>
-			<a class='next-page <?php if ($Page >= $Number_of_Pages) {echo "disabled";} ?>' title='Go to the next page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=<?php echo $Page+1;?>'>&rsaquo;</a>
-			<a class='last-page <?php if ($Page == $Number_of_Pages) {echo "disabled";} ?>' title='Go to the last page' href='<?php echo $Current_Page_With_Order_By . "&Page=" . $Number_of_Pages; ?>'>&raquo;</a>
-		</span>
-	</div>
-	<br class="clear" />
 </div>
-</form>
+</div>
+
+<?php } ?>
 
 <br class="clear" />
 </div>
@@ -246,7 +212,7 @@
 					if ($Admin_Approval == "Yes") {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name WHERE User_Admin_Approved!='Yes'");}
 					else {$Users = $wpdb->get_results("SELECT User_ID, Username FROM $ewd_feup_user_table_name");}
 					foreach ($Users as $User) {
-						echo "<li><label class='menu-item-title'><a href='/wp-admin/admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
+						echo "<li><label class='menu-item-title'><a href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."'> " . $User->Username . "</a></label></li>";
 					}
 				?>
 			</ul>

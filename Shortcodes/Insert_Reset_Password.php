@@ -4,21 +4,11 @@ function Insert_Reset_Password_Form($atts) {
 	global $ewd_feup_user_table_name;
 		
 	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
-		
-	$CheckCookie = CheckLoginCookie();
-		
-	if ($CheckCookie['Username'] == "") {
-		$ReturnString .= __('You must be logged in to access this page.', 'EWD_FEUP');
-		if ($login_page != "") {$ReturnString .= "<br />" . __('Please', 'EWD_FEUP') . " <a href='" . $login_page . "'>" . __('login', 'EWD_FEUP') . "</a> " . __('to continue.', 'EWD_FEUP');}
-		return $ReturnString;
-	}
-		
-	/*$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
-	$Fields = $wpdb->get_results($Sql);*/
-	$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username='%s'", $CheckCookie['Username']));
-		
+
+	$Salt = get_option("EWD_FEUP_Hash_Salt");
+	$Time = time();
 	$ReturnString = "";
-		
+
 	// Get the attributes passed by the shortcode, and store them in new variables for processing
 	extract( shortcode_atts( array(
 				'redirect_page' => '#',
@@ -27,6 +17,18 @@ function Insert_Reset_Password_Form($atts) {
 			$atts
 		)
 	);
+	
+	$CheckCookie = CheckLoginCookie();
+		
+	if ($CheckCookie['Username'] == "") {
+		$ReturnString .= __('You must be logged in to access this page.', 'EWD_FEUP');
+		if ($login_page != "" ) {$ReturnString .= "<br />" . __('Please', 'EWD_FEUP') . " <a href='" . $login_page . "'>" . __('login', 'EWD_FEUP') . "</a> " . __('to continue.', 'EWD_FEUP');}
+		return $ReturnString;
+	}
+		
+	/*$Sql = "SELECT * FROM $ewd_feup_fields_table_name ";
+	$Fields = $wpdb->get_results($Sql);*/
+	$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username='%s'", $CheckCookie['Username']));
 												
 	$ReturnString .= "<style type='text/css'>";
 	$ReturnString .= $Custom_CSS;
