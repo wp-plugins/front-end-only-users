@@ -23,7 +23,7 @@
 </div>
 <?php } ?>
 
-<?php/* echo get_option('plugin_error');*/?>
+<?php /* echo get_option('plugin_error');*/ ?>
 <?php if (get_option("EWD_FEUP_Update_Flag") == "Yes" or get_option("EWD_FEUP_Install_Flag") == "Yes") {?>
 		<div id="side-sortables" class="metabox-holder ">
 			<div id="feup-upgrade" class="postbox " >
@@ -34,7 +34,7 @@
 					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.4.21!", "EWD_FEUP"); ?><br> <a href='https://www.youtube.com/channel/UCZPuaoetCJB1vZOmpnMxJNw'><?php _e("Subscribe to our YouTube channel ", "EWD_FEUP"); ?></a> <?php _e("for tutorial videos on this and our other plugins!", "EWD_FEUP");?> </li></ul><?php } */ ?>
 					
 					<?php  if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing Front-End Only Users.", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?> </li></ul>
-					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.0.0!", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?> </li></ul><?php }  ?>
+					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.0.1!", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?> </li></ul><?php }  ?>
 					
 					<?php /* if (get_option("EWD_FEUP_Install_Flag") == "Yes") { ?><ul><li><?php _e("Thanks for installing Front-End Only Users.", "EWD_FEUP"); ?><br> <a href='http://www.facebook.com/EtoileWebDesign'><?php _e("Follow us on Facebook", "EWD_FEUP"); ?></a> <?php _e("to suggest new features or hear about upcoming ones!", "EWD_FEUP");?>  </li></ul>
 					<?php } else { ?><ul><li><?php _e("Thanks for upgrading to version 2.0.0!", "EWD_FEUP"); ?><br> <a href='http://wordpress.org/support/view/plugin-reviews/ultimate-product-catalogue'><?php _e("Please rate our plugin", "EWD_FEUP"); ?></a> <?php _e("if you find the Ultimate Product Catalogue Plugin useful!", "EWD_FEUP");?> </li></ul><?php } */ ?>

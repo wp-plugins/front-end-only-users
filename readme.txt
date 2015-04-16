@@ -165,6 +165,10 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.0.1 =
+- Fixed a potential upgrade error
+- Fixed a notice on the Dashboard page
+
 = 2.0.0 =
 - Too many changes to list, be careful when upgrading on a live site as there will likely be some un-caught bugs
 - Added a "Statistics" tab, to track user statistics
