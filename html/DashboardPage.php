@@ -71,7 +71,7 @@ update_option('EWD_FEUP_Install_Flag', "No");
 			<li><a href='https://www.youtube.com/channel/UCZPuaoetCJB1vZOmpnMxJNw/feed'>Our YouTube channel with getting started and plugin feature tutorials.</a></li>
 			<li><a href='http://www.etoilewebdesign.com/front-end-users-faq/'>Plugin in-depth FAQ page.</a></li>
 			<li><a href='https://wordpress.org/support/plugin/front-end-only-users'>WordPress support forum.</a></li>
-			<li><a href='#'>PDF of the plugin documentation. (Coming soon)</a></li>
+			<li><a href='http://www.etoilewebdesign.com/wp-content/uploads/2015/04/FrontEndOnlyUserPluginDocument.docx.pdf'>PDF of the plugin documentation.</a></li>
 		</ul>
 	</div>
 </div>
