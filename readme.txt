@@ -10,7 +10,7 @@ License URI:http://www.gnu.org/licenses/gpl-3.0.html
 A customizable plugin lets users sign up to the front end only of your site with shortcodes for registration, login, profile editing forms and more.
 
 == Description ==
-This  plugin allows visitors to sign up as users on the front-end on any page of your website, turning your site into a membership site. It is completely customizable using CSS and is easily personalized with the use of shortcodes. These shortcodes can be used to insert registration, login, or profile editing forms on any page of your website and to restrict content. Users are created in separate tables so that they have no access to the back-end of your site. Create different fields for members to fill out and customize content based on their profiles. Customize forms with CSS to suit your needs using the Admin panel.
+This  plugin allows visitors to sign up as users on the front-end on any page of your website. It is completely customizable using CSS and is easily personalized with the use of shortcodes. These shortcodes can be used to insert registration, login, or profile editing forms on any page of your website and to restrict content. Users are created in separate tables so that they have no access to the back-end of your site. Create different fields for members to fill out and customize content based on their profiles. Customize forms with CSS to suit your needs using the Admin panel.
  
 Ideal for paid content, membership, dating sites and more!
 
@@ -27,6 +27,14 @@ Ideal for paid content, membership, dating sites and more!
 * UTF-8 support
 * Front end features: registration, login, edit user profile, and account management
 * Back end features: add new users, add new fields, add new levels, email settings and options
+
+= Premium Features =
+The premium version includes lots of useful features such as:
+
+* Email confirmation: Require users to confirm their e-mail address before they can log in.
+* Admin Approval of Users: Require users to be approved by an administrator in the WordPress back-end before they can log in.
+* User Levels: Ability to create different user levels and to specify a default user level for users to be set to when they register (created on the “Levels” tab)
+* Statistics: This feature allows you to gather information about users and how they are using your site.
 
 For a complete list of the plugin shortcodes please go to our FAQs page:
 <https://wordpress.org/plugins/front-end-only-users/faq/>
@@ -143,8 +151,17 @@ A great place to start learning about how to translate a plugin is at the link b
 Once translated, you'll need to put the translated mo- and po- files directly in the lang folder and make sure they are named properly for your localization.
 If you do translate the plugin, other users would love to have access to the files in your language. You can send them to us at Contact@EtoileWebDesign.com, and we’ll be sure they’re included in a future release.
 
+= What features are included in the premium version of the plugin =
+* Email confirmation: Require users to confirm their e-mail address before they can log in.
+* Admin Approval of Users: Require users to be approved by an administrator in the WordPress back-end before they can log in.
+* User Levels: Ability to create different user levels and to specify a default user level for users to be set to when they register (created on the “Levels” tab)
+* Statistics: This feature allows you to gather information about users and how they are using your site.
+
 For more questions and support you can post in the support forum:
 <https://wordpress.org/support/plugin/front-end-only-users>
+
+Take a look at the plugin documentation:
+<http://www.etoilewebdesign.com/wp-content/uploads/2015/04/FrontEndOnlyUserPluginDocument.docx.pdf>
 
 
 = Videos =
