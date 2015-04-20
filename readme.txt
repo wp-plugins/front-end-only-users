@@ -26,7 +26,7 @@ Ideal for paid content, membership, dating sites and more!
 * Personalize the experience of your site with the [user-data] shortcode
 * UTF-8 support
 * Front end features: registration, login, edit user profile, and account management
-* Back end features: add new users, add new fields, add new levels, email settings and options
+* Back end features: add new users, add new fields, email settings and options
 
 = Premium Features =
 The premium version includes lots of useful features such as:
