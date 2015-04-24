@@ -43,6 +43,7 @@ For a complete list of the plugin shortcodes please go to our FAQs page:
 
 * Russian
 * Brazilian Portugese (thanks to Humberto W.)
+* German (Thanks to Mikkael G.)
 
 Check out our Frequently Asked Questions here:
 <https://wordpress.org/plugins/front-end-only-users/faq/>
@@ -182,6 +183,9 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.0.2 =
+- Fixed a potential error on the Emails page
+
 = 2.0.1 =
 - Fixed a potential upgrade error
 - Fixed a notice on the Dashboard page
