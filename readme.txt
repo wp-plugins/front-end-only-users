@@ -183,6 +183,9 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.0.3 =
+- Fixed a small display error
+
 = 2.0.2 =
 - Fixed a potential error on the Emails page
 
