@@ -32,6 +32,7 @@ Ideal for paid content, membership, dating sites and more!
 The premium version includes lots of useful features such as:
 
 * Email confirmation: Require users to confirm their e-mail address before they can log in.
+* Ability to restrict pages: Gives you the option of restricting pages to groups of users in the sidebar of the page editor.
 * Admin Approval of Users: Require users to be approved by an administrator in the WordPress back-end before they can log in.
 * User Levels: Ability to create different user levels and to specify a default user level for users to be set to when they register (created on the “Levels” tab)
 * Statistics: This feature allows you to gather information about users and how they are using your site.
@@ -183,6 +184,9 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.1.0 = 
+- Added the ability for premium users to restrict access to entire pages
+
 = 2.0.3 =
 - Fixed a small display error
 

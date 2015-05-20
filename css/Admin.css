@@ -31,6 +31,11 @@ a {
 .fields-list {clear:none;}
 .fields-list tr {cursor:move;}
 
+.ewd-feup-mb {display: table;}
+.ewd-feup-mb-row {display: table-row;}
+.ewd-feup-mb-label {display: table-cell;}
+.ewd-feup-mb-select {display: table-cell;}
+
 
 /***********************************************************
 * CONFIRMATION DIALOG
