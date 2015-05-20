@@ -325,10 +325,35 @@ $Levels = $wpdb->get_results("SELECT * FROM $ewd_feup_levels_table_name ORDER BY
 </div>
 <br class="clear" />
 
+<h3><?php _e("Add Users from Spreadsheet", 'EWD_FEUP') ?></h3>
+<?php if ($EWD_FEUP_Full_Version == "Yes") { ?>
+<div class="wrap">
+
+<form id="addtag" method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_AddUserSpreadsheet&DisplayPage=Users" class="validate" enctype="multipart/form-data">
+<?php wp_nonce_field(); ?>
+<div class="form-field form-required">
+		<label for="Users_Spreadsheet"><?php _e("Spreadhseet Containing Users", 'EWD_FEUP') ?></label>
+		<input name="Users_Spreadsheet" id="Users_Spreadsheet" type="file" value=""/>
+		<p><?php _e("The spreadsheet containing all of the users you wish to add. Make sure that the column title names are the same as the field names for users (ex: Username, Email, First Name, etc.).", 'EWD_FEUP') ?></p>
+</div>
+<p class="submit"><input type="submit" name="submit" id="submit" class="button-primary" value="<?php _e('Add New Users', 'EWD_FEUP') ?>"  /></p>
+</form>
+</div>
+
+<?php } else { ?>
+<div class="Info-Div">
+	<h2><?php _e("Full Version Required!", 'EWD_FEUP') ?></h2>
+	<div class="upcp-full-version-explanation">
+		<?php _e("The full version of Front-End Only Users is required to use tags.", "EWD_FEUP");?><a href="http://www.etoilewebdesign.com/front-end-users-plugin/"><?php _e(" Please upgrade to unlock this page!", 'EWD_FEUP'); ?></a>
+	</div>
+</div>
+<?php } ?>
+
 <h3><?php _e("Export Users to Spreadsheet", 'EWD_FEUP') ?></h3>
 
 <?php if ($EWD_FEUP_Full_Version == "Yes") { ?>
 <div class="wrap">
+
 <form method="post" action="admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_ExportToExcel">
 <p><?php _e("Downloads all users currently in the database to Excel", 'EWD_FEUP') ?></p>
 <p class="submit"><input type="submit" name="Export_Submit" id="submit" class="button button-primary" value="Export to Excel"  /></p>

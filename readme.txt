@@ -184,6 +184,9 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.1.1 =
+- Added the ability to import users from a spreadsheet
+
 = 2.1.0 = 
 - Added the ability for premium users to restrict access to entire pages
 

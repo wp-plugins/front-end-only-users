@@ -20,6 +20,9 @@ if (isset($_GET['Action'])) {
 						case "EWD_FEUP_DeleteAllUsers":
 								$feup_message = Delete_All_EWD_FEUP_Users();
 								break;
+						case "EWD_FEUP_AddUserSpreadsheet":
+								$feup_message = Add_Users_From_Spreadsheet();
+								break;
 						case "EWD_FEUP_AddField":
 						case "EWD_FEUP_EditField":
 								$feup_message = Add_Edit_Field();
