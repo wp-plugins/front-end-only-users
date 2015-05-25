@@ -280,62 +280,89 @@ function Delete_EWD_FEUP_User_Field($User_Field_ID) {
 }
 
 function Add_EWD_FEUP_Level($Level_Name, $Level_Privilege, $Level_Date_Created) {
-		global $wpdb;
-		global $ewd_feup_levels_table_name;
+	global $wpdb;
+	global $ewd_feup_levels_table_name;
 		
-		$wpdb->insert($ewd_feup_levels_table_name, 
-									array( 'Level_Name' => $Level_Name,
-												 'Level_Privilege' => $Level_Privilege,
-												 'Level_Date_Created' => $Level_Date_Created)
-									);
+	$wpdb->insert($ewd_feup_levels_table_name, 
+				array( 'Level_Name' => $Level_Name,
+						'Level_Privilege' => $Level_Privilege,
+						'Level_Date_Created' => $Level_Date_Created)
+			);
 		
-		$update = __("Level has been successfully created.", 'EWD_FEUP');
-		return $update;
+	$update = __("Level has been successfully created.", 'EWD_FEUP');
+	return $update;
 }
 
 /* Edits a single category with a given ID in the UPCP database */
 function Edit_EWD_FEUP_Level($Level_ID, $Level_Name, $Level_Privilege, $Level_Date_Created) {
-		global $wpdb;
-		global $ewd_feup_levels_table_name;
+	global $wpdb;
+	global $ewd_feup_levels_table_name;
 		
-		$wpdb->insert($ewd_feup_levels_table_name, 
-									array( 'Level_Name' => $Level_Name,
-												 'Level_Privilege' => $Level_Privilege,
-												 'Level_Date_Created' => $Level_Date_Created),
-									array( 'Level_ID' => $Level_ID)
+	$wpdb->insert($ewd_feup_levels_table_name, 
+				array( 'Level_Name' => $Level_Name,
+						'Level_Privilege' => $Level_Privilege,
+						'Level_Date_Created' => $Level_Date_Created),
+						array( 'Level_ID' => $Level_ID)
 		);
-		$update = __("Level has been successfully edited.", 'EWD_FEUP');
-		return $update;
+	$update = __("Level has been successfully edited.", 'EWD_FEUP');
+	return $update;
 }
 
 /* Deletes a single category with a given ID in the UPCP database */
 function Delete_EWD_FEUP_Level($Level_ID) {
-		global $wpdb;
-		global $ewd_feup_levels_table_name;
+	global $wpdb;
+	global $ewd_feup_levels_table_name;
 		
-		$wpdb->delete(
-						$ewd_feup_levels_table_name,
-						array('Level_ID' => $Level_ID)
-					);
+	$wpdb->delete(
+				$ewd_feup_levels_table_name,
+				array('Level_ID' => $Level_ID)
+			);
 
-		$update = __("Level has been successfully deleted.", 'EWD_FEUP');
-		$user_update = array("Message_Type" => "Update", "Message" => $update);
-		return $user_update;
+	$update = __("Level has been successfully deleted.", 'EWD_FEUP');
+	$user_update = array("Message_Type" => "Update", "Message" => $update);
+	return $user_update;
+}
+
+function Add_User_Event($User_ID, $Event_Type, $Event_Location, $Event_Location_ID, $Event_Location_Title, $Event_Value, $Event_Target_ID, $Event_Target_Title) {
+	global $wpdb;
+	global $ewd_feup_user_events_table_name;
+
+	$Event_Date = date("Y-m-d H:i:s");
+		
+	$wpdb->insert($ewd_feup_user_events_table_name, 
+				array( 'User_ID' => $User_ID,
+						'Event_Type' => $Event_Type,
+						'Event_Location' => $Event_Location,
+						'Event_Location_ID' => $Event_Location_ID,
+						'Event_Location_Title' => $Event_Location_Title,
+						'Event_Value' => $Event_Value,
+						'Event_Target_ID' => $Event_Target_ID,
+						'Event_Target_Title' => $Event_Target_Title,
+						'Event_Date' => $Event_Date)
+			);
+		
+	$update = __("Event has been successfully created.", 'EWD_FEUP');
+	return $update;
 }
 
 function Update_EWD_FEUP_Options() {
-		update_option('EWD_FEUP_Login_Time', $_POST['login_time']);
-		update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);
-		update_option("EWD_Default_User_Level", $_POST['default_user_level']);
-		update_option("EWD_FEUP_Sign_Up_Email", $_POST['sign_up_email']);
-		update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);
-		update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);
-		update_option("EWD_FEUP_Use_Crypt", $_POST['use_crypt']);
-		update_option("EWD_FEUP_Username_Is_Email", $_POST['username_is_email']);
-		
-		$update = __("Options have been succesfully updated.", 'EWD_FEUP');
-		$user_update = array("Message_Type" => "Update", "Message" => $update);
-		return $user_update;
+	global $EWD_FEUP_Full_Version;
+	
+	update_option('EWD_FEUP_Login_Time', $_POST['login_time']);
+	update_option("EWD_FEUP_Sign_Up_Email", $_POST['sign_up_email']);
+	update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);
+	update_option("EWD_FEUP_Use_Crypt", $_POST['use_crypt']);
+	update_option("EWD_FEUP_Username_Is_Email", $_POST['username_is_email']);
+
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Track_Events", $_POST['track_events']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Email_On_Registration", $_POST['admin_email_on_registration']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_Default_User_Level", $_POST['default_user_level']);}
+	
+	$update = __("Options have been succesfully updated.", 'EWD_FEUP');
+	$user_update = array("Message_Type" => "Update", "Message" => $update);
+	return $user_update;
 }
 
 function Update_EWD_FEUP_Email_Settings() {

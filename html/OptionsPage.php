@@ -1,12 +1,16 @@
 <?php 
 	$Login_Time = get_option("EWD_FEUP_Login_Time");
-	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
-	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 	$Sign_Up_Email = get_option("EWD_FEUP_Sign_Up_Email");
 	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 	$Default_User_Level = get_option("EWD_Default_User_Level");
 	$Use_Crypt = get_option("EWD_FEUP_Use_Crypt");
 	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
+
+	$Track_Events = get_option("EWD_FEUP_Track_Events");
+	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+	$Admin_Email_On_Registration = get_option("EWD_FEUP_Admin_Email_On_Registration");
+	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
+	$Default_User_Level = get_option("EWD_Default_User_Level");
 ?>
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Settings</h2>
@@ -66,6 +70,16 @@
 <h3>Premium Options</h3>
 <table class="form-table">
 <tr>
+<th scope="row">Track User Activity</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Track User Activity</span></legend>
+	<label title='Yes'><input type='radio' name='track_events' value='Yes' <?php if($Track_Events == "Yes") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='track_events' value='No' <?php if($Track_Events == "No") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
+	<p>See what pages, attachments, images, etc. each user has looked at, in what order and when, to better tailor your content to your members.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
 <th scope="row">Email Confirmation</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>Email Confirmation</span></legend>
@@ -82,6 +96,16 @@
 	<label title='Yes'><input type='radio' name='admin_approval' value='Yes' <?php if($Admin_Approval == "Yes") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='admin_approval' value='No' <?php if($Admin_Approval == "No") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
 	<p>Require users to be approved by an administrator in the WordPress back-end before they can log in.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Admin Email on Registration</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Admin Email on Registration</span></legend>
+	<label title='Yes'><input type='radio' name='admin_email_on_registration' value='Yes' <?php if($Admin_Email_On_Registration == "Yes") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='admin_email_on_registration' value='No' <?php if($Admin_Email_On_Registration == "No") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
+	<p>Should the admin email address from the emails tab receive an email each time a new user registers?</p>
 	</fieldset>
 </td>
 </tr>

@@ -3,7 +3,7 @@
 *  the overview page or an individual item is being edited */
 function EWD_FEUP_Output_Options() {
 		global $wpdb, $error, $EWD_FEUP_Full_Version, $feup_message;;
-		global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name;
+		global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name, $ewd_feup_user_events_table_name;
 		
 		if (isset($_GET['DisplayPage'])) {
 			  $Display_Page = $_GET['DisplayPage'];

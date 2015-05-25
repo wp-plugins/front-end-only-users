@@ -184,6 +184,12 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.1.2 =
+- Added in a new "login-logout-toggle" shortcode
+- Added in a new "login-logout-toggle" widget
+- Fixed an email on registration error
+- Added in event tracking, more options coming soon!
+
 = 2.1.1 =
 - Added the ability to import users from a spreadsheet
 

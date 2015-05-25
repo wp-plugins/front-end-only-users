@@ -3,7 +3,7 @@ function Update_EWD_FEUP_Tables() {
 	/* Add in the required globals to be able to create the tables */
   	global $wpdb;
    	global $EWD_FEUP_db_version;
-		global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name;
+	global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name, $ewd_feup_user_events_table_name;
     
 	/* Create the users table */  
    	$sql = "CREATE TABLE $ewd_feup_user_table_name (
@@ -69,11 +69,31 @@ function Update_EWD_FEUP_Tables() {
 		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
+
+   	/* Create the user-events table */
+	$sql = "CREATE TABLE $ewd_feup_user_events_table_name (
+  		User_Event_ID mediumint(9) NOT NULL AUTO_INCREMENT,
+		User_ID mediumint(9) DEFAULT 0 NOT NULL,
+  		Event_Type text NULL,
+  		Event_Location text NULL,
+  		Event_Location_ID mediumint(9) DEFAULT 0 NOT NULL,
+  		Event_Location_Title text NULL,
+		Event_Value text NULL,
+		Event_Target_ID mediumint(9) DEFAULT 0 NOT NULL,
+		Event_Target_Title text NULL,
+		Event_Date datetime DEFAULT '0000-00-00 00:00:00' NULL,
+  		UNIQUE KEY id (User_Event_ID)
+    	)	
+		DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
+   	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+   	dbDelta($sql);
  	
    	if (get_option("EWD_FEUP_Use_Crypt") == "true" or get_option("EWD_FEUP_Use_Crypt")) {add_option("EWD_FEUP_Use_Crypt", "Yes");}
    	if (get_option("EWD_FEUP_Use_Crypt") == "false" or get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", "No");}
 	if (get_option("EWD_FEUP_Username_Is_Email") == "true" or get_option("EWD_FEUP_Username_Is_Email")) {add_option("EWD_FEUP_Username_Is_Email", "Yes");}
 	if (get_option("EWD_FEUP_Username_Is_Email") == "false" or get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", "No");}
+
+	if (get_option("EWD_FEUP_Track_Events") == "") {add_option("EWD_FEUP_Track_Events", "No");}
 
 	if (get_option("EWD_FEUP_Use_SMTP") == "") {update_option("EWD_FEUP_Use_SMTP", "Yes");}
 	if (get_option("EWD_FEUP_Port") == "") {update_option("EWD_FEUP_Port", "25");}

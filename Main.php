@@ -7,11 +7,11 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 2.1.1
+Version: 2.1.2
 */
 
 global $EWD_FEUP_db_version;
-global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name;
+global $ewd_feup_user_table_name, $ewd_feup_user_fields_table_name, $ewd_feup_levels_table_name, $ewd_feup_fields_table_name, $ewd_feup_user_events_table_name;
 global $wpdb;
 global $feup_message;
 global $user_message;
@@ -21,13 +21,14 @@ $ewd_feup_user_table_name = $wpdb->prefix . "EWD_FEUP_Users";
 $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";
 $ewd_feup_fields_table_name = $wpdb->prefix . "EWD_FEUP_Fields";
 $ewd_feup_levels_table_name = $wpdb->prefix . "EWD_FEUP_Levels";
-$EWD_FEUP_db_version = "2.0.0";
+$ewd_feup_user_events_table_name = $wpdb->prefix ."EWD_FEUP_User_Events";
+$EWD_FEUP_db_version = "2.1.2";
 
 define( 'EWD_FEUP_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_FEUP_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-/* error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-//define('WP_DEBUG', true);
+/*error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+define('WP_DEBUG', true);
 $wpdb->show_errors(); */
 
 /* When plugin is activated */
@@ -74,6 +75,7 @@ function EWD_FEUP_Plugin_Menu() {
 	add_menu_page('Front End User Plugin', $Title, $Access_Role, 'EWD-FEUP-options', 'EWD_FEUP_Output_Options',null , '50.6');
 	add_submenu_page('EWD-FEUP-options', 'FEUP Users', 'Users', $Access_Role, 'EWD-FEUP-options&DisplayPage=Users', 'EWD_FEUP_Output_Options');
 	add_submenu_page('EWD-FEUP-options', 'FEUP Fields', 'Fields', $Access_Role, 'EWD-FEUP-options&DisplayPage=Field', 'EWD_FEUP_Output_Options');
+	add_submenu_page('EWD-FEUP-options', 'FEUP Statistics', 'Statistics', $Access_Role, 'EWD-FEUP-options&DisplayPage=Statistics', 'EWD_FEUP_Output_Options');
 	add_submenu_page('EWD-FEUP-options', 'FEUP Levels', 'Levels', $Access_Role, 'EWD-FEUP-options&DisplayPage=Levels', 'EWD_FEUP_Output_Options');
 	add_submenu_page('EWD-FEUP-options', 'FEUP Options', 'Options', $Access_Role, 'EWD-FEUP-options&DisplayPage=Options', 'EWD_FEUP_Output_Options');
 	add_submenu_page('EWD-FEUP-options', 'FEUP Emails', 'Emails', $Access_Role, 'EWD-FEUP-options&DisplayPage=Emails', 'EWD_FEUP_Output_Options');
@@ -112,6 +114,27 @@ function Add_EWD_FEUP_Scripts() {
 		wp_enqueue_script('update-privilege-level-order', plugin_dir_url(__FILE__) . '/js/update-privilege-level-order.js');
 	}
 }
+
+add_action( 'wp_enqueue_scripts', 'EWD_FEUP_Add_FrontEnd_Scripts' );
+function EWD_FEUP_Add_FrontEnd_Scripts() {
+	wp_enqueue_script('ewd-feup-tracking', plugins_url( '/js/ewd-feup-tracking.js' , __FILE__ ), array( 'jquery' ));
+}
+
+function EWD_FEUP_Admin_Head() {
+	global $EWD_FEUP_Full_Version;
+	$Track_Events = get_option("EWD_FEUP_Track_Events");
+
+	$User = new FEUP_User;
+	if ($User->Is_Logged_In() and $EWD_FEUP_Full_Version == "Yes" and $Track_Events == "Yes") {
+		echo "<script>var User_ID = " . $User->Get_User_ID() . ";\n";
+		echo "if (typeof(ajaxurl) == 'undefined' || ajaxurl === null) {";
+			echo "var ajaxurl = '" . admin_url('admin-ajax.php') . "';\n";
+		echo "}";
+		echo "</script>";
+	}
+}
+add_action( 'wp_head', 'EWD_FEUP_Admin_Head' );
+
 
 add_action( 'wp_enqueue_scripts', 'EWD_FEUP_Add_Stylesheet' );
 function EWD_FEUP_Add_Stylesheet() {
@@ -154,6 +177,7 @@ include "Functions/Error_Notices.php";
 include "Functions/EWD_FEUP_Export_To_Excel.php";
 include "Functions/EWD_FEUP_Full_Page_Restriction.php";
 include "Functions/EWD_FEUP_Output_Options.php";
+include "Functions/EWD_FEUP_Widgets.php";
 include "Functions/Full_Upgrade.php";
 include "Functions/Initial_Data.php";
 include "Functions/Install_EWD_FEUP.php";
@@ -171,6 +195,7 @@ include "Shortcodes/Insert_Edit_Account.php";
 include "Shortcodes/Insert_Edit_Profile.php";
 include "Shortcodes/Insert_Forgot_Password.php";
 include "Shortcodes/Insert_Login_Form.php";
+include "Shortcodes/Insert_Login_Logout_Toggle.php";
 include "Shortcodes/Insert_Logout.php";
 include "Shortcodes/Insert_Register_Form.php";
 include "Shortcodes/Insert_Reset_Password.php";
