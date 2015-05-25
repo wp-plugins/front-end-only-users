@@ -3,7 +3,6 @@
 <div id="col-right">
 <div class="col-wrap">
 
-<?php /*
 <h3>Link Statistics</h3>
 
 <?php 
@@ -17,6 +16,7 @@
 	$Sql .= "LIMIT " . ($Page - 1)*20 . ",20";
 	$myrows = $wpdb->get_results($Sql);
 	$num_rows = $wpdb->get_var("SELECT COUNT(DISTINCT Event_Value) FROM $ewd_feup_user_events_table_name");
+	echo "Rows: " . $num_rows ."<br>";
 	$Number_of_Pages = ceil($num_rows/20);
 	$Current_Page_With_Order_By = "admin.php?page=EWD-FEUP-options&DisplayPage=Statistics";
 	if (isset($_GET['OrderBy'])) {$Current_Page_With_Order_By .= "&OrderBy=" .$_GET['OrderBy'] . "&Order=" . $_GET['Order'];}?>
@@ -38,30 +38,30 @@
 	<thead>
 		<tr>
 			<th scope='col'  class='manage-column sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "Username" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Username&Order=DESC'>";}
-				 	else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Username&Order=ASC'>";} ?>
-					 <span><?php _e("Username", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Event_Target_Title" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Target_Title&Order=DESC'>";}
+				 	else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Target_Title&Order=ASC'>";} ?>
+					 <span><?php _e("Page Title/Link", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
 			<th scope='col' id='type' class='manage-column column-type sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "User_Last_Login" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Last_Login&Order=DESC'>";}
-					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Last_Login&Order=ASC'>";} ?>
-					<span><?php _e("Last Login", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Event_Type" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Type&Order=DESC'>";}
+					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Type&Order=ASC'>";} ?>
+					<span><?php _e("Link Type", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
 			<th scope='col' id='description' class='manage-column column-description sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "User_Total_Logins" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Total_Logins&Order=DESC'>";}
-					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Total_Logins&Order=ASC'>";} ?>
-					<span><?php _e("Total Logins", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Count(Event_Value)" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Count(Event_Value)&Order=DESC'>";}
+					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Count(Event_Value)&Order=ASC'>";} ?>
+					<span><?php _e("Total Clicks", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
 			<th scope='col' id='required' class='manage-column column-users sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "User_Date_Created" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Date_Created&Order=DESC'>";}
-					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Date_Created&Order=ASC'>";} ?>
-					<span><?php _e("Joined Date", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Event_Date" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Date&Order=DESC'>";}
+					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Date&Order=ASC'>";} ?>
+					<span><?php _e("Last Click", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
@@ -71,30 +71,30 @@
 	<tfoot>
 		<tr>
 			<th scope='col'  class='manage-column sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "Username" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Username&Order=DESC'>";}
-				 	else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Username&Order=ASC'>";} ?>
-					 <span><?php _e("Username", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Event_Target_Title" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Target_Title&Order=DESC'>";}
+				 	else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Target_Title&Order=ASC'>";} ?>
+					 <span><?php _e("Page Title/Link", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
 			<th scope='col' id='type' class='manage-column column-type sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "User_Last_Login" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Last_Login&Order=DESC'>";}
-					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Last_Login&Order=ASC'>";} ?>
-					<span><?php _e("Last Login", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Event_Type" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Type&Order=DESC'>";}
+					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Type&Order=ASC'>";} ?>
+					<span><?php _e("Link Type", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
 			<th scope='col' id='description' class='manage-column column-description sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "User_Total_Logins" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Total_Logins&Order=DESC'>";}
-					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Total_Logins&Order=ASC'>";} ?>
-					<span><?php _e("Total Logins", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Count(Event_Value)" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Count(Event_Value)&Order=DESC'>";}
+					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Count(Event_Value)&Order=ASC'>";} ?>
+					<span><?php _e("Total Clicks", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
 			<th scope='col' id='required' class='manage-column column-users sortable desc'  style="">
-				<?php if ($_GET['OrderBy'] == "User_Date_Created" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Date_Created&Order=DESC'>";}
-					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=User_Date_Created&Order=ASC'>";} ?>
-					<span><?php _e("Joined Date", 'EWD_FEUP') ?></span>
+				<?php if ($_GET['OrderBy'] == "Event_Date" and $_GET['Order'] == "ASC") { echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Date&Order=DESC'>";}
+					else {echo "<a href='admin.php?page=EWD-FEUP-options&DisplayPage=Statistics&OrderBy=Event_Date&Order=ASC'>";} ?>
+					<span><?php _e("Last Click", 'EWD_FEUP') ?></span>
 					<span class="sorting-indicator"></span>
 				</a>
 			</th>
@@ -105,17 +105,19 @@
 		
 	<?php
 		if ($myrows) { 
-	 		foreach ($myrows as $User) {
-				echo "<tr id='User-" . $User->User_ID ."'>";
+	 		foreach ($myrows as $Link) {
+				$Click_Count = $wpdb->get_var("SELECT COUNT(User_Event_ID) FROM $ewd_feup_user_events_table_name WHERE Event_Value='" . $Link->Event_Value . "'");
+				$Last_Click = $wpdb->get_var("SELECT Event_Date FROM $ewd_feup_user_events_table_name WHERE Event_Value='" . $Link->Event_Value . "' ORDER BY Event_Date DESC");
+				echo "<tr id='User-" . $Link->Event_Value ."'>";
 				echo "<td class='name column-name'>";
 				echo "<strong>";
-				echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_User_Details&Selected=User&User_ID=" . $User->User_ID ."' title='Edit " . $User->Username . "</a></strong>";
+				echo "<a class='row-title' href='admin.php?page=EWD-FEUP-options&Action=EWD_FEUP_Statistics_Details&Selected=User&Event_Target_Title=" . $Link->Event_Target_Title ."' title='Edit " . $Link->Event_Target_Title . "</a></strong>";
 				echo "<br />";
-				echo "<div class='username'>" . $User->Username . "</div>";
+				echo "<div class='target-title'>" . $Link->Event_Target_Title . "</div>";
 				echo "</td>";
-				echo "<td class='description column-last-login'>" . $User->User_Last_Login . "</td>";
-				echo "<td class='description column-description'>" . $User->User_Total_Logins . "</td>";
-				echo "<td class='users column-required'>" . $User->User_Date_Created . "</td>";
+				echo "<td class='description column-event-type'>" . $Link->Event_Type . "</td>";
+				echo "<td class='description column-click-count'>" . $Click_Count . "</td>";
+				echo "<td class='users column-last-click'>" . $Last_Click . "</td>";
 				echo "</tr>";
 			}
 		}
@@ -139,7 +141,6 @@
 </div>
 
 <br class="clear" />
- */ ?>
 
 <h3>User Activity Table</h3>
 

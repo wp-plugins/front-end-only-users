@@ -1,7 +1,7 @@
 === Front-End Only Users ===
 Contributors: Rustaurius, EtoileWebDesign
 Donate link: http://www.etoilewebdesign.com/plugin-donations/
-Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, PureCSS
+Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, PureCSS, statistics, analytics
 Requires at least: 3.5.0
 Tested up to: 4.2
 License: GPLv3
@@ -184,6 +184,10 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.1.3 =
+- Added more summary content to the "Statistics" tab
+- Now displaying a table of link clicking activity, if tracking option is activated
+
 = 2.1.2 =
 - Added in a new "login-logout-toggle" shortcode
 - Added in a new "login-logout-toggle" widget
