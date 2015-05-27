@@ -184,6 +184,9 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.1.4 =
+- Fixed an error in the "Statistics" tab
+
 = 2.1.3 =
 - Added more summary content to the "Statistics" tab
 - Now displaying a table of link clicking activity, if tracking option is activated

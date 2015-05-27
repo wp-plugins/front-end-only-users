@@ -16,14 +16,13 @@
 	$Sql .= "LIMIT " . ($Page - 1)*20 . ",20";
 	$myrows = $wpdb->get_results($Sql);
 	$num_rows = $wpdb->get_var("SELECT COUNT(DISTINCT Event_Value) FROM $ewd_feup_user_events_table_name");
-	echo "Rows: " . $num_rows ."<br>";
 	$Number_of_Pages = ceil($num_rows/20);
 	$Current_Page_With_Order_By = "admin.php?page=EWD-FEUP-options&DisplayPage=Statistics";
 	if (isset($_GET['OrderBy'])) {$Current_Page_With_Order_By .= "&OrderBy=" .$_GET['OrderBy'] . "&Order=" . $_GET['Order'];}?>
    
 <div class="tablenav top">
 	<div class='tablenav-pages <?php if ($Number_of_Pages == 1) {echo "one-page";} ?>'>
-		<span class="displaying-num"><?php echo $wpdb->num_rows; ?> <?php _e("items", 'EWD_FEUP') ?></span>
+		<span class="displaying-num"><?php echo $num_rows; ?> <?php _e("items", 'EWD_FEUP') ?></span>
 		<span class='pagination-links'>
 			<a class='first-page <?php if ($Page == 1) {echo "disabled";} ?>' title='Go to the first page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=1'>&laquo;</a>
 			<a class='prev-page <?php if ($Page <= 1) {echo "disabled";} ?>' title='Go to the previous page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=<?php echo $Page-1;?>'>&lsaquo;</a>
@@ -128,7 +127,7 @@
 
 <div class="tablenav bottom">
 	<div class='tablenav-pages <?php if ($Number_of_Pages == 1) {echo "one-page";} ?>'>
-		<span class="displaying-num"><?php echo $wpdb->num_rows; ?> <?php _e("items", 'EWD_FEUP') ?></span>
+		<span class="displaying-num"><?php echo $num_rows; ?> <?php _e("items", 'EWD_FEUP') ?></span>
 		<span class='pagination-links'>
 			<a class='first-page <?php if ($Page == 1) {echo "disabled";} ?>' title='Go to the first page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=1'>&laquo;</a>
 			<a class='prev-page <?php if ($Page <= 1) {echo "disabled";} ?>' title='Go to the previous page' href='<?php echo $Current_Page_With_Order_By; ?>&Page=<?php echo $Page-1;?>'>&lsaquo;</a>
