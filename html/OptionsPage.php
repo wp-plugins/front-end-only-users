@@ -8,6 +8,7 @@
 
 	$Track_Events = get_option("EWD_FEUP_Track_Events");
 	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
+	$Email_On_Admin_Approval = get_option("EWD_FEUP_Email_On_Admin_Approval");
 	$Admin_Email_On_Registration = get_option("EWD_FEUP_Admin_Email_On_Registration");
 	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 	$Default_User_Level = get_option("EWD_Default_User_Level");
@@ -96,6 +97,16 @@
 	<label title='Yes'><input type='radio' name='admin_approval' value='Yes' <?php if($Admin_Approval == "Yes") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
 	<label title='No'><input type='radio' name='admin_approval' value='No' <?php if($Admin_Approval == "No") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
 	<p>Require users to be approved by an administrator in the WordPress back-end before they can log in.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Email on Admin Approval</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Email on Admin Approval</span></legend>
+	<label title='Yes'><input type='radio' name='email_on_admin_approval' value='Yes' <?php if($Email_On_Admin_Approval == "Yes") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='email_on_admin_approval' value='No' <?php if($Email_On_Admin_Approval == "No") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
+	<p>Should the users receive an email telling them when they get approved, if admin approval is turned on? Email message can be set on the "Emails" tab.</p>
 	</fieldset>
 </td>
 </tr>

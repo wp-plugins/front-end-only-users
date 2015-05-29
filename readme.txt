@@ -184,6 +184,12 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.2.0 =
+- Added an option to send an e-mail to the user once they've been approved
+- Added a new shortcode "user-profile" which can be used to display user's profiles
+- Updated the "user-list" shortcode to make it possible to display profiles
+- Updated the "user-search" shortcode to make it possible to display profiles
+
 = 2.1.4 =
 - Fixed an error in the "Statistics" tab
 

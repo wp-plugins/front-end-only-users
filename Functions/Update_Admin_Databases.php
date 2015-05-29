@@ -357,6 +357,7 @@ function Update_EWD_FEUP_Options() {
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Track_Events", $_POST['track_events']);}
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);}
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_On_Admin_Approval", $_POST['email_on_admin_approval']);}
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Email_On_Registration", $_POST['admin_email_on_registration']);}
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_Default_User_Level", $_POST['default_user_level']);}
 	
@@ -368,6 +369,7 @@ function Update_EWD_FEUP_Options() {
 function Update_EWD_FEUP_Email_Settings() {
 	$Admin_Email = $_POST['admin_email'];
 	$Message_Body = $_POST['message_body'];
+	$Admin_Approval_Message_Body = $_POST['admin_approval_message_body'];
 	$Email_Subject = $_POST['email_subject'];
 	$SMTP_Mail_Server = $_POST['smtp_mail_server'];
 	$Use_SMTP = $_POST['use_smtp'];
@@ -378,6 +380,7 @@ function Update_EWD_FEUP_Email_Settings() {
 	
 	$Admin_Email = stripslashes_deep($Admin_Email);
 	$Message_Body = stripslashes_deep($Message_Body);
+	$Admin_Approval_Message_Body = stripslashes_deep($Admin_Approval_Message_Body);
 	$Email_Subject = stripslashes_deep($Email_Subject);
 	$SMTP_Mail_Server = stripslashes_deep($SMTP_Mail_Server);
 	$Use_SMTP = stripslashes_deep($Use_SMTP);
@@ -392,6 +395,7 @@ function Update_EWD_FEUP_Email_Settings() {
 	
 	update_option('EWD_FEUP_Admin_Email', $Admin_Email);
 	update_option('EWD_FEUP_Message_Body', $Message_Body);
+	update_option('EWD_FEUP_Admin_Approval_Message_Body', $Admin_Approval_Message_Body);
 	update_option('EWD_FEUP_Email_Subject', $Email_Subject);
 	update_option('EWD_FEUP_SMTP_Mail_Server', $SMTP_Mail_Server);
 	update_option('EWD_FEUP_Use_SMTP', $Use_SMTP);

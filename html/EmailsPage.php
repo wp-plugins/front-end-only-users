@@ -7,6 +7,7 @@
 	$SMTP_Mail_Server = get_option("EWD_FEUP_SMTP_Mail_Server");
 	$SMTP_Username = get_option("EWD_FEUP_SMTP_Username");
 	$Message_Body = get_option("EWD_FEUP_Message_Body");
+	$Admin_Approval_Message_Body = get_option("EWD_FEUP_Admin_Approval_Message_Body");
 	$Email_Field = get_option("EWD_FEUP_Email_Field");
 	
 	$key = 'EWD_FEUP';
@@ -36,11 +37,20 @@
 </td>
 </tr>
 <tr>
-<th scope="row">Message Body</th>
+<th scope="row">Registration Message Body</th>
 <td>
 	<fieldset><legend class="screen-reader-text"><span>Message Body</span></legend>
 	<label title='Message Body'></label><textarea class='ewd-feup-textarea' name='message_body'> <?php echo $Message_Body; ?></textarea><br />
-	<p>What should be in the messages sent to users? You can put [username], [password], or [join-date] to include the Username, Password or sign-up datetime for the user.</p>
+	<p>What should be in the message sent to users upon registration? You can put [username], [password], or [join-date] to include the Username, Password or sign-up datetime for the user.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Admin Approval Message Body</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Admin Approval Message Body</span></legend>
+	<label title='Admin Approval Message Body'></label><textarea class='ewd-feup-textarea' name='admin_approval_message_body'> <?php echo $Admin_Approval_Message_Body; ?></textarea><br />
+	<p>What should be in the message sent to users when they are approved, assuming that the option has been selected? You can put [username] or [join-date] to include the Username or sign-up datetime for the user.</p>
 	</fieldset>
 </td>
 </tr>

@@ -60,7 +60,7 @@ function Insert_Edit_Profile($atts) {
 				if ($Field->Field_Name == $UserField->Field_Name) {$Value = $UserField->Field_Value;}
 			}
 			$ReturnString .= "<div class='pure-control-group'>";
-			$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-edit-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . __($Field->Field_Name, 'EWD_FEUP') . ": </label>";
+			$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-edit-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . $Field->Field_Name . ": </label>";
 			if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
 			    $ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $Value . "' " . $Req_Text . "/>";
 			}

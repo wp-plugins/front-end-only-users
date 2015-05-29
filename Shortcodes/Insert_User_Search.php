@@ -12,12 +12,13 @@ function User_Search($atts, $content = null) {
 		
 		// Get the attributes passed by the shortcode, and store them in new variables for processing
 		extract( shortcode_atts( array(
-						 								 		'login_page' => '',
-																'submit_text' => 'Search Users',
-																'search_fields' => ''),
-																$atts
-														)
-												);
+					 	'login_page' => '',
+						'submit_text' => 'Search Users',
+						'search_fields' => '',
+						'user_profile_page' => ''),
+						$atts
+				)
+		);
 		
 		$ReturnString .= "<style type='text/css'>";
 		$ReturnString .= $Custom_CSS;
