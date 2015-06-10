@@ -12,14 +12,15 @@ $ExpirySecond = time() + (1+$LoginTime)*60;
 if (setcookie($CookieName, $CookieValue, $ExpirySecond, '/')) {return true;}
 else {return false;}
 
-/*if (setcookie($CookieName, $CookieValue, $ExpirySecond, '/')) {echo "Cookie Set<br>";}
-else {echo "Cookie Not Set<br>";}*/
+/*if (setcookie($CookieName, $CookieValue, $ExpirySecond, '/', $_SERVER["HTTP_HOST"])) {echo "Cookie Set<br>";}
+else {echo "Cookie Not Set<br>";}
 
-/*echo "Cookie Name: " . $CookieName . "<br>";
+echo "Cookie Name: " . $CookieName . "<br>";
 echo "Cookie Value: " . $CookieValue . "<br>";
 echo "Login Time: " . $LoginTime . "<br>";
-echo "Expiry Second: " . $ExpirySecond . "<br>";*/
+echo "Expiry Second: " . $ExpirySecond . "<br>";
+echo "Domain: " . $_SERVER["HTTP_HOST"] . "<br>";
 
-return true;
+return true;*/
 }
 ?>

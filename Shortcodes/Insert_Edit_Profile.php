@@ -47,6 +47,7 @@ function Insert_Edit_Profile($atts) {
 	$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='edit-profile'>";
+	$ReturnString .= "<input type='hidden' name='ewd-feup-omit-level' value='Yes'>";
 	$ReturnString .= "<input type='hidden' name='Omit_Fields' value='" . $omit_fields . "'>";
 	
 	$Omitted_Fields = explode(",", $omit_fields);

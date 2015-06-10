@@ -62,7 +62,7 @@ function Add_Edit_User() {
 	if (isset($_POST['User_Password'])) {$User_Fields['User_Password'] = sha1(md5($_POST['User_Password'].$Salt));}
 	}
 	if (isset($_POST['Level_ID'])) {$User_Fields['Level_ID'] = $_POST['Level_ID'];}
-	else {$User_Fields['Level_ID'] = $Default_User_Level;}
+	elseif ($_POST['ewd-feup-omit-level'] != "Yes") {$User_Fields['Level_ID'] = $Default_User_Level;}
 	if ($_POST['Admin_Approved'] == "Yes") {$User_Fields['User_Admin_Approved'] = "Yes";}
 	if ($_POST['Admin_Approved'] == "No") {$User_Fields['User_Admin_Approved'] = "No";}
 	if ($_POST['User_Password'] != $_POST['Confirm_User_Password']) {$user_update = array("Message_Type" => "Error", "Message" => __("The passwords you entered did not match.", "EWD_FEUP")); return $user_update;}

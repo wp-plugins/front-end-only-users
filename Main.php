@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 2.2.0
+Version: 2.2.1
 */
 
 global $EWD_FEUP_db_version;
@@ -201,6 +201,7 @@ include "Shortcodes/Insert_Register_Form.php";
 include "Shortcodes/Insert_Reset_Password.php";
 include "Shortcodes/Insert_User_Data.php";
 include "Shortcodes/Insert_User_List.php";
+include "Shortcodes/Insert_User_Profile.php";
 include "Shortcodes/Insert_User_Search.php";
 include "Shortcodes/Privilege_Level.php";
 

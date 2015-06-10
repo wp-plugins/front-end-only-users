@@ -18,7 +18,7 @@ function Insert_User_Profile($atts) {
 	//elseif (isset(get_query_var('user_id')))) {$UserData = $wpdb->get_results($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE User_ID='%d'", get_query_var('user_id')));}
 	
 	$ReturnString = "";
-	if (!isset($UserData)) {return __("Please select a valid user profile", 'EWD_FEUP');}
+	if (!isset($UserData)) {$error =  __("Please select a valid user profile", 'EWD_FEUP'); return $error;}
 
 	// Get the attributes passed by the shortcode, and store them in new variables for processing
 	extract( shortcode_atts( array(
@@ -53,13 +53,13 @@ function Insert_User_Profile($atts) {
 			}
 			$ReturnString .= "<div class='feup-user-profile-field'>";
 			$ReturnString .= "<div id='ewd-feup-user-profile-lavel-" . $Field->Field_ID . "' class='ewd-feup-user-profile-label pure-u-1-5'>" . $Field->Field_Name . ": </div>";
-			$ReturnString .= "<div class='ewd-feup-text-input pure-u-4-5'>" . $Value . "</div>";
+			if ($Field->Field_Type == "file") {$ReturnString .= "<div class='ewd-feup-text-input pure-u-4-5'>" . substr($Value, 10) . "</div>";}
+			else {$ReturnString .= "<div class='ewd-feup-text-input pure-u-4-5'>" . $Value . "</div>";}
 			$ReturnString .= "</div>";
 			unset($Req_Text);
 		}
 	}
 	
-	$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Edit_Profile_Submit' value='" . $submit_text . "'></div>";
 	$ReturnString .= "</form>";
 	$ReturnString .= "</div>";
 	
