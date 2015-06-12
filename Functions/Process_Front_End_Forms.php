@@ -259,7 +259,7 @@ function ConfirmUserEmail() {
 	return $ConfirmationSuccess;
 }
 
-function Get_User_Search_Results() {
+function Get_User_Search_Results($search_logic, $display_field) {
 	global $wpdb, $ewd_feup_user_fields_table_name, $ewd_feup_user_table_name;
 		
 	foreach ($_POST as $field => $value) {
@@ -270,14 +270,15 @@ function Get_User_Search_Results() {
 			unset($DataSet);
 		}
 	}
-		
+
 	if (!is_array($Criterion)) {return array();}
 		
 	$list = array();
 	foreach ($Criterion as $DataSet) {
 		unset($IDs);
 		$IDs = array();
-		$UserList = $wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_fields_table_name WHERE Field_Name='%s' AND Field_Value LIKE '%s'", $DataSet['Criteria'], $DataSet['Value']));
+		if ($DataSet['Criteria'] == "Username") {$UserList = $wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username LIKE '%s'", $DataSet['Value']));}
+		else {$UserList = $wpdb->get_results($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_fields_table_name WHERE Field_Name='%s' AND Field_Value LIKE '%s'", $DataSet['Criteria'], $DataSet['Value']));}
 		foreach ($UserList as $User) {
 			$IDs[] = $User->User_ID;
 		}
@@ -287,12 +288,22 @@ function Get_User_Search_Results() {
 	if (sizeOf($list) < 2) {
 		$UserIDs = $IDs;
 	} else {
-		$UserIDs = call_user_func_array('array_intersect',$list);
+		if ($search_logic == "AND") {$UserIDs = call_user_func_array('array_intersect',$list);}
+		else {
+			foreach ($list as $Criteria_List) {
+				foreach ($Criteria_List as $Matching_User) {
+					$Combined_IDs[] = $Matching_User;
+				}
+			}
+			$UserIDs = array_unique($Combined_IDs); 
+		}
 	}
 
 	foreach ($UserIDs as $UserID) {
-		$User = $wpdb->get_row($wpdb->prepare("SELECT Username FROM $ewd_feup_user_table_name WHERE User_ID='%d'", $UserID));
-		$UserInformation['Username'] = $User->Username;
+		if ($display_field == "Username") {$User = $wpdb->get_row($wpdb->prepare("SELECT Username FROM $ewd_feup_user_table_name WHERE User_ID='%d'", $UserID));}
+		else {$User = $wpdb->get_row($wpdb->prepare("SELECT field_value FROM $ewd_feup_user_fields_table_name WHERE User_ID='%d' and field_name=%s", $UserID, $display_field));}
+		$UserInformation[$display_field] = $User->field_value;
+		$UserInformation['User_ID'] = $UserID;
 		$Users[] = $UserInformation;
 		unset($UserInformation);
 	}

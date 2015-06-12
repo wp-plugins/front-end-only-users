@@ -14,6 +14,7 @@ $TimeStamp = substr($Cookie, strpos($Cookie, "%")+1, strrpos($Cookie, "%")-strpo
 $SecCheck = substr($Cookie, strrpos($Cookie, "%")+1);
 $UserAgent = $_SERVER['HTTP_USER_AGENT'];
 
+
 if (isset($_COOKIE[$CookieName]) and $TimeStamp < (time() + $LoginTime*60)) {
 	$UserDB = $wpdb->get_row($wpdb->prepare("SELECT User_Sessioncheck , User_Password FROM $ewd_feup_user_table_name WHERE Username ='%s'", $Username));
 	$DBSeccheck = $UserDB->User_Sessioncheck;

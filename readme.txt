@@ -184,6 +184,12 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.2.2 =
+- Added a bunch of new attributes for the user-search shortcode
+- Fixed errors with user-search
+- Fixed errors with user-list
+- Fixed a registration error
+
 = 2.2.1 =
 - Fixed an error with the "user-profile" shortcode
 - Fixed an error where a user's level got reset to the default level when they edited their profile

@@ -113,7 +113,8 @@ function Add_Edit_User() {
 				if ($Sign_Up_Email == "Yes") {EWD_FEUP_Send_Email($User_Fields, $Additional_Fields_Array, $User_ID);}
 				if ($Admin_Email_On_Registration == "Yes") {EWD_FEUP_Send_Admin_Registration_Email($User_Fields, $Additional_Fields_Array, $User_ID);}
 				if ($Email_Confirmation != "Yes" and $Admin_Approval != "Yes") {
-					CreateLoginCookie($_POST['Username'], $_POST['User_Password']);
+					Confirm_Login();
+					//CreateLoginCookie($_POST['Username'], $_POST['User_Password']);
 					$feup_success = true;
 				}
 			}
