@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 2.2.2
+Version: 2.2.3
 */
 
 global $EWD_FEUP_db_version;
@@ -139,9 +139,9 @@ add_action( 'wp_head', 'EWD_FEUP_Admin_Head' );
 add_action( 'wp_enqueue_scripts', 'EWD_FEUP_Add_Stylesheet' );
 function EWD_FEUP_Add_Stylesheet() {
     wp_register_style( 'ewd-feup-style', plugins_url('css/feu-styles.css', __FILE__) );
-	wp_register_style( 'yahoo-pure-css', plugins_url('css/pure.css', __FILE__) );
+	wp_register_style( 'feup-yahoo-pure-css', plugins_url('css/feup-pure.css', __FILE__) );
     wp_enqueue_style( 'ewd-feup-style' );
-	wp_enqueue_style( 'yahoo-pure-css' );
+	wp_enqueue_style( 'feup-yahoo-pure-css' );
 }
 
 /*add_action( 'wp_enqueue_scripts', 'Add_EWD_FEUP_FrontEnd_Scripts' );

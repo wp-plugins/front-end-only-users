@@ -1,9 +1,11 @@
 .ewd-feup-field-label {
   
 }
+
 .ewd-feup-text-input {
-  
+    
 }
+
 .ewd-feup-submit {
 
 }
@@ -29,5 +31,10 @@
   
 }
 .ewd-feup-negative-top {
-  margin-top:-.3em;
+    margin-top: -8px;
+}
+.ewd-feup-date-input {
+    font-family: inherit;
+    font-size: 1.5rem;
+    width: 215px;
 }

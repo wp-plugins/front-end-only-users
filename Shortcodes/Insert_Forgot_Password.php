@@ -32,16 +32,16 @@ function Insert_Forgot_Password_Form($atts) {
 		
 	$ReturnString .= "<div id='ewd-feup-forgot-password-form-div'>";
 	if (isset($user_message['Message'])) {$ReturnString .= $user_message['Message'];}
-	$ReturnString .= "<form action='#' method='post' id='ewd-feup-forgot-password-form' class='pure-form pure-form-aligned'>";
+	$ReturnString .= "<form action='#' method='post' id='ewd-feup-forgot-password-form' class='feup-pure-form feup-pure-form-aligned'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-reset-email-url' value='".$reset_email_url."'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='forgot-password'>";
-	$ReturnString .= "<div class='pure-control-group'>";
+	$ReturnString .= "<div class='feup-pure-control-group'>";
 	$ReturnString .= "<label for='Email' id='ewd-feup-reset-password' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
 	$ReturnString .= "<input type='email' class='ewd-feup-text-input pure-input-1-3' name='Email' value='' />";
 	$ReturnString .= "</div>";
-	$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Reset_Password_Submit' value='" . $submit_text . "'></div>";
+	$ReturnString .= "<div class='feup-pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit feup-pure-button feup-pure-button-primary' name='Reset_Password_Submit' value='" . $submit_text . "'></div>";
 	$ReturnString .= "</div>";
 	
 	return $ReturnString;

@@ -29,27 +29,27 @@ function Insert_Confirm_Forgot_Password($atts) {
 		
 	$ReturnString .= "<div id='ewd-feup-edit-profile-form-div'>";
 	if (isset($user_message['Message'])) {$ReturnString .= $user_message['Message'];}
-	$ReturnString .= "<form action='#' method='post' id='ewd-feup-edit-profile-form' class='pure-form pure-form-aligned'>";
+	$ReturnString .= "<form action='#' method='post' id='ewd-feup-edit-profile-form' class='feup-pure-form pure-form-aligned'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 	$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='confirm-forgot-password'>";
-	$ReturnString .= "<div class='pure-control-group'>";
+	$ReturnString .= "<div class='feup-pure-control-group'>";
 	$ReturnString .= "<label for='Email' id='ewd-feup-edit-password' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
-	$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Email' class='ewd-feup-text-input pure-input-1-3' value='".$_GET['add']."' />";
+	$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Email' class='ewd-feup-text-input' value='".$_GET['add']."' />";
 	$ReturnString .= "</div>";
-	$ReturnString .= "<div class='pure-control-group'>";
+	$ReturnString .= "<div class='feup-pure-control-group'>";
 	$ReturnString .= "<label for='Resetcode' id='ewd-feup-edit-password' class='ewd-feup-field-label'>" . __('Reset code', 'EWD_FEUP') . ": </label>";
-	$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Resetcode' class='ewd-feup-text-input pure-input-1-3' value='".$_GET['rc']."' />";
+	$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Resetcode' class='ewd-feup-text-input' value='".$_GET['rc']."' />";
 	$ReturnString .= "</div>";
-	$ReturnString .= "<div class='pure-control-group'>";
+	$ReturnString .= "<div class='feup-pure-control-group'>";
 	$ReturnString .= "<label for='User_Password' id='ewd-feup-edit-password' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </label>";
-	$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password' class='ewd-feup-text-input pure-input-1-3' value='' />";
+	$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password' class='ewd-feup-text-input' value='' />";
 	$ReturnString .= "</div>";
-	$ReturnString .= "<div class='pure-control-group'>";
+	$ReturnString .= "<div class='feup-pure-control-group'>";
 	$ReturnString .= "<label for='Confirm_User_Password' id='ewd-feup-edit-confirm-password' class='ewd-feup-field-label'>" . __('Repeat Password', 'EWD_FEUP') . ": </label>";
-	$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='Confirm_User_Password' class='ewd-feup-text-input pure-input-1-3' value='' />";
+	$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='Confirm_User_Password' class='ewd-feup-text-input' value='' />";
 	$ReturnString .= "</div>";
-	$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Edit_Password_Submit' value='" . $submit_text . "'></div>";
+	$ReturnString .= "<div class='feup-pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit feup-pure-button feup-pure-button-primary' name='Edit_Password_Submit' value='" . $submit_text . "'></div>";
 	$ReturnString .= "</div>";
 	$ReturnString .= "</form>";
 

@@ -31,12 +31,12 @@ function Insert_Login_Logout_Toggle($atts) {
 		$ReturnString .= "</style>";
 		$ReturnString .= "<div id='ewd-feup-login-form-div'>";
 		if (isset($user_message['Message'])) {$ReturnString .= $user_message['Message'];}
-		$ReturnString .= "<form action='#' method='post' id='ewd-feup-login-form' class='pure-form pure-form-aligned'>";
+		$ReturnString .= "<form action='#' method='post' id='ewd-feup-login-form' class='feup-pure-form feup-pure-form-aligned'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='login'>";
-		$ReturnString .= "<div class='pure-control-group'>";
-		$ReturnString .= "<label for='Logout_Submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Logout_Submit' value='" . __('Logout', 'EWD_FEUP') . "'>";
+		$ReturnString .= "<div class='feup-pure-control-group'>";
+		$ReturnString .= "<label for='Logout_Submit'></label><input type='submit' class='ewd-feup-submit feup-pure-button feup-pure-button-primary' name='Logout_Submit' value='" . __('Logout', 'EWD_FEUP') . "'>";
 		$ReturnString .= "</div>";
 		$ReturnString .= "</form>";
 		$ReturnString .= "</div>";

@@ -41,12 +41,12 @@ function Insert_Register_Form($atts) {
 	if (!isset($ConfirmationSuccess)) {	
 		$ReturnString .= "<div id='ewd-feup-register-form-div'>";
 		if (isset($user_message['Message'])) {$ReturnString .= $user_message['Message'];}
-		$ReturnString .= "<form action='#' method='post' id='ewd-feup-register-form' class='pure-form pure-form-aligned' enctype='multipart/form-data'>";
+		$ReturnString .= "<form action='#' method='post' id='ewd-feup-register-form' class='feup-pure-form feup-pure-form-aligned' enctype='multipart/form-data'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='register'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-post-id' value='" . $post->ID . "'>";
-		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<div class='feup-pure-control-group'>";
 		if($Username_Is_Email == "Yes") {
 			$ReturnString .= "<label for='Username' id='ewd-feup-register-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
 			if (isset($_POST['Username'])) {
@@ -60,12 +60,12 @@ function Insert_Register_Form($atts) {
 		else {$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' placeholder='" . __('Username', 'EWD_FEUP') . "...'>";}
 		}
 		$ReturnString .= "</div>";
-		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<div class='feup-pure-control-group'>";
 		$ReturnString .= "<label for='Password' id='ewd-feup-register-password-div' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </label>";
 		if (isset($_POST['User_Password'])) {$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password' value='" . $_POST['User_Password'] . "'>";}
 		else {$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password'>";}
 		$ReturnString .= "</div>";
-		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<div class='feup-pure-control-group'>";
 		$ReturnString .= "<label for='Repeat Password' id='ewd-feup-register-password-confirm-div' class='ewd-feup-field-label'>" . __('Repeat Password', 'EWD_FEUP') . ": </label>";
 		if (isset($_POST['Confirm_User_Password'])) {$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='Confirm_User_Password' value='" . $_POST['Confirm_User_Password'] . "'>";}
 		else {$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='Confirm_User_Password'>";}
@@ -74,27 +74,27 @@ function Insert_Register_Form($atts) {
 		foreach ($Fields as $Field) {
 			if ($Field->Field_Required == "Yes") {$Req_Text = "required";}
 			else {$Req_Text = "";}
-			$ReturnString .= "<div class='pure-control-group'>";
+			$ReturnString .= "<div class='feup-pure-control-group'>";
 			$ReturnString .= "<label for='" . $Field->Field_Name . "' id='ewd-feup-register-" . $Field->Field_ID . "' class='ewd-feup-field-label'>" . __($Field->Field_Name, 'EWD_FEUP') . ": </label>";
 			if ($Field->Field_Type == "text" or $Field->Field_Type == "mediumint") {
 				if (isset($_POST[str_replace(" ", "_", $Field->Field_Name)])) {$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' value='" . $_POST[str_replace(" ", "_", $Field->Field_Name)] . "' " . $Req_Text . "/>";}
-				else {$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input pure-input-1-3' type='text' placeholder='" . $Field->Field_Name . "' " . $Req_Text . "/>";}
+				else {$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-text-input' type='text' placeholder='" . $Field->Field_Name . "' " . $Req_Text . "/>";}
 			}
 			elseif ($Field->Field_Type == "date") {
-				$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='date' value='" . $Value . "' " . $Req_Text . "/>";
+				$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input' type='date' value='" . $Value . "' " . $Req_Text . "/>";
 			}
 			elseif ($Field->Field_Type == "datetime") {
-				$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input pure-input-1-3' type='datetime-local' value='" . $Value . "' " . $Req_Text . "/>";
+				$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-datetime-input' type='datetime-local' value='" . $Value . "' " . $Req_Text . "/>";
 			}
 			elseif ($Field->Field_Type == "file") {
-				$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input pure-input-1-3' type='file' value='' " . $Req_Text . "/>";
+				$ReturnString .= "<input name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-date-input' type='file' value='' " . $Req_Text . "/>";
 			}
 			elseif ($Field->Field_Type == "textarea") {
-				$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea pure-input-1-2' " . $Req_Text . ">" . $_POST[str_replace(" ", "_", $Field->Field_Name)] . "</textarea>";
+				$ReturnString .= "<textarea name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-textarea' " . $Req_Text . ">" . $_POST[str_replace(" ", "_", $Field->Field_Name)] . "</textarea>";
 			} 
 			elseif ($Field->Field_Type == "select") { 
 				$Options = explode(",", $Field->Field_Options);
-				$ReturnString .= "<select name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-select pure-input-1-3'>";
+				$ReturnString .= "<select name='" . $Field->Field_Name . "' id='ewd-feup-register-input-" . $Field->Field_ID . "' class='ewd-feup-select'>";
 			 	foreach ($Options as $Option) {
 					$ReturnString .= "<option value='" . $Option . "' ";
 					if (isset($_POST[str_replace(" ", "_", $Field->Field_Name)]) and $Option == $_POST[str_replace(" ", "_", $Field->Field_Name)]) {$ReturnString .= "selected='selected'";}
@@ -106,7 +106,7 @@ function Insert_Register_Form($atts) {
 				$Counter = 0;
 				$Options = explode(",", $Field->Field_Options);
 				foreach ($Options as $Option) {
-					if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
+					if ($Counter != 0) {$ReturnString .= "</div><div class='feup-pure-control-group ewd-feup-negative-top'><label class='feup-pure-radio'></label>";}
 					$ReturnString .= "<input type='radio' name='" . $Field->Field_Name . "' value='" . $Option . "' class='ewd-feup-radio' " . $Req_Text . " ";
 					if (isset($_POST[str_replace(" ", "_", $Field->Field_Name)]) and $Option == $_POST[str_replace(" ", "_", $Field->Field_Name)]) {$ReturnString .= "checked='checked'";}
 					$ReturnString .= ">" . $Option  . "<br/>";
@@ -117,7 +117,7 @@ function Insert_Register_Form($atts) {
   				$Counter = 0;
 				$Options = explode(",", $Field->Field_Options);
 				foreach ($Options as $Option) {
-					if ($Counter != 0) {$ReturnString .= "</div><div class='pure-control-group ewd-feup-negative-top'><label class='pure-radio'></label>";}
+					if ($Counter != 0) {$ReturnString .= "</div><div class='feup-pure-control-group ewd-feup-negative-top'><label class='feup-pure-radio'></label>";}
 					$ReturnString .= "<input type='checkbox' name='" . $Field->Field_Name . "[]' value='" . $Option . "' class='ewd-feup-checkbox' " . $Req_Text . " ";
 					if (isset($_POST[str_replace(" ", "_", $Field->Field_Name)])) {if (in_array($Option, $_POST[str_replace(" ", "_", $Field->Field_Name)])) {$ReturnString .= "checked";}}
 					$ReturnString .= ">" . $Option . "</br>";
@@ -128,7 +128,7 @@ function Insert_Register_Form($atts) {
 			unset($Req_Text);
 		}
 			
-		$ReturnString .= "<div class='pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Register_Submit' value='" . $submit_text . "'></div>";
+		$ReturnString .= "<div class='feup-pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit feup-pure-button feup-pure-button-primary' name='Register_Submit' value='" . $submit_text . "'></div>";
 		$ReturnString .= "</form>";
 		$ReturnString .= "</div>";
 	}

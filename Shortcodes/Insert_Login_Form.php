@@ -35,7 +35,7 @@ function Insert_Login_Form($atts) {
 		$ReturnString .= "<input type='hidden' name='ewd-feup-check' value='" . sha1(md5($Time.$Salt)) . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-time' value='" . $Time . "'>";
 		$ReturnString .= "<input type='hidden' name='ewd-feup-action' value='login'>";
-		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<div class='feup-pure-control-group'>";
 		if($Username_Is_Email == "Yes") {
 			$ReturnString .= "<label for='Username' id='ewd-feup-login-username-div' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
 			$ReturnString .= "<input type='email' class='ewd-feup-text-input' name='Username' placeholder='" . __('Email', 'EWD_FEUP') . "...'>";
@@ -44,12 +44,12 @@ function Insert_Login_Form($atts) {
 		$ReturnString .= "<input type='text' class='ewd-feup-text-input' name='Username' placeholder='" . __('Username', 'EWD_FEUP') . "...'>";
 		}
 		$ReturnString .= "</div>";
-		$ReturnString .= "<div class='pure-control-group'>";
+		$ReturnString .= "<div class='feup-pure-control-group'>";
 		$ReturnString .= "<label for='Password' id='ewd-feup-login-password-div' class='ewd-feup-field-label'>" . __('Password', 'EWD_FEUP') . ": </label>";
 		$ReturnString .= "<input type='password' class='ewd-feup-text-input' name='User_Password'>";
 		$ReturnString .= "</div>";
-		$ReturnString .= "<div class='pure-control-group'>";
-		$ReturnString .= "<label for='Submit'></label><input type='submit' class='ewd-feup-submit pure-button pure-button-primary' name='Login_Submit' value='" . $submit_text . "'>";
+		$ReturnString .= "<div class='feup-pure-control-group'>";
+		$ReturnString .= "<label for='Submit'></label><input type='submit' class='ewd-feup-submit feup-pure-button feup-pure-button-primary' name='Login_Submit' value='" . $submit_text . "'>";
 		$ReturnString .= "</div>";
 		$ReturnString .= "</form>";
 		$ReturnString .= "</div>";
