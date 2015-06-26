@@ -1,4 +1,4 @@
-<?
+<?php
 
 $WooCommerce_Integration = get_option('EWD_FEUP_WooCommerce_Integration');
 if ($WooCommerce_Integration == "Yes" and $EWD_FEUP_Full_Version == "Yes") {

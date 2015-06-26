@@ -185,6 +185,9 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.2.5 =
+- Small fix for users running older versions of PHP
+
 = 2.2.4 = 
 - Added WooCommerce integration to autofill fields for logged in users
 - Fixed an error with one of the functions in the PHP user class
