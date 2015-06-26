@@ -360,6 +360,19 @@ function Update_EWD_FEUP_Options() {
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_On_Admin_Approval", $_POST['email_on_admin_approval']);}
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Email_On_Registration", $_POST['admin_email_on_registration']);}
 	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_Default_User_Level", $_POST['default_user_level']);}
+
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Integration", $_POST['woocommerce_integration']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_First_Name_Field", $_POST['first_name_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Last_Name_Field", $_POST['last_name_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Company_Field", $_POST['company_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Address_Line_One_Field", $_POST['address_line_one_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Address_Line_Two_Field", $_POST['address_line_two_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_City_Field", $_POST['city_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Postcode_Field", $_POST['postcode_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Country_Field", $_POST['country_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_State_Field", $_POST['state_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Email_Field", $_POST['email_field']);}
+	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Phone_Field", $_POST['phone_field']);}
 	
 	$update = __("Options have been succesfully updated.", 'EWD_FEUP');
 	$user_update = array("Message_Type" => "Update", "Message" => $update);

@@ -12,6 +12,19 @@
 	$Admin_Email_On_Registration = get_option("EWD_FEUP_Admin_Email_On_Registration");
 	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 	$Default_User_Level = get_option("EWD_Default_User_Level");
+
+	$WooCommerce_Integration = get_option('EWD_FEUP_WooCommerce_Integration');
+	$First_Name_Field = get_option('EWD_FEUP_WooCommerce_First_Name_Field');
+	$Last_Name_Field = get_option('EWD_FEUP_WooCommerce_Last_Name_Field');
+	$Company_Field = get_option('EWD_FEUP_WooCommerce_Company_Field');
+	$Address_Line_One_Field = get_option('EWD_FEUP_WooCommerce_Address_Line_One_Field');
+	$Address_Line_Two_Field = get_option('EWD_FEUP_WooCommerce_Address_Line_Two_Field');
+	$City_Field = get_option('EWD_FEUP_WooCommerce_City_Field');
+	$Postcode_Field = get_option('EWD_FEUP_WooCommerce_Postcode_Field');
+	$Country_Field = get_option('EWD_FEUP_WooCommerce_Country_Field');
+	$State_Field = get_option('EWD_FEUP_WooCommerce_State_Field');
+	$Email_Field = get_option('EWD_FEUP_WooCommerce_Email_Field');
+	$Phone_Field = get_option('EWD_FEUP_WooCommerce_Phone_Field');
 ?>
 <div class="wrap">
 <div id="icon-options-general" class="icon32"><br /></div><h2>Settings</h2>
@@ -132,6 +145,119 @@
 		}?> 
 	</select>
 	<p>Which level should users be set to when they register (created on the "Levels" tab)?</p>
+	</fieldset>
+</td>
+</tr>
+</table>
+
+<h3>WooCommerce Integration Options (Premium)</h3>
+<table class="form-table">
+<tr>
+<th scope="row">WooCommerce Integration</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>WooCommerce Integration</span></legend>
+	<label title='Yes'><input type='radio' name='woocommerce_integration' value='Yes' <?php if($WooCommerce_Integration == "Yes") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='woocommerce_integration' value='No' <?php if($WooCommerce_Integration == "No") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
+	<p>Should checkout fields in WooCommerce automatically be filled in for logged in users?</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">First Name Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>First Name Field</span></legend>
+	<label title='First Name Field'><input type='text' name='first_name_field' value='<?php echo $First_Name_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "First Name" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Last Name Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Last Name Field</span></legend>
+	<label title='Last Name Field'><input type='text' name='last_name_field' value='<?php echo $Last_Name_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Last Name" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Company Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Company Field</span></legend>
+	<label title='Company Field'><input type='text' name='company_field' value='<?php echo $Company_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Company" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Address Line One Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Address Line One Field</span></legend>
+	<label title='Address Line One Field'><input type='text' name='address_line_one_field' value='<?php echo $Address_Line_One_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Address Line One" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Address Line Two Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Address Line Two Field</span></legend>
+	<label title='Address Line Two Field'><input type='text' name='address_line_two_field' value='<?php echo $Address_Line_Two_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Address Line Two" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">City Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>City Field</span></legend>
+	<label title='City Field'><input type='text' name='city_field' value='<?php echo $City_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "City" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Postcode Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Postcode Field</span></legend>
+	<label title='Postcode Field'><input type='text' name='postcode_field' value='<?php echo $Postcode_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Postcode" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Country Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Country Field</span></legend>
+	<label title='Country Field'><input type='text' name='country_field' value='<?php echo $Country_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Country" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">State Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>State Field</span></legend>
+	<label title='State Field'><input type='text' name='state_field' value='<?php echo $State_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "State" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Email Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Email Field</span></legend>
+	<label title='Email Field'><input type='text' name='email_field' value='<?php echo $Email_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Email" for billing and shipping in WooCommerce.</p>
+	</fieldset>
+</td>
+</tr>
+<tr>
+<th scope="row">Phone Field</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Phone Field</span></legend>
+	<label title='Phone Field'><input type='text' name='phone_field' value='<?php echo $Phone_Field; ?>' /></label><br />
+	<p>The name of the FEUP field that should be filled in as "Phone" for billing and shipping in WooCommerce.</p>
 	</fieldset>
 </td>
 </tr>

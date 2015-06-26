@@ -1,7 +1,7 @@
 === Front-End Only Users ===
 Contributors: Rustaurius, EtoileWebDesign
 Donate link: http://www.etoilewebdesign.com/plugin-donations/
-Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, statistics, analytics
+Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, statistics, analytics, WooCommerce
 Requires at least: 3.5.0
 Tested up to: 4.2
 License: GPLv3
@@ -31,6 +31,7 @@ Ideal for paid content, membership, dating sites and more!
 = Premium Features =
 The premium version includes lots of useful features such as:
 
+* WooCommerce integration: Autofill WooCommerce fields for logged-in users
 * Email confirmation: Require users to confirm their e-mail address before they can log in.
 * Ability to restrict pages: Gives you the option of restricting pages to groups of users in the sidebar of the page editor.
 * Admin Approval of Users: Require users to be approved by an administrator in the WordPress back-end before they can log in.
@@ -184,6 +185,10 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.2.4 = 
+- Added WooCommerce integration to autofill fields for logged in users
+- Fixed an error with one of the functions in the PHP user class
+
 = 2.2.3 =
 - CSS update that moves the plugin away from using Yahoo's Pure CSS (WARNING: if you're using your own custom CSS with this plugin, the selectors in the shortcodes are being changed)
 

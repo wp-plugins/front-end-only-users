@@ -47,7 +47,7 @@ if (!class_exists('FEUP_User')){
 		function Get_Field_Value($Field) {
 			global $wpdb, $ewd_feup_user_fields_table_name;
 						
-			$Value = $wpdb->get_var($wpdb->prepare("SELECT Field_Value FROM $ewd_feup_user_fields_table_name WHERE Field_Name=%s", $Field));
+			$Value = $wpdb->get_var($wpdb->prepare("SELECT Field_Value FROM $ewd_feup_user_fields_table_name WHERE Field_Name=%s AND User_ID=%d", $Field, $this->User_ID));
 			
 			return $Value;
 		}

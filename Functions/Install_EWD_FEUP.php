@@ -88,16 +88,29 @@ function Install_EWD_FEUP() {
    	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
    	dbDelta($sql);
  
-   	add_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
-	add_option("EWD_FEUP_Admin_Approval", "No");
-	add_option("EWD_FEUP_Login_Time", "1440");
-	add_option("EWD_FEUP_Email_Confirmation", "No");
-	add_option("EWD_FEUP_Full_Version", "No");
+   	if (get_option("EWD_FEUP_db_version") == "") {add_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);}
+	if (get_option("EWD_FEUP_Admin_Approval") == "") {add_option("EWD_FEUP_Admin_Approval", "No");}
+	if (get_option("EWD_FEUP_Login_Time") == "") {add_option("EWD_FEUP_Login_Time", "1440");}
+	if (get_option("EWD_FEUP_Email_Confirmation") == "") {add_option("EWD_FEUP_Email_Confirmation", "No");}
+	if (get_option("EWD_FEUP_Full_Version") == "") {add_option("EWD_FEUP_Full_Version", "No");}
 	if (get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", "No");}
 	if (get_option("EWD_FEUP_Track_Events") == "") {add_option("EWD_FEUP_Track_Events", "No");}
 	if (get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", "No");}
 	if (get_option("EWD_FEUP_Use_SMTP") == "") {update_option("EWD_FEUP_Use_SMTP", "Yes");}
 	if (get_option("EWD_FEUP_Port") == "") {update_option("EWD_FEUP_Port", "25");}
-	add_option("EWD_FEUP_Custom_CSS", "");
+	if (get_option("EWD_FEUP_Custom_CSS") == "") {add_option("EWD_FEUP_Custom_CSS", "");}
+
+	if (get_option("EWD_FEUP_WooCommerce_Integration") == "") {update_option("EWD_FEUP_WooCommerce_Integration", "No");}
+	if (get_option("EWD_FEUP_WooCommerce_First_Name_Field") == "") {update_option("EWD_FEUP_WooCommerce_First_Name_Field", "First Name");}
+	if (get_option("EWD_FEUP_WooCommerce_Last_Name_Field") == "") {update_option("EWD_FEUP_WooCommerce_Last_Name_Field", "Last Name");}
+	if (get_option("EWD_FEUP_WooCommerce_Company_Field") == "") {update_option("EWD_FEUP_WooCommerce_Company_Field", "Company");}
+	if (get_option("EWD_FEUP_WooCommerce_Address_Line_One_Field") == "") {update_option("EWD_FEUP_WooCommerce_Address_Line_One_Field", "Address Line One");}
+	if (get_option("EWD_FEUP_WooCommerce_Address_Line_Two_Field") == "") {update_option("EWD_FEUP_WooCommerce_Address_Line_Two_Field", "Address Line Two");}
+	if (get_option("EWD_FEUP_WooCommerce_City_Field") == "") {update_option("EWD_FEUP_WooCommerce_City_Field", "City");}
+	if (get_option("EWD_FEUP_WooCommerce_Postcode_Field") == "") {update_option("EWD_FEUP_WooCommerce_Postcode_Field", "Postcode");}
+	if (get_option("EWD_FEUP_WooCommerce_Country_Field") == "") {update_option("EWD_FEUP_WooCommerce_Country_Field", "Country");}
+	if (get_option("EWD_FEUP_WooCommerce_State_Field") == "") {update_option("EWD_FEUP_WooCommerce_State_Field", "State");}
+	if (get_option("EWD_FEUP_WooCommerce_Email_Field") == "") {update_option("EWD_FEUP_WooCommerce_Email_Field", "Email");}
+	if (get_option("EWD_FEUP_WooCommerce_Phone_Field") == "") {update_option("EWD_FEUP_WooCommerce_Phone_Field", "Phone");}
 }
 ?>

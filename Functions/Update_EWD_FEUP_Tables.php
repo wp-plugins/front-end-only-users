@@ -97,6 +97,20 @@ function Update_EWD_FEUP_Tables() {
 
 	if (get_option("EWD_FEUP_Use_SMTP") == "") {update_option("EWD_FEUP_Use_SMTP", "Yes");}
 	if (get_option("EWD_FEUP_Port") == "") {update_option("EWD_FEUP_Port", "25");}
+
+	if (get_option("EWD_FEUP_WooCommerce_Integration") == "") {update_option("EWD_FEUP_WooCommerce_Integration", "No");}
+	if (get_option("EWD_FEUP_WooCommerce_First_Name_Field") == "") {update_option("EWD_FEUP_WooCommerce_First_Name_Field", "First Name");}
+	if (get_option("EWD_FEUP_WooCommerce_Last_Name_Field") == "") {update_option("EWD_FEUP_WooCommerce_Last_Name_Field", "Last Name");}
+	if (get_option("EWD_FEUP_WooCommerce_Company_Field") == "") {update_option("EWD_FEUP_WooCommerce_Company_Field", "Company");}
+	if (get_option("EWD_FEUP_WooCommerce_Address_Line_One_Field") == "") {update_option("EWD_FEUP_WooCommerce_Address_Line_One_Field", "Address Line One");}
+	if (get_option("EWD_FEUP_WooCommerce_Address_Line_Two_Field") == "") {update_option("EWD_FEUP_WooCommerce_Address_Line_Two_Field", "Address Line Two");}
+	if (get_option("EWD_FEUP_WooCommerce_City_Field") == "") {update_option("EWD_FEUP_WooCommerce_City_Field", "City");}
+	if (get_option("EWD_FEUP_WooCommerce_Postcode_Field") == "") {update_option("EWD_FEUP_WooCommerce_Postcode_Field", "Postcode");}
+	if (get_option("EWD_FEUP_WooCommerce_Country_Field") == "") {update_option("EWD_FEUP_WooCommerce_Country_Field", "Country");}
+	if (get_option("EWD_FEUP_WooCommerce_State_Field") == "") {update_option("EWD_FEUP_WooCommerce_State_Field", "State");}
+	if (get_option("EWD_FEUP_WooCommerce_Email_Field") == "") {update_option("EWD_FEUP_WooCommerce_Email_Field", "Email");}
+	if (get_option("EWD_FEUP_WooCommerce_Phone_Field") == "") {update_option("EWD_FEUP_WooCommerce_Phone_Field", "Phone");}
+
 	update_option("EWD_FEUP_db_version", $EWD_FEUP_db_version);
 }
 ?>
