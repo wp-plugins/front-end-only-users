@@ -52,6 +52,9 @@ if (isset($_GET['Action'])) {
 						case "EWD_FEUP_ExportToExcel":
 								$feup_message = EWD_FEUP_Export_To_Excel();
 								break;
+						case "EWD_FEUP_OneClickInstall":
+								$feup_message = EWD_FEUP_One_Click_Install();
+								break;
 						default:
 								//$feup_update_message = __("The form has not worked correctly. Please contact the plugin developer.", 'EWD_FEUP');
 								break;

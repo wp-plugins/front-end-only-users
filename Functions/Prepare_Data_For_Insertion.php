@@ -703,4 +703,124 @@ function Mass_Delete_EWD_FEUP_Levels() {
 	return $user_update;
 }
 
+function EWD_FEUP_One_Click_Install() {
+	global $EWD_FEUP_Full_Version, $Links_Array;
+
+	if ($EWD_FEUP_Full_Version != "Yes") {exit();}
+
+	foreach ($_POST['page'] as $Page) {
+		$Page_Attribute_One = $_POST[$Page . "_attribute_one"];
+		$Page_Attribute_Two = $_POST[$Page . "_attribute_two"];
+		$Page_Attribute_Three = $_POST[$Page . "_attribute_three"];
+
+		if ($Page_Attribute_One != "") {$Attribute_One_Value = $_POST[$Page . "_" . $Page_Attribute_One];}
+		if ($Page_Attribute_One != "") {$Attribute_Two_Value = $_POST[$Page . "_" . $Page_Attribute_Two];}
+		if ($Page_Attribute_One != "") {$Attribute_Three_Value = $_POST[$Page . "_" . $Page_Attribute_Three];}
+
+		$Attributes = array();
+		if ($Page_Attribute_One != "") {$Attributes[$Page_Attribute_One] = EWD_FEUP_Get_Attribute_Insert_Value($Page, $Page_Attribute_One, $Attribute_One_Value);}
+		if ($Page_Attribute_One != "") {$Attributes[$Page_Attribute_Two] = EWD_FEUP_Get_Attribute_Insert_Value($Page, $Page_Attribute_Two, $Attribute_Two_Value);}
+		if ($Page_Attribute_One != "") {$Attributes[$Page_Attribute_Three] = EWD_FEUP_Get_Attribute_Insert_Value($Page, $Page_Attribute_Three, $Attribute_Three_Value);}
+
+		$Page_Content = EWD_FEUP_Get_Page_Content($Page, $Attributes);
+
+		$Page_ID = EWD_FEUP_Add_Page(str_replace("_", " ", $Page), $Page_Content);
+	}
+
+	EWD_FEUP_Handle_Newly_Created_Page_Links($Links_Array);
+
+	$update = __("Pages have been successfully added. Check the 'Pages' section to modify them.", 'EWD_FEUP');
+	$user_update = array("Message_Type" => "Update", "Message" => $update);
+
+	return $user_update;
+}
+
+function EWD_FEUP_Get_Attribute_Insert_Value($Page, $Page_Attribute, $Attribute_Value) {
+	global $Links_Array;
+
+	if ($Page_Attribute == "redirect_page" or $Page_Attribute == "login_page" or $Page_Attribute == "loggedin_page" or $Page_Attribute == "reset_email_url") {
+		if (strpos($Attribute_Value, "(Newly Created)") !== FALSE) {
+			$Links_Array[$Page . "|" . $Page_Attribute] = $Attribute_Value;
+			$Insert_Attribute_Value = $Page . "|" . $Page_Attribute;
+		}
+		else {
+			$Redirect_Page_Object = get_page_by_title(str_replace("_", " ", $Attribute_Value));
+			$Insert_Attribute_Value  = get_permalink($Redirect_Page_Object->ID);
+		}
+	}
+	else {$Insert_Attribute_Value = $Attribute_Value;}
+
+	return $Insert_Attribute_Value;
+}
+
+function EWD_FEUP_Get_Page_Content($Page, $Attributes = array()) {
+	switch ($Page) {
+		case 'Edit_Profile':
+			$Content = "[edit-profile";
+			break;
+		case 'Register':
+			$Content = "[register";
+			break;
+		case 'Login':
+			$Content = "[login";
+			break;
+		case 'Logout':
+			$Content = "[logout";
+			break;
+		case 'Forgot_Password':
+			$Content = "[forgot-password";
+			break;
+		case 'Confirm_Forgot_Password':
+			$Content = "[confirm-forgot-password";
+			break;
+		case 'Change_Password':
+			$Content = "[reset-password";
+			break;
+		case 'Login_Logout_Toggle':
+			$Content = "[login-logout-toggle";
+			break;
+		case 'User_Profile':
+			$Content = "[user-profile";
+			break;
+		case 'User_Search':
+			$Content = "[user-search";
+			break;
+		case 'User_List':
+			$Content = "[user-list";
+			break;
+		case 'User_Data':
+			$Content = "[user-data";
+			break;
+	}
+
+	foreach ($Attributes as $Attribute_Name => $Attribute_Value) {
+		if ($Attribute_Value != "") {$Content .= " " . $Attribute_Name . "='" . $Attribute_Value . "'";}
+	}
+	
+	$Content .= "]";
+
+	return $Content;
+}
+
+function EWD_FEUP_Handle_Newly_Created_Page_Links($Links_Array) {
+	if (is_array($Links_Array)) {
+		foreach ($Links_Array as $Replace_Value => $Page_Name) {
+			$Page_Name = substr($Page_Name, 0, -16);
+			$Replace_Page_Name = substr($Replace_Value, 0, strpos($Replace_Value, "|"));
+		
+			$Redirect_Page_Object = get_page_by_title(str_replace("_", " ", $Page_Name));
+			$Insert_Attribute_Value  = get_permalink($Redirect_Page_Object->ID);
+			
+			$Replace_Page_Object = get_page_by_title(str_replace("_", " ", $Replace_Page_Name));
+			$Current_Content = $Replace_Page_Object->post_content;
+			$New_Content = str_replace($Replace_Value, $Insert_Attribute_Value, $Current_Content);
+
+			$update_post = array(
+							'ID' => $Replace_Page_Object->ID, 
+							'post_content' => $New_Content
+							);
+			wp_update_post($update_post);
+		}
+	}
+}
 ?>

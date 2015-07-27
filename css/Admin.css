@@ -36,6 +36,30 @@ a {
 .ewd-feup-mb-label {display: table-cell;}
 .ewd-feup-mb-select {display: table-cell;}
 
+.ewd-feup-oci-no-show {display: none;}
+.ewd-feup-grey-out {
+  background: #CCCCCC;
+  opacity:0.75;
+  position: absolute;
+  top: 0px;
+  left:0px;
+  height: 100%;
+  width: 100%;
+  margin-left: -180px;
+  z-index: 9991;
+}
+.ewd-feup-oci-main-event {
+  opacity: 1;
+  position:absolute;
+  top: 80px;
+  margin: 0 auto;
+  width:100%;
+  z-index:9992;
+  background: #FFFFFF;
+  padding: 24px;
+  margin-left: -90px;
+}
+
 
 /***********************************************************
 * CONFIRMATION DIALOG

@@ -76,7 +76,7 @@ function Confirm_Login() {
 
 function Forgot_Password() {
 	global $wpdb, $feup_success;
-	global $ewd_feup_user_table_name, $ewd_feup_fields_table_name;
+	global $ewd_feup_user_table_name, $ewd_feup_fields_table_name, $ewd_feup_user_fields_table_name;
 
 	$Salt = get_option("EWD_FEUP_Hash_Salt");
 	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
@@ -91,7 +91,7 @@ function Forgot_Password() {
 		$User = $wpdb -> get_row( $wpdb -> prepare( "SELECT * FROM $ewd_feup_user_table_name WHERE Username = '%s'", $_POST['Email'] ) );
 		$User_Email = $User->Username;
 	} else {
-		$User_Fields = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE Field_Value = '%d' AND Field_Name = '%s' ", $_POST['Email'], $Email_Field));
+		$User_Fields = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE Field_Value = '%s' AND Field_Name = '%s' ", $_POST['Email'], $Email_Field));
 		$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE User_ID = '%d'", $User_Fields->User_ID ));
 		$User_Email = $User_Fields->Field_Value;
 	}
@@ -132,7 +132,7 @@ function Forgot_Password() {
 		
 		$message = __("Greetings from ", 'EWD_FEUP').get_bloginfo('name')."\n\n";
 		$message .= __("Somebody requested a password reset for you. If this wasn't you, you can ignore this mail.", 'EWD_FEUP')."\n\n";
-		$message .= __("If you want to reset the password, please visit ", 'EWD_FEUP').site_url()."/".$_POST['ewd-feup-reset-email-url']."&add=". $User_Email."&rc=".$resetcode."\n";
+		$message .= __("If you want to reset the password, please visit ", 'EWD_FEUP').site_url()."/".$_POST['ewd-feup-reset-email-url']."?add=". urlencode($User_Email)."&rc=".$resetcode."\n";
 		$message .= __("If the link above doesn't work, go to ", 'EWD_FEUP').site_url()."/".$_POST['ewd-feup-reset-email-url'].__(" and enter your email address and the following code:", 'EWD_FEUP')."\n";
 		$message .= $resetcode;
 		//$feup_success = true;
@@ -155,7 +155,7 @@ function Forgot_Password() {
 
 function Confirm_Forgot_Password() {
 	global $wpdb, $feup_success;
-	global $ewd_feup_user_table_name, $ewd_feup_fields_table_name;
+	global $ewd_feup_user_table_name, $ewd_feup_fields_table_name, $ewd_feup_user_fields_table_name;
 
 	$Salt = get_option("EWD_FEUP_Hash_Salt");
 	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
@@ -175,7 +175,7 @@ function Confirm_Forgot_Password() {
 					$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE Username = '%s'", $_POST['Email']));
 					$User_Email = $User->Username;
 				} else {
-					$User_Fields = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE Field_Value = '%d' AND Field_Name = '%s' ", $_POST['Email'], $Email_Field));
+					$User_Fields = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_fields_table_name WHERE Field_Value = '%s' AND Field_Name = '%s' ", $_POST['Email'], $Email_Field));
 					$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE User_ID = '%d'", $User_Fields->User_ID));
 					$User_Email = $User_Fields->Field_Value;
 				}

@@ -345,6 +345,18 @@ function Add_User_Event($User_ID, $Event_Type, $Event_Location, $Event_Location_
 	return $update;
 }
 
+function EWD_FEUP_Add_Page($Title, $Page_Content) {
+	$page = array(
+				'post_title' => $Title,
+				'post_status' => 'publish',
+				'post_type' => 'page',
+				'post_content' => $Page_Content
+	);
+	
+	$Page_ID = wp_insert_post($page);
+	return $Page_ID;
+}
+
 function Update_EWD_FEUP_Options() {
 	global $EWD_FEUP_Full_Version;
 	

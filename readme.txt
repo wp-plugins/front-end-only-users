@@ -185,6 +185,11 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.2.6 =
+- Added a beta version of a new feature, the One-Click installer, which creates all of the pages needed for the plugin in one click
+- Fixed small errors with the forgot-password and confirm-forgot-password shortcodes
+- Added in the missing section of the account-details shortcode
+
 = 2.2.5 =
 - Small fix for users running older versions of PHP
 
