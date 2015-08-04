@@ -94,6 +94,7 @@ function Install_EWD_FEUP() {
 	if (get_option("EWD_FEUP_Email_Confirmation") == "") {add_option("EWD_FEUP_Email_Confirmation", "No");}
 	if (get_option("EWD_FEUP_Full_Version") == "") {add_option("EWD_FEUP_Full_Version", "No");}
 	if (get_option("EWD_FEUP_Use_Crypt") == "") {add_option("EWD_FEUP_Use_Crypt", "No");}
+	if (get_option("EWD_FEUP_Use_Captcha") == "") {add_option("EWD_FEUP_Use_Captcha", "No");}
 	if (get_option("EWD_FEUP_Track_Events") == "") {add_option("EWD_FEUP_Track_Events", "No");}
 	if (get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", "No");}
 	if (get_option("EWD_FEUP_Use_SMTP") == "") {update_option("EWD_FEUP_Use_SMTP", "Yes");}

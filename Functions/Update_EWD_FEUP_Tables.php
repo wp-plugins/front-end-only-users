@@ -93,6 +93,7 @@ function Update_EWD_FEUP_Tables() {
 	if (get_option("EWD_FEUP_Username_Is_Email") == "true" or get_option("EWD_FEUP_Username_Is_Email")) {add_option("EWD_FEUP_Username_Is_Email", "Yes");}
 	if (get_option("EWD_FEUP_Username_Is_Email") == "false" or get_option("EWD_FEUP_Username_Is_Email") == "") {add_option("EWD_FEUP_Username_Is_Email", "No");}
 
+	if (get_option("EWD_FEUP_Use_Captcha") == "") {add_option("EWD_FEUP_Use_Captcha", "No");}
 	if (get_option("EWD_FEUP_Track_Events") == "") {add_option("EWD_FEUP_Track_Events", "No");}
 
 	if (get_option("EWD_FEUP_Use_SMTP") == "") {update_option("EWD_FEUP_Use_SMTP", "Yes");}

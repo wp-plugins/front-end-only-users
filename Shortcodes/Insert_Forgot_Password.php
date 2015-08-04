@@ -4,6 +4,7 @@ function Insert_Forgot_Password_Form($atts) {
 	global $ewd_feup_user_table_name;
 		
 	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
+	$Use_Captach = get_option("EWD_FEUP_Use_Captcha");
 		
 	// Get the attributes passed by the shortcode, and store them in new variables for processing
 	extract( shortcode_atts( array(
@@ -41,6 +42,7 @@ function Insert_Forgot_Password_Form($atts) {
 	$ReturnString .= "<label for='Email' id='ewd-feup-reset-password' class='ewd-feup-field-label'>" . __('Email', 'EWD_FEUP') . ": </label>";
 	$ReturnString .= "<input type='email' class='ewd-feup-text-input pure-input-1-3' name='Email' value='' />";
 	$ReturnString .= "</div>";
+	if ($Use_Captcha == "Yes") {$ReturnString .= EWD_FEUP_Add_Captcha();}
 	$ReturnString .= "<div class='feup-pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit feup-pure-button feup-pure-button-primary' name='Reset_Password_Submit' value='" . $submit_text . "'></div>";
 	$ReturnString .= "</div>";
 	

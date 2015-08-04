@@ -7,7 +7,7 @@ Author: Tim Ruse
 Author URI: http://www.EtoileWebDesign.com/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_FEUP
-Version: 2.2.7
+Version: 2.2.8
 */
 
 global $EWD_FEUP_db_version;
@@ -22,7 +22,7 @@ $ewd_feup_user_fields_table_name = $wpdb->prefix . "EWD_FEUP_User_Fields";
 $ewd_feup_fields_table_name = $wpdb->prefix . "EWD_FEUP_Fields";
 $ewd_feup_levels_table_name = $wpdb->prefix . "EWD_FEUP_Levels";
 $ewd_feup_user_events_table_name = $wpdb->prefix ."EWD_FEUP_User_Events";
-$EWD_FEUP_db_version = "2.2.4";
+$EWD_FEUP_db_version = "2.2.8";
 
 define( 'EWD_FEUP_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_FEUP_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -174,6 +174,7 @@ include "Functions/CheckLoginCookie.php";
 include "Functions/CreateLoginCookie.php";
 include "Functions/Determine_Redirect_Page.php";
 include "Functions/Error_Notices.php";
+include "Functions/EWD_FEUP_Add_Captcha.php";
 include "Functions/EWD_FEUP_Export_To_Excel.php";
 include "Functions/EWD_FEUP_Full_Page_Restriction.php";
 include "Functions/EWD_FEUP_Output_Options.php";

@@ -184,7 +184,11 @@ Tutorial Part 2
 4. Example of a restricted page
 5. The admin area
 
-== Changelog ==
+== Changelog == 
+= 2.2.8 =
+- Added a new "Captcha" premium option for registration and forgot-password forms
+- Fixed a couple of small errors
+
 = 2.2.7 =
 - Small CSS update
 

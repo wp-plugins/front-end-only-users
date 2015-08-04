@@ -83,6 +83,7 @@ function Forgot_Password() {
 	$Admin_Email = get_option("EWD_FEUP_Admin_Email");
 	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
+	$Use_Captcha = get_option("EWD_FEUP_Use_Captcha");
 	$Email_Field = get_option("EWD_FEUP_Email_Field");
 	$Email_Field = str_replace(" ", "_", $Email_Field);
 		
@@ -95,8 +96,11 @@ function Forgot_Password() {
 		$User = $wpdb->get_row($wpdb->prepare("SELECT * FROM $ewd_feup_user_table_name WHERE User_ID = '%d'", $User_Fields->User_ID ));
 		$User_Email = $User_Fields->Field_Value;
 	}
+
+	if ($Use_Captcha == "Yes") {$Validate_Captcha = EWD_FEUP_Validate_Captcha();}
+	else {$Validate_Captcha = "Yes";}
 		
-	if( !empty( $User ) )
+	if( !empty( $User ) and $Validate_Captcha == "Yes")
 	{
 		//update users password
 		//$password = wp_generate_password();

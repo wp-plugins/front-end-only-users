@@ -360,31 +360,32 @@ function EWD_FEUP_Add_Page($Title, $Page_Content) {
 function Update_EWD_FEUP_Options() {
 	global $EWD_FEUP_Full_Version;
 	
-	update_option('EWD_FEUP_Login_Time', $_POST['login_time']);
-	update_option("EWD_FEUP_Sign_Up_Email", $_POST['sign_up_email']);
-	update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);
-	update_option("EWD_FEUP_Use_Crypt", $_POST['use_crypt']);
-	update_option("EWD_FEUP_Username_Is_Email", $_POST['username_is_email']);
+	if (isset($_POST['login_time'])) {update_option('EWD_FEUP_Login_Time', $_POST['login_time']);}
+	if (isset($_POST['sign_up_email'])) {update_option("EWD_FEUP_Sign_Up_Email", $_POST['sign_up_email']);}
+	if (isset($_POST['custom_css'])) {update_option("EWD_FEUP_Custom_CSS", $_POST['custom_css']);}
+	if (isset($_POST['use_crypt'])) {update_option("EWD_FEUP_Use_Crypt", $_POST['use_crypt']);}
+	if (isset($_POST['username_is_email'])) {update_option("EWD_FEUP_Username_Is_Email", $_POST['username_is_email']);}
 
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Track_Events", $_POST['track_events']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_On_Admin_Approval", $_POST['email_on_admin_approval']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Email_On_Registration", $_POST['admin_email_on_registration']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_Default_User_Level", $_POST['default_user_level']);}
+	if (isset($_POST['use_captcha']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Use_Captcha", $_POST['use_captcha']);}
+	if (isset($_POST['track_events']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Track_Events", $_POST['track_events']);}
+	if (isset($_POST['email_confirmation']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_Confirmation", $_POST['email_confirmation']);}
+	if (isset($_POST['admin_approval']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Approval", $_POST['admin_approval']);}
+	if (isset($_POST['email_on_admin_approval']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Email_On_Admin_Approval", $_POST['email_on_admin_approval']);}
+	if (isset($_POST['admin_email_on_registration']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_Admin_Email_On_Registration", $_POST['admin_email_on_registration']);}
+	if (isset($_POST['default_user_level']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_Default_User_Level", $_POST['default_user_level']);}
 
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Integration", $_POST['woocommerce_integration']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_First_Name_Field", $_POST['first_name_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Last_Name_Field", $_POST['last_name_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Company_Field", $_POST['company_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Address_Line_One_Field", $_POST['address_line_one_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Address_Line_Two_Field", $_POST['address_line_two_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_City_Field", $_POST['city_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Postcode_Field", $_POST['postcode_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Country_Field", $_POST['country_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_State_Field", $_POST['state_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Email_Field", $_POST['email_field']);}
-	if ($EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Phone_Field", $_POST['phone_field']);}
+	if (isset($_POST['woocommerce_integration']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Integration", $_POST['woocommerce_integration']);}
+	if (isset($_POST['first_name_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_First_Name_Field", $_POST['first_name_field']);}
+	if (isset($_POST['last_name_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Last_Name_Field", $_POST['last_name_field']);}
+	if (isset($_POST['company_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Company_Field", $_POST['company_field']);}
+	if (isset($_POST['address_line_one_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Address_Line_One_Field", $_POST['address_line_one_field']);}
+	if (isset($_POST['address_line_two_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Address_Line_Two_Field", $_POST['address_line_two_field']);}
+	if (isset($_POST['city_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_City_Field", $_POST['city_field']);}
+	if (isset($_POST['postcode_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Postcode_Field", $_POST['postcode_field']);}
+	if (isset($_POST['country_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Country_Field", $_POST['country_field']);}
+	if (isset($_POST['state_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_State_Field", $_POST['state_field']);}
+	if (isset($_POST['email_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Email_Field", $_POST['email_field']);}
+	if (isset($_POST['phone_field']) and $EWD_FEUP_Full_Version == "Yes") {update_option("EWD_FEUP_WooCommerce_Phone_Field", $_POST['phone_field']);}
 	
 	$update = __("Options have been succesfully updated.", 'EWD_FEUP');
 	$user_update = array("Message_Type" => "Update", "Message" => $update);

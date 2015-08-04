@@ -6,6 +6,7 @@
 	$Use_Crypt = get_option("EWD_FEUP_Use_Crypt");
 	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
 
+	$Use_Captcha = get_option("EWD_FEUP_Use_Captcha");
 	$Track_Events = get_option("EWD_FEUP_Track_Events");
 	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
 	$Email_On_Admin_Approval = get_option("EWD_FEUP_Email_On_Admin_Approval");
@@ -83,6 +84,16 @@
 
 <h3>Premium Options</h3>
 <table class="form-table">
+<tr>
+<th scope="row">Captcha</th>
+<td>
+	<fieldset><legend class="screen-reader-text"><span>Captcha</span></legend>
+	<label title='Yes'><input type='radio' name='use_captcha' value='Yes' <?php if($Use_Captcha == "Yes") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
+	<label title='No'><input type='radio' name='use_captcha' value='No' <?php if($Use_Captcha == "No") {echo "checked='checked'";} ?> <?php if ($EWD_FEUP_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
+	<p>Should Captcha be added to the registration and forgot password forms to prevent spamming? (requires image-creation support for your PHP installation)</p>
+	</fieldset>
+</td>
+</tr>
 <tr>
 <th scope="row">Track User Activity</th>
 <td>

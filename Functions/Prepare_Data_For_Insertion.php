@@ -18,6 +18,7 @@ function Add_Edit_User() {
 	$Sign_Up_Email = get_option("EWD_FEUP_Sign_Up_Email");
 	$Default_User_Level = get_option("EWD_Default_User_Level");
 	$Use_Crypt = get_option("EWD_FEUP_Use_Crypt");
+	$Use_Captcha = get_option("EWD_FEUP_Use_Captcha");
 	$Email_Confirmation = get_option("EWD_FEUP_Email_Confirmation");
 	$Admin_Approval = get_option("EWD_FEUP_Admin_Approval");
 	$Email_On_Admin_Approval = get_option("EWD_FEUP_Email_On_Admin_Approval");
@@ -33,6 +34,9 @@ function Add_Edit_User() {
 	if (!isset($_POST['Admin_Approved'])) {$_POST['Admin_Approved'] = null;}
 	if (!isset($_POST['action'])) {$_POST['action'] = null;}
 	if (!isset($_POST['ewd-feup-action'])) {$_POST['ewd-feup-action'] = null;}
+
+	if ($_POST['ewd-feup-action'] == "register" and $Use_Captcha == "Yes") {$Validate_Captcha = EWD_FEUP_Validate_Captcha();}
+	else {$Validate_Captcha = "Yes";}
 
 	$User = $wpdb->get_row($wpdb->prepare("SELECT User_ID FROM $ewd_feup_user_table_name WHERE Username='%s'", $UserCookie['Username']));
 	if (is_object($User)) {
@@ -92,7 +96,7 @@ function Add_Edit_User() {
 		}
 	}
 
-	if (!isset($error)) {
+	if (!isset($error) and $Validate_Captcha == "Yes") {
 		/* Pass the data to the appropriate function in Update_Admin_Databases.php to create the user */
 		if ($_POST['action'] == "Add_User" or $_POST['ewd-feup-action'] == "register") {
 			if (is_object($User)) {$user_update = __("There is already an account with that Username. Please select a different one.", "EWD_FEUP"); return $user_update;}
@@ -145,6 +149,7 @@ function Add_Edit_User() {
 	}
 	/* Return any error that might have occurred */
 	else {
+			if ($Validate_Captcha != "Yes") {$error = "The Captcha text did not match the image";}
 			$output_error = array("Message_Type" => "Error", "Message" => $error);
 			return $output_error;
 	}

@@ -9,6 +9,7 @@ function Insert_Register_Form($atts) {
 	$Custom_CSS = get_option("EWD_FEUP_Custom_CSS");
 	$Salt = get_option("EWD_FEUP_Hash_Salt");
 	$Username_Is_Email = get_option("EWD_FEUP_Username_Is_Email");
+	$Use_Captcha = get_option("EWD_FEUP_Use_Captcha");
 	$Time = time();
 		
 	$Sql = "SELECT * FROM $ewd_feup_fields_table_name ORDER BY Field_Order";
@@ -127,7 +128,8 @@ function Insert_Register_Form($atts) {
 			$ReturnString .= "</div>";
 			unset($Req_Text);
 		}
-			
+		
+		if ($Use_Captcha == "Yes") {$ReturnString .= EWD_FEUP_Add_Captcha();}
 		$ReturnString .= "<div class='feup-pure-control-group'><label for='submit'></label><input type='submit' class='ewd-feup-submit feup-pure-button feup-pure-button-primary' name='Register_Submit' value='" . $submit_text . "'></div>";
 		$ReturnString .= "</form>";
 		$ReturnString .= "</div>";
