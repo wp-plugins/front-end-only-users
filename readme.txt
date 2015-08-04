@@ -3,7 +3,7 @@ Contributors: Rustaurius, EtoileWebDesign
 Donate link: http://www.etoilewebdesign.com/plugin-donations/
 Tags: membership, WordPress members, user management, market segmentation, personalization, front-end users, custom field registration, custom redirects, custom registration, custom registration form, custom registration page, custom user profile, customize profile, edit profile, extra user fields, front-end edit profile, front-end login, front-end register, front-end registration, front-end user listing, front-end user registration, profile builder, registration, registration page, user custom fields, user email, user listing, user login, user profile, user profile page, User Registration, user registration form, user-fields, password, profile, email, custom fields, premium content, statistics, analytics, WooCommerce
 Requires at least: 3.5.0
-Tested up to: 4.2
+Tested up to: 4.2.4
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -185,6 +185,9 @@ Tutorial Part 2
 5. The admin area
 
 == Changelog ==
+= 2.2.7 =
+- Small CSS update
+
 = 2.2.6 =
 - Added a beta version of a new feature, the One-Click installer, which creates all of the pages needed for the plugin in one click
 - Fixed small errors with the forgot-password and confirm-forgot-password shortcodes
